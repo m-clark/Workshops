@@ -21,17 +21,20 @@ This notebook illustrates some basic techniques for visualization in R. Here we 
 
 There are many R packages that support visualization. Base R provides fine grain control such that one can create 'publication-quality' graphs.  Unfortuntately, publication-quality is a fairly low bar, and the defaults for things like scatterplots, histograms etc. in R are borderline unusable, lacking sensible default settings.  As such I will not focus on the base R approach, but for the interested one can see the <span class="func">plot</span>, <span class="func">hist</span>, <span class="func">barplot</span> functions for starters.
 
-```{r}
+```{r baser}
 x = rnorm(1000)
 y = sin(x) + rnorm(1000, sd=.2)
 df = data.frame(x, y)
 plot(x, y)
 ```
 
-```{r, echo=1:2, eval=-2}
+
+```{r plotly, eval=FALSE, message=FALSE, warning=FALSE}
 library(plotly)
 plot_ly(x=x, y=y, mode='markers')
-plot_ly(x=x, y=y, mode='markers', width=800)
+```
+```{r plotlyshow, echo=FALSE}
+plot_ly(x=x, y=y, mode='markers', width=600)
 ```
 
 
@@ -61,6 +64,7 @@ bmx = read.xport("data/BMX_F.XPT")
 nhanes = plyr::join_all(list(demo, bpx, bmx))
 head(colnames(nhanes))  # first 6 columns
 ```
+
 ## Variable Descriptions
 
 More detail can be found [here](http://wwwn.cdc.gov/nchs/nhanes/search/nhanes09_10.aspx).
@@ -172,10 +176,6 @@ Body Measures:
 
 
 
-
-
-
-
 # ggplot2
 ggplot2 is a powerful visualization package that makes getting standard plots of the sort we typically want very easy.  It is based on Hadley Wickham's (of RStudio) grammar of graphics. There are now dozens of packages that add additional functionality, and other packages use it for package specific visualization.  For static plots it serves as a foundation.  A [cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) is provided for quick reference.
 
@@ -233,7 +233,7 @@ ggplot(aes(x=BPXSY1, y=BPXSY2), data=nhanes) +
   theme_minimal()
 ```
 
-```{r, warning=FALSE}
+```{r density2d, warning=FALSE}
 ggplot(data=nhanes) +
   geom_density_2d(aes(x=BPXSY1, y=BPXSY2, color=GENDER)) +
   # stat_density_2d(aes(fill = ..level..), geom = "polygon") +
@@ -247,7 +247,7 @@ ggplot(data=nhanes) +
 
 There are many packages that enhance the functionality of <span class="pack">ggplot2.</span>  Consider <span class="pack">ggExtra</span> as a starting point.  As an example, one of the additions it provides is the ability to add marginal histograms to a plot
 
-```{r, warnings=F}
+```{r marginals, warnings=F}
 scatter_plot = ggplot(data=nhanes) +
     geom_density2d(aes(x=BPXSY1, y=BPXSY2), alpha=.2, lwd=1) +
     theme_minimal()
@@ -264,7 +264,7 @@ Not only does it allow for histogram marginals, the package provides an <span cl
 
 An extremely common operation is to break out plots by group.  Facets allow us to do this via <span class="func">facet\_wrap</span> and <span class="func">facet\_grid</span>.  The difference between the two is that **wrap** is more flexible (i.e. you can generally make any **grid** plot with **wrap**), but often what you want is essentially what **grid** provides by default.
 
-```{r}
+```{r facets}
 nhanes %>% 
   mutate(ageGrps = factor(cut(RIDAGEYR, breaks=c(20, 30, 40, 50, 60, 70, 80)))) %>% 
   select(BPXSY1, BPXSY2, ageGrps) %>% 
@@ -279,7 +279,7 @@ nhanes %>%
 
 If you're like me, you might think that gray is a pretty poor choice for a default background (unfortunately other software/language modules have copied the ggplot2 approach as well).  We can specify the overall look of things via the theme layer, but several themes come with ggplot2. In the following I use a minimal theme, which for some reason retains unnecessary gridlines, so I remove those[^mypack].
 
-```{r bpgenderdens3}
+```{r themes}
 ggplot(aes(x=BPXSY1), data=nhanes) +
   geom_density(aes(color=GENDER)) +
   theme_minimal() +
@@ -306,7 +306,7 @@ Here are a couple examples using plotly. For basic plots, even maps, it can be f
 
 The following shows how to use some options.  For plotly, we work with traces as opposed to the geoms of ggplot, and we use the standard pipes, but much of the approach is similar.  We start with a base plot and add layers.
 
-```{r, echo=-1}
+```{r plotlysmooth, echo=-1}
 bmifit = mgcv::bam(BMXBMI ~ s(RIDAGEYR), data=nhanes)$fitted
 nhanes %>% 
   select(RIDAGEYR, BMXBMI) %>% 
@@ -320,7 +320,7 @@ nhanes %>%
 
 Although adding smooths on scatterplots is an extremely common option, plotly doesn't provide a trace for it so some pre-processing had to be done. Fortunately, ggplot2 has such functionality, so we could have started there.
 
-```{r, warning=FALSE}
+```{r ggplotly, warning=FALSE}
 p = ggplot(aes(x=RIDAGEYR, y=BMXBMI), data=nhanes) +
   geom_point(color='#1e90ff', alpha=.2) +
   geom_smooth(color='#ff5509', se=F) +
@@ -331,7 +331,7 @@ ggplotly()
 
 The following example shows how we can do some data manipulation prior to the visualization.
 
-```{r, warning=FALSE}
+```{r pipes2plotly, warning=FALSE}
 nhanes %>% 
   select(GENDER, RIDRETH1, BPXSY1, BMXBMI) %>% 
   mutate(RACE = factor(RIDRETH1, labels=c('MexiAmer', 'OtherHisp', 'NonHispWhite', 'NonHispBlack', 'Other'))) %>% 
@@ -348,7 +348,7 @@ nhanes %>%
 
 Here is the map[^maps] example from the plotly website.
 
-```{r}
+```{r map}
 library(plotly)
 df <- read.csv("https://raw.githubusercontent.com/plotly/datasets/master/2011_us_ag_exports.csv")
 df$hover <- with(df, paste(state, '<br>', "Beef", beef, "Dairy", dairy, "<br>",
@@ -370,12 +370,12 @@ plot_ly(df, z = total.exports, text = hover, locations = code, type = 'choroplet
   layout(title = '2011 US Agriculture Exports by State<br>(Hover for breakdown)', geo = g)
 ```
 
-```{r}
+```{r surface}
 plot_ly(z=volcano, type='surface')
 ```
 
 
-A word about using plotly. I like what I've been able to do with it, but I don't find it easy to work with once you go beyond your basic sorts of visualizations, and this is mostly because of the poor [documentation](https://plot.ly/r/), which is pretty terrible in both layout and detail. When you can find an interesting example (most stop at the simplest demonstrations), it typically won't contain text or comments outlining the 'why' of the code. In many cases, I've found it easier to look at the python examples or go to the javascript library documentation itself to see better examples and what is possible. Furthermore, the pages load *every* plot, and the plots are not small in web browsing terms, so some pages will take a bit to load even with a decent internet connection (e.g. this document is over 4mb). Unfortunately, aside from a couple examples, the help files just point you to the web for detail, and since there are few working examples for many of the options, it's hard to pinpoint why a plot doesn't do what you want[^plotlyerror].  
+A word about using plotly. I like what I've been able to do with it, but I don't find it easy to work with once you go beyond your basic sorts of visualizations, though this is almost entirely due to the poor [documentation](https://plot.ly/r/), which is pretty terrible in both layout and detail. When you can find an interesting example (most stop at the simplest demonstrations), it typically won't contain text or comments outlining the 'why' of the code. In many cases, I've found it easier to look at the python examples or go to the javascript library documentation itself to see better examples and what is possible. Furthermore, the pages load *every* plot, and the plots are not small in web browsing terms, so some pages will take a bit to load even with a decent internet connection (e.g. this document is over 4mb). Unfortunately, aside from a couple examples, the help files within R just point you to the web for detail, and since there are few working examples for many of the options, it's hard to pinpoint why a plot doesn't do what you want[^plotlyerror].  
 
 The pros of plotly are the easy interactivity, the easy ability to export the plots from within the webpage they are part of, and the ability to work with ggplot2, which is huge.  However, if they are appropriate, I'd suggest using some of the packages on the htmlwidgets page, or others for specific needs.
 

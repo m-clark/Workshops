@@ -906,11 +906,11 @@ z   19   20   21   22</code></pre>
 <!-- rnb-source-begin -->
 <pre class="r"><code>microbenchmark::microbenchmark(apply(myMatrix, 2, sum), colSums(myMatrix))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVW5pdDogbWljcm9zZWNvbmRzXG4gICAgICAgICAgICAgICAgICAgIGV4cHIgICAgbWluICAgICBscSAgICBtZWFuIG1lZGlhbiAgICAgdXEgICAgIG1heCBuZXZhbFxuIGFwcGx5KG15TWF0cml4LCAyLCBzdW0pIDI4LjIxOCAyOS40MTkgMzEuOTYxNSAyOS43MTkgMzAuMzIwIDExNy45NzQgICAxMDBcbiAgICAgICBjb2xTdW1zKG15TWF0cml4KSAgNC4yMDIgIDQuODA0ICA1LjkyMjkgIDYuMDA0ICA2LjMwNCAgMTYuNTExICAgMTAwXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiVW5pdDogbWljcm9zZWNvbmRzXG4gICAgICAgICAgICAgICAgICAgIGV4cHIgICAgbWluICAgICBscSAgICAgbWVhbiAgbWVkaWFuICAgICB1cSAgICAgbWF4IG5ldmFsXG4gYXBwbHkobXlNYXRyaXgsIDIsIHN1bSkgMjcuNjE3IDI5LjExOSAzMy42MDA0NCAyOS43MTkwIDMxLjA3MCAxMjIuMTc3ICAgMTAwXG4gICAgICAgY29sU3VtcyhteU1hdHJpeCkgIDMuNjAzICA0LjgwMyAgNi42MzQ0MiAgNS41NTM1ICA2LjMwNCAgOTYuMDYxICAgMTAwXG4ifQ== -->
 <pre><code>Unit: microseconds
-                    expr    min     lq    mean median     uq     max neval
- apply(myMatrix, 2, sum) 28.218 29.419 31.9615 29.719 30.320 117.974   100
-       colSums(myMatrix)  4.202  4.804  5.9229  6.004  6.304  16.511   100</code></pre>
+                    expr    min     lq     mean  median     uq     max neval
+ apply(myMatrix, 2, sum) 27.617 29.119 33.60044 29.7190 31.070 122.177   100
+       colSums(myMatrix)  3.603  4.803  6.63442  5.5535  6.304  96.061   100</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
