@@ -6,7 +6,7 @@ This repository houses notes/slides/code/data etc. for various workshops I've gi
 
 [Going further with RStudio](https://github.com/m-clark/Introduction-to-RStudio) Using RStudio for more than scripting.
 
-[Data Science Skills Series]()  See [Kerby Shedden's notes](http://kshedden.github.io/ds_skills_series.html). These notebooks provide R versions of the Python examples therein. (under development)
+[Data Science Skills Series](https://github.com/m-clark/Workshops/tree/master/dsSeries)  See [Kerby Shedden's notes](http://kshedden.github.io/ds_skills_series.html). These notebooks provide R versions of the Python examples therein. (under development)
 
 [Graphical and Latent Variable Modeling](http://m-clark.github.io/docs/sem/) This doc provides the source for the workshop on structural equation modeling.
 
