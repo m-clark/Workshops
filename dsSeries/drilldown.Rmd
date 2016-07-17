@@ -1,0 +1,131 @@
+---
+title: "Drill Down Exercise"
+output: 
+  html_notebook:
+    css: other.css
+    highlight: pygments
+    toc: yes
+    toc_float: yes
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = T, message = FALSE, warning = FALSE, R.options=list(width=120), 
+                      fig.align = 'center', fig.width=10, comment=NA, autodep=TRUE)
+```
+
+
+US Medicare Payment Data - identifying providers with high payment totals
+
+The US government recently released a data set containing all payments (partially aggregated) made by the Medicare program in 2012. For each health care provider, the billings are grouped into service types, and within each service type group, the total payment and standard deviation of payments are provided.
+
+The data are available [here](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Physician-and-Other-Supplier.html).
+
+The official documentation for the data is [here](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Downloads/Medicare-Physician-and-Other-Supplier-PUF-Methodology.pdf).
+
+One use of these data is to identify providers who receive very high payments from the Medicare program. In some cases this may reflect fraud or waste. Here is a link to a [media article](http://www.miamiherald.com/2014/04/09/4048743/south-florida-opthalmologist-emerges.html) about one such situation.
+
+
+
+```{r readdata, warning=FALSE, message=FALSE}
+cms_florida = readr::read_tsv('data/cms_florida.tsv', progress=FALSE)
+```
+
+If you get warnings, this is because line\_srvc\_cnt, which being a count, should be integer without decimal places. It is not. Whether this is an error (i.e. it is a count and shouldn't have .5s and .9s) or not (i.e. it shouldn't be called a count) is uncertain, but we can still proceed for this demo.
+
+We can take a look at the data before getting too far.
+
+```{r str}
+str(cms_florida)
+```
+
+
+
+
+```{r inspect2, echo=FALSE}
+library(dplyr)
+cms_florida %>% 
+  select(npi, nppes_provider_last_org_name, hcpcs_description, line_srvc_cnt, 
+         average_Medicare_payment_amt) %>% 
+  head
+```
+
+
+
+Each row of the data set is an aggregate of several individual charges. The number of charges that are aggregated is given by line\_srvc\_cnt. The average of these charges are given by average\_Medicare\_payment\_amt.
+
+The key value of interest here is the total amount of money paid by Medicare to each provider. This is not an explicit variable in the data set, but we can create it by multiplying the average payment by the number of payments, within each record of the data set.  We'll use dplyr's mutate function for this.
+
+```{r totalpayment}
+cms_florida = cms_florida %>% 
+  mutate(total_payment = line_srvc_cnt*average_Medicare_payment_amt)
+```
+
+
+Medicare makes payments to both individual providers, and to organizations. Most of the payments are to individuals and it's not clear that the payment amounts to providers can be directly compared to the payment amounts to individuals. So here we include only the individuals.
+
+```{r totaldims}
+cms_florida_ind = filter(cms_florida, nppes_entity_code == 'I')
+dim(cms_florida)
+dim(cms_florida_ind)
+
+```
+
+## Payments to individual providers
+
+The overall analysis follows the split-apply-combine model ([Wickham, 2011](https://www.jstatsoft.org/article/view/v040i01/v40i01.pdf)).  We split the data by provider, apply a function to aggregate the payments (by summing them), and combine the results into a new data frame.
+
+ Our goal is to obtain the total payment for each provider. We first group the data by the provider number, then aggregate within the groups by taking the sum of payment amounts. Finally we sort the result so that the providers with the greatest total payments appear at the top of the list.
+ 
+```{r aggtotals}
+totals = cms_florida_ind %>% 
+  group_by(npi) %>% 
+  summarise(total_payment = sum(total_payment)) %>% 
+  arrange(desc(total_payment))
+head(totals, 10)
+```
+
+Notice that we have not engaged in any explicit looping. This almost always a bad idea, and not because loops are necessarily slow.  One of the key benefits to using dplyr is code that is clear about what it's doing, and often loops are not.  Let's redo it by adding the names. There are a couple ways we could do this, but since npi and last name are just different labels for the same entity, grouping by both will give us what we want.
+
+```{r addnames}
+totals = cms_florida_ind %>% 
+  group_by(npi, nppes_provider_last_org_name) %>% 
+  summarise(total_payment = sum(total_payment)) %>% 
+  arrange(desc(total_payment))
+head(totals, 10)
+```
+
+
+
+One way to visualize the distribution of payments is to make a quantile plot, which is a plot of the sorted data against the index. We'll use ggplot2.
+
+```{r qplot, warning=FALSE}
+library(ggplot2)
+totals %>% 
+  ggplot(aes(x=rank(total_payment), y=total_payment)) +
+  geom_line() +
+  xlab('Provider rank')
+```
+
+Another familiar way to view a simple collection of numbers is using a histogram or density plot.
+
+```{r dens, warning=FALSE}
+qplot(x=total_payment, data=totals, geom='density')
+```
+
+
+
+The distribution is very skewed, so we can limit the histogram to the providers with total payment less than $100,000.
+
+```{r densfilter}
+totals %>% 
+  filter(total_payment<1e6) %>% 
+  qplot(x=total_payment, geom='density', data=.)
+```
+
+Note that the '.' represents whatever was present before the last pipe. It's typically not necessary, but in this case it was.  As an alternative, one could have piped with `%$%` from magrittr and ignored the data argument, as `%$%` throws the names of its contents forward to the next function.
+
+
+Exercises
+
+- Determine the maximum total payment among providers within each zip code, then plot it as a histogram or quantile plot.
+- Determine the maximum total payment among providers of each provider type, then plot it as a histogram or quantile plot.
+
