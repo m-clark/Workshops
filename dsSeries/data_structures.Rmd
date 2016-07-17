@@ -1,0 +1,509 @@
+---
+title: "Core R data structures"
+output: 
+  html_notebook:
+    css: other.css
+    highlight: pygments
+    toc: yes
+    toc_float: yes
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = T, message = F, warning = F, R.options=list(width=120), 
+                      fig.width=8, fig.align = 'center', comment=NA, autodep=T)
+```
+
+# Introduction
+
+This is a notebook comparable to that created by Kerby Shedden in his series that focuses on Python ([link](http://nbviewer.jupyter.org/urls/umich.box.com/shared/static/gkg1m0zhk7m6eniaf2emcikbvteppxi6.ipynb)). This notebook attempts to reproduce that one as much as possible, and at times I will reference Python where appropriate.
+
+
+# Data structures
+
+R has several core data structures:
+
+- [Vectors](#vectors)
+    - Factors
+- [Lists](#lists)
+- [Matrices/arrays](#matrix)
+- [Data frames](#df)
+    Tuples
+    Dictionaries
+    Sets
+
+
+# <a name="vectors">Vectors</a>
+
+Here is an R vector. The *elements* of the vector are numeric values.
+
+```{r vec}
+x = c(1, 3, 2, 5, 4)
+x
+```
+
+
+
+## Indexing
+Standard R objects can use position-based, name-based, or Boolean indexing. Note that indexing in R starts with 1.
+
+### By Position
+
+```{r vecindex}
+x = c(1, 3, 2, 5, 4)
+x[2]
+```
+
+
+### Slice
+
+Next we take a slice from the vector.  Note that R includes the value of the endpoint of the range, *unlike Python*.  The following will grab the second, third, and fourth values.
+
+```{r vecslice}
+x[2:4]
+```
+
+Base R does not allow for open slicing. All of the following would produce an error
+
+```{r indexerror, eval=F}
+x[2:]
+x[:2]
+x[::2]
+```
+
+Negative values in vector indexing are interpreted as 'drop':
+
+```{r negindex}
+x[-2]
+x[-(2:3)]
+```
+
+### By Name
+
+If the elements are named, we can  index by them.
+
+
+```{r nameindex}
+names(x) = letters[1:5]
+x
+x['b']
+```
+
+Note that you cannot slice by name as with a Pandas Series object.  I've never once even thought of doing this, so I can safely say you won't miss it.
+
+```{r nonameslice, error=TRUE}
+x['b':'d']
+```
+
+
+
+### Boolean
+
+And finally, we can take values corresponding to some operation that results in `TRUE` or `FALSE`.
+
+```{r boolindex}
+idx = x > 2
+idx
+x[idx]
+```
+
+### Flexiblity
+
+We actually don't have to create Boolean object before using it. R indexing is ridiculously (dangerously?) flexible.
+
+```{r flexindex}
+x[x > 2]
+x[x != 3]
+x[ifelse(x > 2, T, F)]
+x[{y = idx; y}]
+```
+
+## Working with Vectors
+
+The following shows some examples of working with vectors.
+
+Combining/Concatenation:
+```{r veccombine}
+x = c(3, 1, 7, 99, 0)
+y = c(NA, 2, 3, 1, 0)
+c(x, y)
+```
+
+Adding (or other operation)
+
+```{r vecadd}
+x + 2
+x + y
+```
+
+Replace missing values:
+
+```{r vecmiss}
+y[is.na(y)] = 0
+y
+```
+
+
+## Factors
+
+A important type of vector is a <span class="objclass">factor</span>. Factors are used to represent categorical data structures.
+
+```{r factors}
+x = factor(1:3, labels=c('q', 'V', 'what the heck?'))
+x
+```
+
+While the underlying representation is numeric, factors are categorical, and so can't be used as numbers would be.
+
+```{r factors2, error=TRUE}
+as.numeric(x)
+sum(x)
+```
+
+
+
+# <a name="lists">Lists</a>
+
+Lists in R are highly flexible objects that can contain anything as their elements, even other lists (unlike vectors, whose elements must be of the same type). Here is an R list. We use the list function to create one. 
+
+```{r}
+x = list(1, "apple", list(3, "cat"))
+x
+```
+
+We can use a loop to see the class of each object in the elements. 
+
+```{r list loop}
+for(v in x) print(class(v))
+```
+
+
+However, never do this. You neither need a loop almost ever, and you definitely will not ever need an explicit use of the <span class="func">print</span> function in R. For example, is typically easier/cleaner to use specialized functions for iterating rather than explicit loops.  Here we use <span class="func">lapply</span> (for 'list' 'apply') to loop over lists. 
+
+```{r lapply}
+lapply(x, class)
+```
+
+We can also use <span class="func">sapply</span> to return a vector/matrix by default (if possible to do so in the first place).
+
+```{r sapply}
+sapply(x, class)
+```
+
+Note that there are no 'tuples' in R as in Python. The equivalent to a dictionary in Python is simply a named list.  These might be referred to as "hashmaps", "associative arrays", and "key/value stores" in other languages.
+
+```{r namedlist}
+x = list("a" = 25, "b" = -1, "c" = 0)
+x["b"]
+```
+
+List elements can be extracted in multiple ways, using `[`,`[[`, and `$`.  The first approach allows us to select more than one element. 
+
+```{r listextraction}
+x['a']
+x[2:3]
+x[[1]]
+x$a
+```
+
+It will depend on the situation what approach you want to use. The different approaches can return different classes of objects.
+
+```{r listextraction2}
+str(x['a'])
+str(x[2:3])
+str(x[[1]])
+str(x$a)
+```
+
+## Iteration
+Here are some more examples of iterating over lists:
+
+```{r looplist1}
+x = list("a", "c", "d", "g", "b", "i")
+for (v in x) print(v)
+```
+
+```{r looplist2}
+for (v in 1:length(x)) print(c(v, x[[v]]))
+```
+
+Remember that vectors must be of the same class. Since we combine a number and a letter (character string), R coerces the vector to the more flexible type.
+
+
+
+# <a name="matrix">Matrices/Arrays</a>
+
+As R is a statistical programming language, there is no need for outside packages to work with common statistical data structures (e.g. numpy, Pandas in Python)  and even complex analysis.  Here we look at the creation and utilization of <span class="objclass">matrix</span> class objects.
+
+## Vectors again
+We can start with a vector as before. Here we'll perform an operation on it as well.
+
+```{r}
+x = c(4, 1, 5, 4, 7, 3, 0)
+x
+x + 2
+```
+
+## Matrix
+
+Creating a matrix can be done in a variety of ways.
+
+```{r createMatrix}
+x = 1:4
+y = 5:8
+z = 9:12
+
+rbind(x, y, z)
+cbind(x, y, z)
+matrix(c(x, y, z), nrow=3, ncol=4, byrow=TRUE)
+```
+
+
+
+### Indexing
+
+Matrices aren't special, so they can be indexed by name or number also, but now we can work with rows or columns.  The `$` will not work though, as it is reserved for list-like (*recursive*) objects.
+
+We separate row and column indices with a comma. If the index is empty, that means that all elements will be extracted.
+
+```{r matrixIndexing}
+myMatrix = cbind(x, y, z)
+myMatrix[,'y']
+myMatrix = rbind(x, y, z)
+myMatrix['y',]
+
+```
+
+We can slice, use Booleans etc. as before also.
+
+```{r matrixSlice}
+myMatrix[1, 2:3]
+```
+
+### Iteration
+
+As with lists, there is specific functionality for looping over matrices and arrays, *some of which will always be faster*. It's important to familiarize yourself with them.
+
+#### Apply
+
+We can use the apply function to work with rows and columns.
+
+```{r apply}
+apply(myMatrix, 1, sum)
+apply(myMatrix, 2, mean)
+```
+
+The 1 and 2 specify the margin we want to work on (and extend to arrays), so 1 means apply the function to rows, and 2 specifies columns. If we put `c(1,2)` that would work on each element.  We can also use implicit functions, sometimes referred to as <span class="emph">lambdas</span>.
+
+```{r lambda}
+apply(myMatrix, 1, function(x) x + 10 )
+```
+
+If you're wondering why R returns what appears to be the original matrix is transposed, it's not. You are not working with that matrix any more. `myMatrix` was the input to the apply function, and the output will be coerced to a vector or matrix.  There's no reason to assume the returned object will be anything like the original.
+
+```{r applysum}
+apply(myMatrix, 1, sum)
+```
+
+
+
+#### Vectorization
+
+An advantage to using R involves vectorized operations.  The 'apply' family of functions are essentially a shorthand for loops, and typically not any faster (though they all have parallel versions for cluster computing).  Vectorizing your code means to take a 'whole object' approach to the problem at hand.  People often think R is slower than other languages, and it certainly can be if you use it like other languages. Luckily, no one will force you to.
+
+```{r vectorized}
+myMatrix + 10
+colSums(myMatrix)
+rowMeans(myMatrix)
+```
+
+Note the time difference is quite extreme.
+
+```{r}
+microbenchmark::microbenchmark(apply(myMatrix, 2, sum), colSums(myMatrix))
+```
+
+Many benchmarks that include R versus other programs often do not use R in the way one typically would, and can be seriously misleading.
+
+## Array
+
+I personally almost never need to use arrays, as lists are more flexible and can accomplish the same thing, but sometimes it can come in handy if you need a 3 or more dimensional matrix, for example, when memory is a concern (lists are larger).
+
+```{r array}
+myArray = array(1:9, dim=c(1,3,3))
+myArray
+myArray[,,3]
+myArray[,2,3]
+myArray = array(rnorm(999), dim=c(1,9,111))
+```
+
+
+# <a name="df">Data frames</a>
+
+Data frames are far and away the most commonly used data structure. Unlike matrices, they do not have to have the same type of element.  This is because the `data.frame` class is actually just a list.  As such, everything about lists applies to data.frames, but they can also be indexed by row or column as well like matrices.
+
+```{r createdf}
+mydf = data.frame(a = c(1,5,2),
+                  b = c(3,8,1))
+```
+
+We can add row names also.
+
+```{r dfrownames}
+rownames(mydf) = paste0('row', 1:3)
+mydf
+```
+
+### Indexing
+
+Label-based indexing:
+
+```{r dfindexlabel}
+mydf['row1', 'b']
+```
+
+Position-based indexing:
+
+```{r dfindexpos}
+mydf[1,2]
+```
+
+Mixed indexing:
+
+```{r dfindexmix}
+mydf['row1', 2]
+```
+
+As before, if the row or column value is empty, all rows or columns are retained.
+
+```{r dfindexslice}
+mydf['row1',]
+mydf[,'b']
+```
+
+Non-contiguous:
+
+```{r dfindexnoncont}
+mydf[c(1,3),]
+```
+
+Boolean:
+
+```{r dfindexbool}
+mydf[mydf$a >=2,]
+```
+
+Data frames are named lists where the columns are the elements of the list.  As such all of these are viable ways to get a column
+
+```{r dfindexlist}
+mydf[['b']]
+mydf$b
+mydf[,2]
+mydf[2]
+```
+
+As lists, there is no restriction on what class of object can be in a data frame.
+
+```{r mixdf}
+df = data.frame(a = c(3L, 2L, 1L),
+                b = c('x','y','z'),
+                c = c(1.3, 2.5, 5.2))
+
+df
+str(df)
+```
+
+Note how the data.frame function coerces the string to a factor.  This is what we want the vast majority of the time. But if not:
+
+```{r nofactor}
+df = data.frame(a = c(3L, 2L, 1L),
+                b = c('x','y','z'),
+                c = c(1.3, 2.5, 5.2), stringsAsFactors=F)
+
+df
+str(df)
+```
+
+
+
+There is no equivalent of a Series class in base R as there is in Pandas, because they are just named vectors. For the examples similar to Kerby's notes, see the [Vectors](#vectors) section. 
+
+
+# A word about indexing
+
+While you can index by number, it is generally a poor idea to do so.  The problem is that they become <span class="emph">magic numbers</span>, utterly meaningless to the reader, but somehow, the code 'just works'.  This is not good for reproducibility. Others, which may include such luminaries as yourself two weeks after writing the code, will find it difficult to know what, for example, column 2 and 3 were and why they were important.  While you can provide a comment for every subset of data you create, it'd be better to just be explicit.  Positions are far more likely to change in data than the names, which really shouldn't change at all in most situations.
+
+
+# Now forget all of that
+
+While it is *extremely* important to understand how base R indexing with data frames works, it isn't optimal, it can get ugly quickly, and often practically requires creating preliminary objects along the way in order to get to the finished data you want to work with. Better approaches provide gains in both legibility and speed.
+
+## data.table
+
+The <span class="pack">data.table</span> package provides a syntax for common data operations.  Is built for speed and to keep memory usage down.  As such, whenever you're dealing with large data sets, you should consider using it.  Note that <span class="objclass">data.table</span> objects are still of the <span class="objclass">data.frame</span> class, and so can be used by any other package and function that works on data frames.
+
+```{r message=FALSE}
+library(data.table)
+mydt = data.table(mydf)
+class(mydt)
+```
+
+As an example, one of the more common operations on data frames is a 'group by' operation, or aggregation of the data to produce group level summary or other statistics. Base R provides several functions along this line, such as <span class="func">aggregate</span>, <span class="func">by</span>, and <span class="func">tapply.</span>  At best the syntax is clunky, and at worst the operations are exceedingly slow.
+
+The following demonstrates some timings from [here](http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega/34167477#34167477) (though reproduced on my own machine), based on 50 million observations, and serves to illustrate both the pros and cons of data.table.  The grouped operations are just a sum and length on a vector. 
+
+```{r timings, echo=-1}
+load('timing.RData')
+as.data.table(sapply(timing, `[[`, "elapsed"), keep.rownames = TRUE)[,.(fun = V1, elapsed = V2)][order(-elapsed)]
+```
+
+The speed gain is as notable as the syntax is unpleasing to the eye, but it's definitely fast.  There is plenty to get you started with at the [wiki](https://github.com/Rdatatable/data.table/wiki).
+
+
+## Piping plyr, dplyr, tidyr
+
+For everyday data wrangling, a family of packages exists to help.  From general to specific they are <span class="pack">plyr</span>, <span class="pack">dplyr</span>, and <span class="pack">tidyr.</span>  Most of time you would use dplyr, but there are many functions in each that will prove useful to you. One thing to get used to is the notion of <span class="emph">piping</span>, feeding an object forward to subsequent operations. The following example illustrates this.
+
+```{r pipes}
+mydf %>% 
+  select(b)
+mydf %>% 
+  select(b) %>% 
+  slice(2:3)
+mydf %>% 
+  select(b) %>% 
+  slice(2:3) %>% 
+  sum
+```
+
+In each case we started with a data frame and selected a column. The `%>%` is the pipe, and sends whatever is to the left of it to the subsequent operation. The <span class="func">slice</span> function filtered to rows 2 and 3, and in the end did a sum of those values.  Most seem to find this syntax more intuitive than base R, which might look something like the following.
+
+```{r dplyrbaser}
+sum(mydf$b[2:3])
+```
+
+For such a simple operation, the <span class="pack">dplyr</span> approach might seem verbose, but it is actually much more concise for more extravagant operations.  Let's look at the timings again.
+
+```{r dplyr}
+library(dplyr)
+data.frame(fun = names(timing)) %>%                      # make a variable corresponding to the names from the list (returns a matrix)
+  mutate(elapsed = sapply(timing, `[[`, "elapsed")) %>%  # make a varible corresponding to the times
+  arrange(desc(elapsed))                                 # arrange, descending
+```
+
+The <span class="func">mutate</span> step was unnecessary, as it could have been created in the previous line, but to me, this is a cleaner representation, and doesn't require a specific class of object to work (and can work on data.tables too). For <span class="pack">data.table</span>, one would need to continue to keep stacking brackets to continue an operation.  Consider the following:
+
+```{r dplyrdt1}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarize(avgmgp=mean(mpg), avghp=mean(hp)) %>% 
+  filter(cyl >= 6) %>% 
+  select(-avghp)
+```
+```{r dplyrdt2}
+as.data.table(mtcars)[,.(avgmpg=mean(mpg), avghp=mean(hp)), by=cyl][cyl>=6,-'avghp', with=FALSE]
+```
+
+
+Again, just a personal preference, but I find the <span class="pack">dplyr</span> approach much more legible, and it maintains that legibility even with even many more operations.  In addition, there are a host of functions to further enhance functionality with data frames.  <span class="pack">dplyr</span> operations are also going to be faster than base R, and I'll also note that 10 seconds of <span class="pack">dplyr</span>'s time is creating the grouping structure, not actually doing the grouped operation, which takes less than a second.  Furthermore there is <span class="pack">multidplyr</span>, which will create and work with a data frame partitioned across cores.  As an example, the grouped operation timing took about a third of a second on a partitioned version of the data frame.
+
+For more on data wrangling with the <span class="pack">plyr</span> family, see this [cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).  For more on piping, see the [CSCAR workshop notes](https://htmlpreview.github.io/?https://github.com/m-clark/data-manipulation-in-r/blob/master/mainSlides.html).  In the end, you should be open to using <span class="pack">data.table</span> with really large data sets, but what might be best/fastest for a particular situation.
+
