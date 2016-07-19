@@ -3,18 +3,19 @@
   font-weight: 500;
 }
 
+/* pack func and objclass colors come from hcl(seq(90,360, length.out=4), c=80, l=80)*/
 .pack {
-  color: #C93312;  /*darkred*/
+  color: #AC9CFF; /*#e41a1c*/
   font-weight: 500;
 }
 
-.func {            /*Not needed, just use ``*/
-  color: #C93312;
+.func {            /*#984ea3;can just use `` instead*/
+  color: #00CBB6;
   font-weight: 500;
 }
 
 .objclass {
-  color: #006400;  /*darkgreen*/
+  color:  #AAB400;  /*#4daf4a; #FFC5D0*/
   font-weight: 500;
 }
 
