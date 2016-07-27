@@ -1,0 +1,75 @@
+---
+---
+
+## 
+
+<div style="text-align:center; font-size:200%; font-variant:small-caps;" ><span style='color:#1e90ff'>Vectorization <br>&<br> Apply functions</span></div>
+
+
+## Base R Indexing Refresher
+
+Slicing vectors
+
+```{r vectorSlice}
+letters[4:6]
+letters[c(13,10,3)]
+```
+
+Slicing matrices/data.frames
+
+```{r matrixSlice, eval=F}
+myMatrix[1, 2:3]
+```
+
+## Base R Indexing Refresher
+
+Label-based indexing:
+
+```{r dfindexlabel, eval=F}
+mydf['row1', 'b']
+```
+
+Position-based indexing:
+
+```{r dfindexpos, eval=F}
+mydf[1, 2]
+```
+
+## Base R Indexing Refresher
+
+Mixed indexing:
+
+```{r dfindexmix, eval=F}
+mydf['row1', 2]
+```
+
+If the row or column value is empty, all rows or columns are retained.
+
+```{r dfindexslice, eval=F}
+mydf['row1',]
+mydf[,'b']
+```
+
+## Base R Indexing Refresher
+
+Non-contiguous:
+
+```{r dfindexnoncont, eval=F}
+mydf[c(1,3),]
+```
+
+Boolean:
+
+```{r dfindexbool, eval=FALSE}
+mydf[mydf$a >=2,]
+```
+
+## Base R Indexing Refresher
+
+List/Data.frame extraction
+
+<span class="func">[</span> : grab a slice of elements/columns
+
+<span class="func">[[</span> : grab specific elements/columns
+
+<span class="func">$</span> : grab specific elements/columns

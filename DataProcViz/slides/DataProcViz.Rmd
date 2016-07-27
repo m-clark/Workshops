@@ -1,5 +1,5 @@
 ---
-title: <span style="font-size:150%; font-variant:small-caps; ">Getting More from RStudio</span>
+title: <span style="font-size:150%; font-variant:small-caps; ">Data Processing & Visualization in R</span>
 author: |
   <div class="title"><span style="font-size:150%; font-variant:small-caps; ">Michael Clark</span><br>
   <span style="font-size:75%; margin: 0 auto;">Statistician Lead</span> <br> <br>
@@ -51,6 +51,9 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T,
 ```
 
 ```{r, child = 'IO.Rmd'}
+```
+
+```{r, child = 'VectorApp.Rmd'}
 ```
 
 

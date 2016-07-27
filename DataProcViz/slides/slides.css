@@ -28,18 +28,6 @@ a {
 }
 
 
-pre {
-  box-sizing: border-box;
-  left: 0; /* This changes where the code chunk box actually starts */
-  /* padding: 10px 0 10px 60px; /* Change the last value here to move the text left or right */
-  position: relative;
-  width: 100%; /* This changes where the code chunk box ends on the right side */
-  font-size: 75%; /*changes output size; and comments*/
-  /*border: 10px solid #ff5500;*/  /*code block and results border*/
-  /*background-color:#ff5500;*/   /* results background*/
-
-}
-
 .reveal section p {
   text-align: left;
 }
@@ -49,10 +37,10 @@ pre {
 .reveal ul {
   display: block;
   text-align: left;
-  margin: 0 0 0 1em; 
+  margin: 0 0 0 1em;
 }
 
-.reveal section img { 
+.reveal section img {
     background: #002b36;                      /*theme background color: https://github.com/rstudio/revealjs/tree/master/inst/reveal.js-3.2.0/css/theme*/
     border: 0;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
@@ -65,6 +53,16 @@ pre {
   bottom: 1em;
   left: 1em;
   font-size: 0.5em;
+}
+
+.reveal pre {
+  box-sizing: border-box;
+  left: 0; /* This changes where the code chunk box actually starts */
+  /* padding: 10px 0 10px 60px; /* Change the last value here to move the text left or right */
+  position: relative;
+  width: 100%; /* This changes where the code chunk box ends on the right side */
+  font-size: 50%; /*changes output size; and comments*/
+  box-shadow: .5 rgba(0, 0, 0, 0.15);
 }
 
 .col2 {
@@ -93,4 +91,13 @@ pre {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100% 100%; */
+}
+
+
+.sectionSlide {
+  color: #1e90ff;
+  text-align: center;
+  font-size: 200%;
+  font-variant: small-caps;
+  font-weight: 500;
 }
