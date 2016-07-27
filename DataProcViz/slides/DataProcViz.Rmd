@@ -1,0 +1,63 @@
+---
+title: <span style="font-size:150%; font-variant:small-caps; ">Getting More from RStudio</span>
+author: |
+  <div class="title"><span style="font-size:150%; font-variant:small-caps; ">Michael Clark</span><br>
+  <span style="font-size:75%; margin: 0 auto;">Statistician Lead</span> <br> <br>
+  <img src="../../img/CSCAR.png" style="display:block; width:75%; margin: 0 auto; "> <br>
+  <img src="../../img/ARC.png" style="display:block; width:50%; margin: 0 auto; "> </div>
+
+date: "`r Sys.Date()`"
+output: 
+  revealjs::revealjs_presentation:
+    theme: moon
+    highlight: pygments
+    center: true
+    transition: fade
+    smart: true
+    background_transition: slide
+    css: slides.css
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      viewDistance: 3
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, 
+                      R.options=list(width=120), fig.width=8, fig.align = 'center')
+```
+
+
+## Outline
+
+>- Overview of Data Structures
+
+>- Input/Output
+
+>- Vectorization and Apply functions
+
+>- Pipes, and how to use them
+
+>- Overview of dplyr
+
+>- Overview of data.table
+
+>- Overview of ggplot2
+
+>- Adding Interactivity
+
+
+```{r, child = 'dataStructures.Rmd'}
+```
+
+```{r, child = 'IO.Rmd'}
+```
+
+
+
+
+
+
+
+## Summary
+

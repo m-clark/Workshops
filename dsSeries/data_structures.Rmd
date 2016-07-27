@@ -26,9 +26,6 @@ R has several core data structures:
 - [Lists](#lists)
 - [Matrices/arrays](#matrix)
 - [Data frames](#df)
-    Tuples
-    Dictionaries
-    Sets
 
 
 # <a name="vectors">Vectors</a>

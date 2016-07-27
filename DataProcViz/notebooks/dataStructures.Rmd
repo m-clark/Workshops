@@ -1,0 +1,15 @@
+---
+title: "Data structures"
+output: 
+  html_notebook:
+    css: notebooks.css
+    highlight: pygments
+    toc: yes
+    toc_float: yes
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = T, message = F, warning = F, R.options=list(width=120), 
+                      fig.width=8, fig.align = 'center', comment=NA, autodep=T)
+```
+
+# Introduction
