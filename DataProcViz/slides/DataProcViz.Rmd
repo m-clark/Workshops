@@ -23,7 +23,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, 
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eval=F,
                       R.options=list(width=120), fig.width=8, fig.align = 'center')
 ```
 
@@ -47,15 +47,17 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T,
 >- Adding Interactivity
 
 
-```{r, child = 'dataStructures.Rmd'}
+```{r, child = 'dataStructures.Rmd', eval=T}
 ```
 
-```{r, child = 'IO.Rmd'}
+```{r, child = 'IO.Rmd', eval=T}
 ```
 
-```{r, child = 'VectorApp.Rmd'}
+```{r, child = 'indexing.Rmd', eval=T}
 ```
 
+```{r, child = 'VectorApp.Rmd', eval=T}
+```
 
 
 

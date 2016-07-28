@@ -94,7 +94,8 @@ x['b':'d']
 
 ### Boolean
 
-And finally, we can take values corresponding to some operation that results in `TRUE` or `FALSE`.
+And finally, we can take values corresponding to some oper
+ation that results in `TRUE` or `FALSE`.
 
 ```{r boolindex}
 idx = x > 2
@@ -104,7 +105,7 @@ x[idx]
 
 ### Flexiblity
 
-We actually don't have to create Boolean object before using it. R indexing is ridiculously (dangerously?) flexible.
+We actually don't have to create a Boolean object before using it. R indexing is ridiculously (dangerously?) flexible.
 
 ```{r flexindex}
 x[x > 2]
@@ -460,6 +461,7 @@ The speed gain is as notable as the syntax is unpleasing to the eye, but it's de
 For everyday data wrangling, a family of packages exists to help.  From general to specific they are <span class="pack">plyr</span>, <span class="pack">dplyr</span>, and <span class="pack">tidyr.</span>  Most of time you would use dplyr, but there are many functions in each that will prove useful to you. One thing to get used to is the notion of <span class="emph">piping</span>, feeding an object forward to subsequent operations. The following example illustrates this.
 
 ```{r pipes}
+library(dplyr)
 mydf %>% 
   select(b)
 mydf %>% 

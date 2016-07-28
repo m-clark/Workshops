@@ -10,7 +10,7 @@
 
 Standard methods of reading in data
 
-  - <span class="func">read.delim</span>
+  - <span class="func">read.table</span>
   - <span class="func">read.csv</span>
   - <span class="func">readLines</span>
 
@@ -32,6 +32,7 @@ Note: the foreign package is no longer useful for Stata files.
 <span class="pack">readxl</span>: for excel files
 
 
+
 ## Faster approaches
 
 <span class="pack">readr</span>: Faster versions of base R functions
@@ -48,3 +49,38 @@ However, they actually can be used as a diagnostic
   - pick up potential data entry errors.
 
 
+
+## Faster approaches
+
+<span class="pack">data.table</span>: faster read.table
+
+  - <span class="func">fread</span>
+
+Typically faster than readr approaches.
+
+
+## Other Data
+
+Note that R has many resources for dealing with other types of data.
+
+Some examples:
+
+- JSON
+- SQL
+- XML
+- YAML
+- NETCDF
+- text (e.g. a novel)
+- shapefiles
+- google spreadsheets
+
+And many, many others.
+
+
+## On the horizon
+ 
+<span class="pack">feather</span>: designed to make reading and writing data frames efficient
+
+Works in both Python and R.
+
+Still in early stages of development.

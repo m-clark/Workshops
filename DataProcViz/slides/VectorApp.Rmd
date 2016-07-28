@@ -1,75 +1,90 @@
----
----
+```{r setupVector, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eval=F,
+                      R.options=list(width=120), fig.width=8, fig.align = 'center')
+```
 
 ## 
 
-<div style="text-align:center; font-size:200%; font-variant:small-caps;" ><span style='color:#1e90ff'>Vectorization <br>&<br> Apply functions</span></div>
+<div style="text-align:center;font-variant:small-caps; font-family:TRON; font-size:200%; color:#1e90ff">Vectorization</div>
 
+## Boolean Indexing
 
-## Base R Indexing Refresher
+We can take values corresponding to some operation that results in `TRUE` or `FALSE`.
 
-Slicing vectors
+Assume x is a vector of numbers.
 
-```{r vectorSlice}
-letters[4:6]
-letters[c(13,10,3)]
+```{r boolindex}
+idx = x > 2
+idx
+x[idx]
 ```
 
-Slicing matrices/data.frames
+## Flexiblity
 
-```{r matrixSlice, eval=F}
-myMatrix[1, 2:3]
+We actually don't have to create a Boolean object before using it. 
+
+R indexing is ridiculously flexible.
+
+```{r flexindex}
+x[x > 2]
+x[x != 3]
+x[ifelse(x > 2, T, F)]
+x[{y = idx; y}]
 ```
 
-## Base R Indexing Refresher
+## Vectorized operations
 
-Label-based indexing:
+Consider the following loop:
 
-```{r dfindexlabel, eval=F}
-mydf['row1', 'b']
+```{r loop}
+for (i in 1:nrow(mydf)) {
+  check = mydf$x[i] > 2
+  if (check==TRUE){
+    mydf$y[i] = 'Yes'
+  } else {
+    mydf$y[i] = 'No'
+  }
+}
 ```
 
-Position-based indexing:
 
-```{r dfindexpos, eval=F}
-mydf[1, 2]
+## Vectorized operations
+
+Compare:
+
+```{r boolnoloop}
+mydf$y = 'No'
+mydf$y[mydf$x > 2] = 'Yes'
 ```
 
-## Base R Indexing Refresher
+This gets us the same thing.
 
-Mixed indexing:
 
-```{r dfindexmix, eval=F}
-mydf['row1', 2]
+
+## Vectorized operations
+
+Boolean indexing provides an example of a vectorized operation.
+
+The whole vector is considered rather than each element individually.
+
+This is always faster.
+
+## Vectorized operations
+
+Log all values in a matrix.
+
+```{r vecmatrixop}
+mymatrix_log = log(mymatrix)
 ```
 
-If the row or column value is empty, all rows or columns are retained.
+Would be a lot faster than looping over elements, rows or columns.
 
-```{r dfindexslice, eval=F}
-mydf['row1',]
-mydf[,'b']
-```
 
-## Base R Indexing Refresher
+## Vectorized Operations
 
-Non-contiguous:
+Many vectorized functions already exist in R.
 
-```{r dfindexnoncont, eval=F}
-mydf[c(1,3),]
-```
+They are also often written in C, Fortran etc., and so even faster.
+  
 
-Boolean:
 
-```{r dfindexbool, eval=FALSE}
-mydf[mydf$a >=2,]
-```
-
-## Base R Indexing Refresher
-
-List/Data.frame extraction
-
-<span class="func">[</span> : grab a slice of elements/columns
-
-<span class="func">[[</span> : grab specific elements/columns
-
-<span class="func">$</span> : grab specific elements/columns

@@ -100,4 +100,19 @@ a {
   font-size: 200%;
   font-variant: small-caps;
   font-weight: 500;
+  background: linear-gradient(to bottom, #002b36, white);
+}
+
+.reveal .sectionSlideTitle {
+  data-background-color: white;
+}
+
+#linearBg2 { /* fallback */
+  background-color: #002b36;
+  background-repeat: repeat-x; /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#002b36), to(#2F2727)); /* Safari 5.1, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #2F2727, #002b36); /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #2F2727, #002b36); /* IE 10 */
+  background: -ms-linear-gradient(top, #2F2727, #002b36); /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #2F2727, #002b36);
 }
