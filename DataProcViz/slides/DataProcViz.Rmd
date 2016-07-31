@@ -22,13 +22,15 @@ output:
       viewDistance: 3
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eval=F,
+```{r setup, include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eval=FALSE, cache=FALSE,
                       R.options=list(width=120), fig.width=8, fig.align = 'center')
 ```
 
 
 ## Outline
+
+Part 1
 
 >- Overview of Data Structures
 
@@ -36,16 +38,22 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 >- Vectorization and Apply functions
 
+Part 2
+
 >- Pipes, and how to use them
 
->- Overview of dplyr
+>- plyr, dplyr, tidyr
 
->- Overview of data.table
+>- data.table
 
->- Overview of ggplot2
+Part 3
+
+>- Visualization with ggplot2
 
 >- Adding Interactivity
 
+
+## Part 1
 
 ```{r, child = 'dataStructures.Rmd', eval=T}
 ```
@@ -57,6 +65,19 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 ```
 
 ```{r, child = 'VectorApp.Rmd', eval=T}
+```
+
+
+## Part 2
+
+
+```{r, child = 'pipes.Rmd', eval=T}
+```
+
+```{r, child = 'dplyr.Rmd', eval=T}
+```
+
+```{r, child = 'datatable.Rmd', eval=F}
 ```
 
 

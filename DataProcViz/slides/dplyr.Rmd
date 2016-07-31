@@ -1,0 +1,9 @@
+```{r setupDplyr, include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eval=FALSE, cache=FALSE,
+                      R.options=list(width=120), fig.width=8, fig.align = 'center')
+```
+
+
+## 
+
+<div style="text-align:center;font-variant:small-caps; font-family:TRON; font-size:200%; color:#1e90ff">plyr, dplyr, tidyr</div>

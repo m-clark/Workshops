@@ -1,0 +1,31 @@
+vec	c
+factors	c	factor
+factors2	as.numeric	sum	x
+createMatrix	c	cbind	matrix	rbind
+list	list
+listloop	class	for	x
+namedlist	list
+createdf	c	data.frame
+dfrownames	paste0	rownames<-
+setupIndexing	$	::	F	list	T
+vectorSlice	c	letters
+matrixSlice	myMatrix
+dfindexlabel	mydf
+dfindexpos	mydf
+dfindexmix	mydf
+dfindexslice	mydf
+dfindexnoncont	c	mydf
+dfindexbool	$	>=	mydf
+dflistslice	my_list_or_df
+dflistextract	[[	my_list_or_df
+dflistextract2	$	my_list_or_df
+setupVector	$	::	F	list	T
+boolindex	>	x
+flexindex	!=	>	F	idx	ifelse	T	x
+loop	$	$<-	[<-	==	>	for	if	nrow
+boolnoloop	$	$<-	[<-	>
+vecmatrixop	log	mymatrix
+unnamed-chunk-5	[<-	for	length	mean	mydf	ncol	sd
+unnamed-chunk-6	apply	mean	mydf	sd
+unnamed-chunk-7	::	[<-	aaply	apply	for	length	library	matrix	mean	ncol	rnorm	scale	sd	stdize
+unnamed-chunk-10	::	[<-	aaply	apply	for	length	library	matrix	mean	ncol	rnorm	scale	sd	stdize

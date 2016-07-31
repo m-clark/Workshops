@@ -80,6 +80,7 @@ mymatrix_log = log(mymatrix)
 Would be a lot faster than looping over elements, rows or columns.
 
 
+
 ## Vectorized Operations
 
 Many vectorized functions already exist in R.
@@ -87,4 +88,122 @@ Many vectorized functions already exist in R.
 They are also often written in C, Fortran etc., and so even faster.
   
 
+## Apply functions
 
+In R there a family of functions that allow for a succinct way of looping.
+
+- apply
+- lapply, sapply, vapply
+- tapply
+- mapply
+- replicate
+
+
+
+## Apply functions
+
+- apply
+    - arrays, matrices, data.frames
+- lapply, sapply, vapply
+    - lists, data.frames, vectors
+- tapply
+    - grouped operations (table apply)
+- mapply
+    - multivariate version of sapply
+- replicate
+    - similar to sapply
+    
+## Example
+
+Standardizing variables
+
+```{r eval=FALSE}
+for (i in 1:ncol(mydf)){
+  x = mydf[,i]
+  for (j in 1:length(x)){
+    x[j] = (x[j] - mean(x))/sd(x)
+  }
+}
+```
+
+This would be a really bad way to use R.
+
+```{r, eval=-3}
+stdize <- function(x) {
+  (x-mean(x))/sd(x)
+}
+
+apply(mydf, 2, stdize)
+```
+
+## Timings
+
+```{r, echo=F, eval=TRUE, cache=TRUE}
+mydf = matrix(rnorm(100000), ncol=1000)
+doubleloop = function(){
+  for (i in 1:ncol(mydf)){
+  x = mydf[,i]
+  for (j in 1:length(x)){
+    x[j] = (x[j] - mean(x))/sd(x)
+  }
+}
+}
+
+
+singleloop = function(){
+  for (i in 1:ncol(mydf)){
+  x = mydf[,i]
+  x = (x - mean(x))/sd(x)
+  }
+}
+
+library(plyr)
+
+test = microbenchmark::microbenchmark(doubleloop=doubleloop(),
+                                      singleloop=singleloop(), 
+                                      plyr=aaply(mydf, 2, stdize),
+                                      apply=apply(mydf, 2, stdize), 
+                                      vectorized=scale(mydf), times=25)
+test
+```
+
+    
+## Apply functions
+
+Benefits
+  
+  - Cleaner/simpler code
+  - Possibly reproducible
+      - more likely to use generalizable functions
+  - Parallelizable
+    
+<span class="emph">NOT</span> faster than explict loops.
+
+- single loop over columns was as fast as apply
+- Replicate and mapply are especially slow
+
+ALWAYS can *potentially* be faster than loops.
+
+  - Parallelization: parApply, parLapply etc.
+
+
+
+## Personal experience
+
+I use R every day, and I only use a loop for a sequential operation.
+
+- Note: no speed difference for a for loop vs. using while
+
+I never use a double loop.
+
+
+
+## Apply functions
+
+Using apply functions should be a part of your regular R experience.
+
+Other versions we'll talk about have been optimized.
+
+However, you need to know the basics in order to use those.
+
+Any you still may need parallel versions.

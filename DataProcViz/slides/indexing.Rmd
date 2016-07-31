@@ -21,7 +21,7 @@ letters[c(13,10,3)]
 
 Slicing matrices/data.frames
 
-```{r matrixSlice}
+```{r matrixSlice, eval=FALSE}
 myMatrix[1, 2:3]
 ```
 

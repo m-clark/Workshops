@@ -1,0 +1,31 @@
+vec	x
+factors	x
+factors2	
+createMatrix	x	y	z
+list	x
+listloop	elem
+namedlist	x
+createdf	mydf
+dfrownames	mydf
+setupIndexing	
+vectorSlice	
+matrixSlice	
+dfindexlabel	
+dfindexpos	
+dfindexmix	
+dfindexslice	
+dfindexnoncont	
+dfindexbool	
+dflistslice	
+dflistextract	
+dflistextract2	
+setupVector	
+boolindex	
+flexindex	
+loop	
+boolnoloop	
+vecmatrixop	
+unnamed-chunk-5	
+unnamed-chunk-6	
+unnamed-chunk-7	doubleloop	mydf	singleloop	test	.Random.seed
+unnamed-chunk-10	doubleloop	mydf	singleloop	test	.Random.seed
