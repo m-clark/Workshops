@@ -616,6 +616,14 @@ Pipes
 <span class="st">  </span>summary</code></pre></div>
 <p>Start with a data.frame, select columns from it, filter/subset it, get a summary.</p>
 </section>
+<section id="using-created-variables-as-they-are-created" class="slide level2">
+<h1>Using created variables as they are created</h1>
+<p>We can use variables as soon as they are created.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newvar1 =</span> var1 +<span class="st"> </span>var2,
+         <span class="dt">newvar2 =</span> newvar1/var3) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">newvar2avg =</span> <span class="kw">mean</span>(newvar2))</code></pre></div>
+</section>
 <section id="pipes-for-visualization-more-later" class="slide level2">
 <h1>Pipes for Visualization (more later)</h1>
 <p>Generic example.</p>
@@ -623,6 +631,41 @@ Pipes
 <span class="st">  </span>points %&gt;%
 <span class="st">  </span>lines %&gt;%
 <span class="st">  </span>layout</code></pre></div>
+</section>
+<section id="the-dot" class="slide level2">
+<h1>The dot</h1>
+<p>Sometimes you’ll want to use functions in a way in which they won’t be aware of the piped object or the columns in it.</p>
+<p>Example: pipe to a modeling function</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">lm</span>(y ~<span class="st"> </span>x)  <span class="co"># error</span></code></pre></div>
+<p>While other pipes can do this (e.g. <code>%$%</code> in magrittr) one can use a dot.</p>
+<ul>
+<li>The dot refers to the object before the pipe.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">lm</span>(y ~<span class="st"> </span>x, <span class="dt">data=</span>.)</code></pre></div>
+</section>
+<section id="flexibility" class="slide level2">
+<h1>Flexibility</h1>
+<p>Piping is not just for data.frames.</p>
+<ul>
+<li class="fragment">The following starts with a character vector.</li>
+<li class="fragment">Sends it to a recursive function (named ..).</li>
+<li class="fragment">.. is created on-the-fly.</li>
+<li class="fragment">After the function is created, it’s used on ., representing the string.</li>
+<li class="fragment">Result: pipes between the words.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">'Ceci'</span>, <span class="st">&quot;n'est&quot;</span>, <span class="st">'pas'</span>, <span class="st">'une'</span>, <span class="st">'pipe!'</span>) %&gt;%
+{
+  .. &lt;-<span class="st">  </span>. %&gt;%
+<span class="st">    </span>if (<span class="kw">length</span>(.) ==<span class="st"> </span><span class="dv">1</span>)  .
+    else <span class="kw">paste</span>(.[<span class="dv">1</span>], <span class="st">'%&gt;%'</span>, <span class="kw">..</span>(.[-<span class="dv">1</span>]))
+  <span class="kw">..</span>(.)
+} </code></pre></div>
+<pre><code>[1] &quot;Ceci %&gt;% n'est %&gt;% pas %&gt;% une %&gt;% pipe!&quot;</code></pre>
+<ul>
+<li class="fragment">Put that in your pipe and smoke it René Magritte!</li>
+</ul>
 </section>
 <section id="pipes-2" class="slide level2">
 <h1>Pipes</h1>
@@ -640,7 +683,7 @@ plyr, dplyr, tidyr
 <section id="plyr" class="slide level2">
 <h1>plyr</h1>
 <p>Original data managment package of the three.</p>
-<p>More general than dplyr.</p>
+<p>More general than <span class="pack">dplyr.</span></p>
 <p>Not as useful for most common operations, but contains:</p>
 <ul>
 <li class="fragment">more flexible versions of the apply family</li>
@@ -649,7 +692,7 @@ plyr, dplyr, tidyr
 </section>
 <section id="plyr-1" class="slide level2">
 <h1>plyr</h1>
-<p><strong>ad</strong>ply, <strong>dl</strong>ply etc.</p>
+<p><span class="func"><strong>ad</strong>ply</span>, <span class="func"><strong>dl</strong>ply</span> etc.</p>
 <ul>
 <li>First letter is the current object</li>
 <li>Second letter is the returned object</li>
@@ -669,15 +712,15 @@ x =<span class="st"> </span><span class="kw">list</span>(<span class="dt">var1=<
 <section id="plyr-some-useful-functions" class="slide level2">
 <h1>plyr: some useful functions</h1>
 <p>*ply: apply style functions, with parallel capability</p>
-<p>join_all: Recursively join a list of data frames</p>
-<p>rbind.fill: Combine data.frames by row, filling in missing columns.</p>
-<p>mapvalues/revalue: replace values</p>
-<p>round_any: Round to multiple of any number.</p>
+<p><span class="func">join_all</span>: Recursively join a list of data frames</p>
+<p><span class="func">rbind.fill</span>: Combine data.frames by row, filling in missing columns.</p>
+<p><span class="func">mapvalues</span>/revalue: replace values</p>
+<p><span class="func">round_any</span>: Round to multiple of any number.</p>
 </section>
 <section id="dplyr" class="slide level2">
 <h1>dplyr</h1>
 <p>Grammar of data manipulation.</p>
-<p>Next iteration of plyr.</p>
+<p>Next iteration of <span class="func">plyr</span>.</p>
 <p>Focused on tools for working with data frames.</p>
 <ul>
 <li>Over 100 functions</li>
@@ -692,24 +735,24 @@ x =<span class="st"> </span><span class="kw">list</span>(<span class="dt">var1=<
 <section id="dplyr-1" class="slide level2">
 <h1>dplyr</h1>
 <p>Some key operations:</p>
-<p>select: grab columns</p>
+<p><span class="func">select</span>: grab columns</p>
 <ul>
-<li>select helpers: one_of, starts_with, num_range etc.</li>
+<li>select helpers: <span class="func">one</span>_of, <span class="func">starts</span>_with, <span class="func">num_range</span> etc.</li>
 </ul>
-<p>filter/slice: grab rows</p>
-<p>group_by: grouped operations</p>
-<p>mutate/transmute: create new variables</p>
-<p>summarize: summarise/aggregate</p>
-<p>do: arbitrary operations</p>
+<p><span class="func">filter</span>/<span class="func">slice</span>: grab rows</p>
+<p><span class="func">group_by</span>: grouped operations</p>
+<p><span class="func">mutate</span>/<span class="func">transmute</span>: create new variables</p>
+<p><span class="func">summarize</span>: summarise/aggregate</p>
+<p><span class="func">do</span>: arbitrary operations</p>
 </section>
 <section id="dplyr-2" class="slide level2">
 <h1>dplyr</h1>
 <p>Various join/merge functions.</p>
 <p>Little things like:</p>
 <ul>
-<li>n, n_distinct, nth, n_groups, count, recode</li>
+<li><span class="func">n</span>, <span class="func">n</span>_distinct, <span class="func">nth</span>, <span class="func">n</span>_groups, <span class="func">count</span>, <span class="func">recode</span>, <span class="func">between</span></li>
 </ul>
-<p>No need to quote variable names</p>
+<p>No need to quote variable names.</p>
 </section>
 <section id="an-example" class="slide level2">
 <h1>An example</h1>
@@ -757,7 +800,7 @@ newData =<span class="st"> </span>newData[<span class="kw">order</span>(newData$
 </section>
 <section id="an-alternative-1" class="slide level2">
 <h1>An alternative</h1>
-<p>dplyr and piping is an <em>alternative</em></p>
+<p><span class="pack">dplyr</span> and piping is an <em>alternative</em></p>
 <ul>
 <li>you can do all this sort of stuff with base R</li>
 <li><span class="func">with</span>, <span class="func">within</span>, <span class="func">subset</span>, <span class="func">transform</span>, etc.</li>
@@ -774,9 +817,15 @@ newData =<span class="st"> </span>newData[<span class="kw">order</span>(newData$
 <section id="tidyr" class="slide level2">
 <h1>tidyr</h1>
 <p>Two primary functions for manipulating data</p>
-<p>-gather: wide to long -spread: long to wide</p>
+<ul>
+<li><span class="func">gather</span>: wide to long</li>
+<li><span class="func">spread</span>: long to wide</li>
+</ul>
 <p>Other useful functions include:</p>
-<p>-unite: paste together multiple columns into one -spread: complement of unite</p>
+<ul>
+<li><span class="func">unite</span>: paste together multiple columns into one</li>
+<li><span class="func">spread</span>: complement of unite</li>
+</ul>
 </section>
 <section id="example-1" class="slide level2">
 <h1>Example</h1>
@@ -804,7 +853,7 @@ stocks %&gt;%<span class="st"> </span>head</code></pre></div>
 </section>
 <section id="personal-opinion" class="slide level2">
 <h1>Personal Opinion</h1>
-<p>I find the dplyr grammar to be clear for a lot of standard data processing.</p>
+<p>I find the <span class="pack">dplyr</span> grammar to be clear for a lot of standard data processing.</p>
 <p>The best usage of it is for on-the-fly data exploration and visualization.</p>
 <ul>
 <li>No need to create/overwrite existing objects</li>
@@ -813,12 +862,164 @@ stocks %&gt;%<span class="st"> </span>head</code></pre></div>
 </ul>
 <p>Drawbacks:</p>
 <ul>
-<li>not as fast as data.table for many things</li>
+<li>not as fast as <span class="pack">data.table</span> for many things</li>
 <li>the <em>mindset</em> can make for unnecessary complication
 <ul>
 <li>e.g. no need to pipe etc. to create one new variable</li>
 </ul></li>
 </ul>
+</section>
+<section id="on-the-horizon-1" class="slide level2">
+<h1>On the horizon</h1>
+<p>multidplyr</p>
+<p>Partitions the data across a cluster.</p>
+<p>Faster than data.table (after partitioning)</p>
+</section>
+<section id="section-8" class="slide level2">
+<h1></h1>
+<div style="text-align:center;font-variant:small-caps; font-size:200%; color:#1e90ff">
+Data.Table
+</div>
+</section>
+<section id="data.table" class="slide level2">
+<h1>data.table</h1>
+<p>data.table works in a notably different way than dplyr.</p>
+<p>However, you’d use it for the same reasons.</p>
+<p>Like dplyr, the data objects are both data.frames and a package specific class.</p>
+<p>Faster subset, grouping, update, ordered joins and list columns</p>
+</section>
+<section id="data.table-1" class="slide level2">
+<h1>data.table</h1>
+<p>In general, data.table works with brackets as in base R.</p>
+<p>However, the brackets work like a function call and have several arguments.</p>
+<ul>
+<li>Key arguments</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[i, j, by, keyby, with =<span class="st"> </span><span class="ot">TRUE</span>, ...]</code></pre></div>
+<p>Importantly, you <em>can’t use the brackets as you would with data.frames</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+df =<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">6</span>), <span class="dt">g=</span><span class="dv">1</span>:<span class="dv">3</span>, <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">6</span>))
+df[,<span class="dv">4</span>]</code></pre></div>
+<pre><code>[1] 4</code></pre>
+</section>
+<section id="data.table-2" class="slide level2">
+<h1>data.table</h1>
+<p>Grab rows</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[<span class="dv">1</span>:<span class="dv">3</span>,]</code></pre></div>
+<pre><code>           x g          y
+1: 0.3115614 1 0.27819005
+2: 0.1631796 2 0.08853028
+3: 1.4356875 3 0.82967853</code></pre>
+<p>Grab columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[,y]</code></pre></div>
+<pre><code>[1] 0.27819005 0.08853028 0.82967853 0.85992017 0.69031394 0.46869468</code></pre>
+</section>
+<section id="data.table-3" class="slide level2">
+<h1>data.table</h1>
+<p>Dropping columns is awkward.</p>
+<p>This is because the second part of the data.table object is an argument ‘j’.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[,-y]             </code></pre></div>
+<pre><code>[1] -0.27819005 -0.08853028 -0.82967853 -0.85992017 -0.69031394 -0.46869468</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[,-<span class="st">'y'</span>, with=F]</code></pre></div>
+<pre><code>           x g
+1: 0.3115614 1
+2: 0.1631796 2
+3: 1.4356875 3
+4: 0.4902133 1
+5: 0.7008050 2
+6: 0.9305938 3</code></pre>
+</section>
+<section id="grouped-operations" class="slide level2">
+<h1>Grouped operations</h1>
+<p>group-by, with creation of a new variable.</p>
+<p>Note that these actually modify df <em>in place</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 =<span class="st"> </span>df2 =<span class="st"> </span>df
+df[,<span class="kw">sum</span>(x,y), by=g]</code></pre></div>
+<pre><code>   g       V1
+1: 1 1.939885
+2: 2 1.642829
+3: 3 3.664654</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1[,newvar :<span class="er">=</span><span class="st"> </span><span class="kw">sum</span>(x,y), by=g]
+df1</code></pre></div>
+<pre><code>           x g          y   newvar
+1: 0.3115614 1 0.27819005 1.939885
+2: 0.1631796 2 0.08853028 1.642829
+3: 1.4356875 3 0.82967853 3.664654
+4: 0.4902133 1 0.85992017 1.939885
+5: 0.7008050 2 0.69031394 1.642829
+6: 0.9305938 3 0.46869468 3.664654</code></pre>
+<p>We can also create groupings on the fly.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2[,newvar :<span class="er">=</span><span class="st"> </span><span class="kw">sum</span>(x,y), by=g==<span class="dv">1</span>]
+df2</code></pre></div>
+<pre><code>           x g          y   newvar
+1: 0.3115614 1 0.27819005 1.939885
+2: 0.1631796 2 0.08853028 5.307483
+3: 1.4356875 3 0.82967853 5.307483
+4: 0.4902133 1 0.85992017 1.939885
+5: 0.7008050 2 0.69031394 5.307483
+6: 0.9305938 3 0.46869468 5.307483</code></pre>
+</section>
+<section id="faster" class="slide level2">
+<h1>Faster!</h1>
+<ul>
+<li>joins: and easy to do</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1[df2]</code></pre></div>
+<ul>
+<li>group operations: via setkey</li>
+<li>reading files: fread</li>
+<li>character matches: e.g. via chmatch</li>
+</ul>
+</section>
+<section id="timings-1" class="slide level2">
+<h1>Timings</h1>
+<p>The following demonstrates some timings from <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega/34167477#34167477">here</a></p>
+<ul>
+<li>Reproduced on my own machine</li>
+<li>based on 50 million observations</li>
+<li>Grouped operations are just a sum and length on a vector.</li>
+</ul>
+<p>By the way, never, ever use aggregate. For anything.</p>
+<pre><code>          fun elapsed
+1:  aggregate  114.35
+2:         by   24.51
+3:     sapply   11.62
+4:     tapply   11.33
+5:      dplyr   10.97
+6:     lapply   10.65
+7: data.table    2.71</code></pre>
+<p>Ever.</p>
+<p>Really.</p>
+</section>
+<section id="pipe-with-data.table" class="slide level2">
+<h1>Pipe with data.table</h1>
+<p>Can be done but awkward at best.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf[,newvar:<span class="er">=</span><span class="kw">mean</span>(x),][,newvar2:<span class="er">=</span><span class="kw">sum</span>(newvar), by=group][,-<span class="st">'y'</span>, with=<span class="ot">FALSE</span>]
+mydf[,newvar:<span class="er">=</span><span class="kw">mean</span>(x), 
+  ][,newvar2:<span class="er">=</span><span class="kw">sum</span>(newvar), by=group
+  ][,-<span class="st">'y'</span>, with=<span class="ot">FALSE</span>
+  ]</code></pre></div>
+<p>Probably better to just use a pipe and dot approach</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf[,newvar:<span class="er">=</span><span class="kw">mean</span>(x),] %&gt;%<span class="st"> </span>
+<span class="st">  </span>.[,newvar2:<span class="er">=</span><span class="kw">sum</span>(newvar), by=group] %&gt;%<span class="st"> </span>
+<span class="st">  </span>.[,-<span class="st">'y'</span>, with=<span class="ot">FALSE</span>]</code></pre></div>
+</section>
+<section id="my-take" class="slide level2">
+<h1>My take</h1>
+<p>Faster methods are great to have. Especially for group-by and joins.</p>
+<p>Drawbacks:</p>
+<ul>
+<li>You use data.frames way more than you will data.tables, and will frequently forget it doesn’t work like a data.frame
+<ul>
+<li>lost programming time</li>
+</ul></li>
+<li>The syntax is awkward</li>
+<li>While one can pipe to and from data.tables, piping with it requires more brackets</li>
+</ul>
+</section>
+<section id="compromise" class="slide level2">
+<h1>Compromise</h1>
+<p>If speed and/or memory is (potentially)</p>
 </section>
 <section id="summary" class="slide level2">
 <h1>Summary</h1>

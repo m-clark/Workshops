@@ -77,7 +77,7 @@ Part 3
 ```{r, child = 'dplyr.Rmd', eval=T}
 ```
 
-```{r, child = 'datatable.Rmd', eval=F}
+```{r, child = 'datatable.Rmd', eval=T}
 ```
 
 

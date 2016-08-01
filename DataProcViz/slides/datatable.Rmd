@@ -1,0 +1,158 @@
+```{r setupDatatable, include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eval=FALSE, cache=FALSE,
+                      R.options=list(width=120), fig.width=8, fig.align = 'center')
+```
+
+
+## 
+
+<div style="text-align:center;font-variant:small-caps; font-size:200%; color:#1e90ff">Data.Table</div>
+
+## data.table
+
+data.table works in a notably different way than dplyr.
+
+However, you'd use it for the same reasons.
+
+Like dplyr, the data objects are both data.frames and a package specific class.
+
+Faster subset, grouping, update, ordered joins and list columns
+
+
+## data.table
+
+In general, data.table works with brackets as in base R.
+
+However, the brackets work like a function call and have several arguments.
+
+- Key arguments
+```{r}
+x[i, j, by, keyby, with = TRUE, ...]
+```
+
+
+Importantly, you *can't use the brackets as you would with data.frames*.
+
+```{r, eval=TRUE}
+library(data.table)
+df = data.table(x=rnorm(6), g=1:3, y=runif(6))
+df[,4]
+```
+
+
+
+## data.table
+
+Grab rows
+
+```{r, eval=T}
+df[1:3,]
+```
+
+Grab columns. 
+```{r, eval=T}
+df[,y]
+```
+
+
+## data.table
+
+Dropping columns is awkward.
+
+This is because the second part of the data.table object is an argument 'j'.
+
+```{r, eval=T}
+df[,-y]             
+df[,-'y', with=F]
+```
+
+## Grouped operations
+
+group-by, with creation of a new variable.
+
+Note that these actually modify df *in place*.
+```{r eval=T}
+df1 = df2 = df
+df[,sum(x,y), by=g]
+df1[,newvar := sum(x,y), by=g]
+df1
+```
+
+We can also create groupings on the fly.
+```{r eval=T}
+df2[,newvar := sum(x,y), by=g==1]
+df2
+```
+
+
+
+## Faster!
+
+- joins: and easy to do
+
+```{r}
+df1[df2]
+```
+
+- group operations: via setkey
+- reading files: fread
+- character matches: e.g. via chmatch
+
+
+## Timings
+
+The following demonstrates some timings from [here](http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega/34167477#34167477)
+
+- Reproduced on my own machine
+- based on 50 million observations
+- Grouped operations are just a sum and length on a vector. 
+
+
+By the way, never, ever use aggregate. For anything.
+
+```{r, eval=TRUE, echo=FALSE}
+load('../data/timing.RData')
+as.data.table(sapply(timing, `[[`, "elapsed"), keep.rownames = TRUE)[,.(fun = V1, elapsed = V2)][order(-elapsed)]
+```
+
+Ever.
+
+Really.
+
+## Pipe with data.table
+
+Can be done but awkward at best.
+
+```{r}
+mydf[,newvar:=mean(x),][,newvar2:=sum(newvar), by=group][,-'y', with=FALSE]
+mydf[,newvar:=mean(x), 
+  ][,newvar2:=sum(newvar), by=group
+  ][,-'y', with=FALSE
+  ]
+```
+
+Probably better to just use a pipe and dot approach
+
+```{r}
+mydf[,newvar:=mean(x),] %>% 
+  .[,newvar2:=sum(newvar), by=group] %>% 
+  .[,-'y', with=FALSE]
+```
+
+## My take
+
+Faster methods are great to have. Especially for group-by and joins.
+
+Drawbacks:
+
+- You use data.frames way more than you will data.tables, and will frequently forget it doesn't work like a data.frame
+    - lost programming time
+- The syntax is awkward
+- While one can pipe to and from data.tables, piping with it requires more brackets
+
+
+
+
+## Compromise
+
+If speed and/or memory is (potentially) 

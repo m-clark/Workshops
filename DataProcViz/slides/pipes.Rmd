@@ -15,8 +15,6 @@ Note: more detail on much of this part is given in another workshop.
 
 
 
-
-
 ## Pipes
 
 Operators that send what comes before to what comes after.
@@ -52,6 +50,18 @@ mydf %>%
 
 Start with a data.frame, select columns from it, filter/subset it, get a summary.
 
+## Using created variables as they are created
+
+We can use variables as soon as they are created.
+
+```{r}
+mydf %>% 
+  mutate(newvar1 = var1 + var2,
+         newvar2 = newvar1/var3) %>% 
+  summarise(newvar2avg = mean(newvar2))
+```
+
+
 ## Pipes for Visualization (more later)
 
 Generic example.
@@ -63,7 +73,49 @@ basegraph %>%
   layout
 ```
 
+## The dot
 
+Sometimes you'll want to use functions in a way in which they won't be aware of the piped object or the columns in it.
+
+Example: pipe to a modeling function
+
+```{r}
+mydf %>% 
+  lm(y ~ x)  # error
+```
+
+While other pipes can do this (e.g. `%$%` in magrittr) one can use a dot.
+
+- The dot refers to the object before the pipe.
+
+```{r}
+mydf %>% 
+  lm(y ~ x, data=.)
+```
+
+
+## Flexibility
+
+Piping is not just for data.frames.
+
+>- The following starts with a character vector.
+>- Sends it to a recursive function (named ..).
+>- .. is created on-the-fly. 
+>- After the function is created, it's used on  ., representing the string.
+>- Result: pipes between the words.
+
+```{r provocation1, eval=T, echo=-1}
+library(magrittr)
+c('Ceci', "n'est", 'pas', 'une', 'pipe!') %>%
+{
+  .. <-  . %>%
+    if (length(.) == 1)  .
+    else paste(.[1], '%>%', ..(.[-1]))
+  ..(.)
+} 
+```
+
+>- Put that in your pipe and smoke it René Magritte!
 
 ## Pipes
 

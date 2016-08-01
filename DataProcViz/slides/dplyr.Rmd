@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 Original data managment package of the three.
 
-More general than dplyr.
+More general than <span class="pack">dplyr.</span>
 
 Not as useful for most common operations, but contains:
 
@@ -22,7 +22,7 @@ Not as useful for most common operations, but contains:
 
 ## plyr
 
-**ad**ply, **dl**ply etc.
+<span class="func">**ad**ply</span>, <span class="func">**dl**ply</span> etc.
 
 - First letter is the current object
 - Second letter is the returned object
@@ -42,13 +42,13 @@ Option to parallelize.
 
 *ply: apply style functions, with parallel capability
 
-join_all: Recursively join a list of data frames
+<span class="func">join_all</span>: Recursively join a list of data frames
 
-rbind.fill: Combine data.frames by row, filling in missing columns.
+<span class="func">rbind.fill</span>: Combine data.frames by row, filling in missing columns.
 
-mapvalues/revalue: replace values
+<span class="func">mapvalues</span>/revalue: replace values
 
-round_any: Round to multiple of any number.
+<span class="func">round_any</span>: Round to multiple of any number.
 
 
 
@@ -56,7 +56,7 @@ round_any: Round to multiple of any number.
 
 Grammar of data manipulation.
 
-Next iteration of plyr.
+Next iteration of <span class="func">plyr</span>.
 
 Focused on tools for working with data frames.
 
@@ -77,19 +77,19 @@ It has three main goals:
 Some key operations:
 
 
-select: grab columns
+<span class="func">select</span>: grab columns
 
-  - select helpers: one\_of, starts\_with, num_range etc.
+  - select helpers: <span class="func">one</span>\_of, <span class="func">starts</span>\_with, <span class="func">num_range</span> etc.
 
-filter/slice: grab rows
+<span class="func">filter</span>/<span class="func">slice</span>: grab rows
 
-group_by: grouped operations
+<span class="func">group_by</span>: grouped operations
 
-mutate/transmute: create new variables
+<span class="func">mutate</span>/<span class="func">transmute</span>: create new variables
 
-summarize: summarise/aggregate
+<span class="func">summarize</span>: summarise/aggregate
 
-do: arbitrary operations
+<span class="func">do</span>: arbitrary operations
 
 
 ## dplyr
@@ -99,9 +99,9 @@ Various join/merge functions.
 
 Little things like:
 
-- n, n\_distinct, nth, n\_groups, count, recode
+- <span class="func">n</span>, <span class="func">n</span>\_distinct, <span class="func">nth</span>, <span class="func">n</span>\_groups, <span class="func">count</span>, <span class="func">recode</span>, <span class="func">between</span>
 
-No need to quote variable names
+No need to quote variable names.
 
 
 ## An example
@@ -163,7 +163,7 @@ newData = oldData %>%
 ## An alternative
 
 
-dplyr and piping is an *alternative*
+<span class="pack">dplyr</span> and piping is an *alternative*
 
 - you can do all this sort of stuff with base R
 - <span class="func">with</span>, <span class="func">within</span>, <span class="func">subset</span>, <span class="func">transform</span>, etc.
@@ -178,22 +178,21 @@ Even though the initial base R approach depicted is fairly concise, it still can
 
 
 
-
 ## tidyr
 
 Two primary functions for manipulating data
 
-- gather: wide to long
-- spread: long to wide
+- <span class="func">gather</span>: wide to long
+- <span class="func">spread</span>: long to wide
 
 Other useful functions include:
 
-- unite: paste together multiple columns into one
-- spread: complement of unite
+- <span class="func">unite</span>: paste together multiple columns into one
+- <span class="func">spread</span>: complement of unite
+
 
 
 ## Example
-
 
 ```{r eval=T}
 library(tidyr)
@@ -208,7 +207,7 @@ stocks %>% gather(stock, price, -time) %>% head
 
 ## Personal Opinion
 
-I find the dplyr grammar to be clear for a lot of standard data processing.
+I find the <span class="pack">dplyr</span> grammar to be clear for a lot of standard data processing.
 
 The best usage of it is for on-the-fly data exploration and visualization.
 
@@ -218,6 +217,15 @@ The best usage of it is for on-the-fly data exploration and visualization.
 
 Drawbacks:
 
-- not as fast as data.table for many things
+- not as fast as <span class="pack">data.table</span> for many things
 - the *mindset* can make for unnecessary complication
     - e.g. no need to pipe etc. to create one new variable
+    
+    
+## On the horizon
+
+multidplyr
+
+Partitions the data across a cluster.
+
+Faster than data.table (after partitioning)
