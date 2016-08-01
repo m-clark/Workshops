@@ -6,15 +6,73 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 ## 
 
-<div style="text-align:center;font-variant:small-caps; font-family:TRON; font-size:200%; color:#1e90ff">Pipes</div>
+<div style="text-align:center;font-variant:small-caps; font-size:200%; color:#1e90ff">Pipes</div>
 
 
 ##
 
-Note: more detail on much of this part is given in another workshop
+Note: more detail on much of this part is given in another workshop.
+
+
 
 
 
 ## Pipes
 
-Operat
+Operators that send what comes before to what comes after.
+
+There are many different pipes.
+
+There are many packages that use their own.
+
+However, the vast majority of packages use the same pipe:
+
+
+
+## {.fadeslideslow}
+
+<div style="text-align:center;font-variant:small-caps; font-size:500%; color:#ff5503"> %>% </div>
+
+
+
+## Pipes
+
+Here, we'll focus on their use with the dplyr package.
+
+Later, we'll use it for visualizations.
+
+Example.
+
+```{r}
+mydf %>% 
+  select(var1, var2) %>% 
+  filter(var1 == 'Yes') %>% 
+  summary
+```
+
+Start with a data.frame, select columns from it, filter/subset it, get a summary.
+
+## Pipes for Visualization (more later)
+
+Generic example.
+
+```{r}
+basegraph %>% 
+  points %>%
+  lines %>%
+  layout
+```
+
+
+
+## Pipes
+
+Pipes are best used interactively.
+
+Extremely useful for data exploration.
+
+Common in many visualization packages.
+
+See the <span class="pack">magrittr</span> packge for more pipes.
+
+
