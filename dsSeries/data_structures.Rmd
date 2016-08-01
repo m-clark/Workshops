@@ -449,7 +449,7 @@ As an example, one of the more common operations on data frames is a 'group by' 
 The following demonstrates some timings from [here](http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega/34167477#34167477) (though reproduced on my own machine), based on 50 million observations, and serves to illustrate both the pros and cons of data.table.  The grouped operations are just a sum and length on a vector. 
 
 ```{r timings, echo=-1}
-load('timing.RData')
+load('data/timing.RData')
 as.data.table(sapply(timing, `[[`, "elapsed"), keep.rownames = TRUE)[,.(fun = V1, elapsed = V2)][order(-elapsed)]
 ```
 
