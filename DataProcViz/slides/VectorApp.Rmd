@@ -193,6 +193,8 @@ ALWAYS can *potentially* be faster than loops.
 I use R every day, and I only use a loop for a sequential operation.
 
 - Note: no speed difference for a for loop vs. using while
+- If you must use an explicit loop, create an empty object and fill in
+    - Fastet
 
 I never use a double loop.
 
