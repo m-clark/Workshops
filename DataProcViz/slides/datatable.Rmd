@@ -141,13 +141,15 @@ mydf[,newvar:=mean(x),] %>%
 
 ## My take
 
-Faster methods are great to have. Especially for group-by and joins.
+Faster methods are great to have. 
+
+  - Especially for group-by and joins.
 
 Drawbacks:
 
-- You use data.frames way more than you will data.tables, and will frequently forget it doesn't work like a data.frame
+- You may frequently forget it doesn't work like a data.frame
     - lost programming time
-- The syntax is awkward
+- The syntax can be awkward
 - While one can pipe to and from data.tables, piping with it requires more brackets
 
 
@@ -155,4 +157,8 @@ Drawbacks:
 
 ## Compromise
 
-If speed and/or memory is (potentially) 
+If speed and/or memory is (potentially) a concern, data.table
+
+For interactive exploratoin, dplyr
+
+Piping allows one to use both, so no need to choose.

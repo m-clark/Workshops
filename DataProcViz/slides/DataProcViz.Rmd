@@ -1,7 +1,8 @@
 ---
-title: <span style="font-size:150%; font-variant:small-caps; ">Data Processing & Visualization in R</span>
+title: <span style="font-size:125%; font-variant:small-caps; ">Data Processing<span style="font-size:50%; "><br></span>Visualization</span>
 author: |
-  <div class="title"><span style="font-size:150%; font-variant:small-caps; ">Michael Clark</span><br>
+  <img src="../../img/Rlogo.svg" style="display:block; margin: 0 auto; width:20%"><br>
+  <div class="title"><span style="font-size:125%; font-variant:small-caps; ">Michael Clark</span><br>
   <span style="font-size:75%; margin: 0 auto;">Statistician Lead</span> <br> <br>
   <img src="../../img/CSCAR.png" style="display:block; width:75%; margin: 0 auto; "> <br>
   <img src="../../img/ARC.png" style="display:block; width:50%; margin: 0 auto; "> </div>
@@ -80,8 +81,13 @@ Part 3
 ```{r, child = 'datatable.Rmd', eval=T}
 ```
 
+## Part 3
 
+```{r, child = 'ggplot.Rmd', eval=T}
+```
 
+```{r, child = 'interactive.Rmd', eval=T}
+```
 
 
 

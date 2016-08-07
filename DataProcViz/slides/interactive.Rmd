@@ -1,0 +1,19 @@
+---
+---
+
+## 
+
+<div style="text-align:center;font-variant:small-caps; font-size:200%; color:#1e90ff"></div>
+
+```{r echo=F, eval=TRUE}
+nodes = data.frame(id=1:2, label=c('Interactive', 'Visualization'), color='#1e90ff')
+edges = data.frame(from=1, to=2, color='transparent')
+library(visNetwork)
+visNetwork(nodes, edges, width=800, height=800) %>% 
+  visNodes(shape='text', font=list(color='#1e90ff', size=164)) %>% 
+  # visPhysics(solver='barnesHut', barnesHut=list(gravitationalConstant = -50000, springConstant=.11, springLength=50)) %>% 
+  visOptions(highlightNearest=F) 
+# %>%
+  # visHierarchicalLayout(direction='LR')
+```
+

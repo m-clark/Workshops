@@ -1,0 +1,76 @@
+---
+output: 
+  revealjs::revealjs_presentation:
+    theme: moon
+    highlight: pygments
+    center: true
+    transition: fade
+    smart: true
+    background_transition: slide
+    css: slides.css
+    reveal_options:
+      autoSlide: 3000
+      loop: true
+      progress: false
+      controls: false
+      slideNumber: false
+      previewLinks: false
+      viewDistance: 3
+---
+
+## 
+
+<div style="text-align:center; font-family:'OCR A'; font-variant:small-caps; font-size:500%; color:#eee8d5" width:2000>Data Processing</div>
+
+## 
+
+<div style="text-align:center; font-family:'Ostrich Sans'; font-weight: bold; font-variant:small-caps; font-size:500%; color:#eee8d5">Visualization</div>
+
+## 
+
+<div style="text-align:center; font-variant:small-caps; font-size:100%; color:#eee8d5"><img src="../../img/Rlogo.svg" style="display:block; margin: 0 auto; width:90%"></div>
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:150%; color:#eee8d5">Starring<br><br>Michael Clark <span font-size:50%; color:red">....................</span> R Junkie</div>
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:200%; color:#eee8d5">Produced by</div>
+
+## 
+
+<div style="text-align:center; font-variant:small-caps; font-size:200%; color:#eee8d5"><img src="../../img/CSCAR.png" style="display:block; width:100%; margin: 0 auto; "></div>
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:200%; color:#eee8d5">In association with</div>
+
+## 
+
+<div style="text-align:center;font-variant:small-caps; font-size:200%; color:#eee8d5"><img src="../../img/ARC.png" style="display:block; width:66%; margin: 0 auto; "></div>
+
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:200%; color:#eee8d5">Music by</div>
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:200%; color:#eee8d5">Tangerine Dream</div>
+
+
+## 
+
+<div style="text-align:justify-all; font-family:'Cooper Black'; font-variant:small-caps; font-size:50%; color:#eee8d5">With<br><br>Allie Sheedy<span font-size:50%; color:red">....................</span> Allison Reynolds<br>
+Anthony Michael Hall <span font-size:50%; color:red">....................</span> Gary Wallace<br>
+Keanu Reeves <span font-size:50%; color:red">....................</span> The One<br>
+Michael J. Fox <span font-size:50%; color:red">....................</span> Jamie Conway<br>
+Andrew McCarthy <span font-size:50%; color:red">....................</span> Clay Easton<br>
+Will Wheaton <span font-size:50%; color:red">....................</span> Redshirt<br></div>
+
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:150%; color:#eee8d5">Special Guest Star<br><br>Bob Newhart <span font-size:50%; color:red">....................</span> Psychoman</div>
+

@@ -1,0 +1,33 @@
+---
+---
+## 
+
+<div style="text-align:center;font-variant:small-caps; font-size:200%; color:#1e90ff">ggplot2</div>
+
+## ggplot2
+
+ggplot2 is an extremely popular package for visualization in R
+
+- and copied in other languages/programs
+
+It entails a <span class="emph">grammar of graphics</span>
+
+- Every graph is built from the same few parts
+
+Key ideas:
+
+- Aesthetics
+- Layers (and geoms)
+- Piping
+- Facets
+- Extensions
+
+## Aesthetics
+
+Aesthetics allow one to map data to aesthetic aspects of the plot
+
+- Size
+- Color
+- etc.
+
+The funtction used in ggplot to do this is <span class="func">aes</span>
