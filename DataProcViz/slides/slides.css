@@ -73,6 +73,11 @@ a {
   -webkit-columns: 2 200px; /* chrome, safari */
   -moz-columns: 2 200px;    /* firefox */
 }
+
+.col2 .reveal pre {
+  font-size:25%;
+}
+
 .col3 {
   columns: 3 100px;
   /*font-size: 16pt;*/

@@ -24,7 +24,7 @@ output:
 
 ## 
 
-<div style="text-align:center; font-family:'Ostrich Sans'; font-weight: bold; font-variant:small-caps; font-size:500%; color:#eee8d5">Visualization</div>
+<div style="text-align:center; font-family:'Ostrich Sans'; font-weight: bold; font-variant:small-caps; font-size:500%; background-color:magenta; color:#eee8d5">Visualization</div>
 
 ## 
 
@@ -33,6 +33,43 @@ output:
 ## 
 
 <div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:150%; color:#eee8d5">Starring<br><br>Michael Clark <span font-size:50%; color:red">....................</span> R Junkie</div>
+
+
+## 
+
+<div style="text-align:justify-all; font-family:'Cooper Black'; font-variant:small-caps; font-size:75%; color:#eee8d5">With<br><br>Allie Sheedy<span font-size:50%; color:red">....................</span> as Allison Reynolds<br>
+Andrew McCarthy <span font-size:50%; color:red">....................</span> as Clay Easton<br>
+Anthony Michael Hall <span font-size:50%; color:red">....................</span> as Gary Wallace<br>
+Billy Dee Williams <span font-size:50%; color:red">....................</span> as Sleestak<br>
+Bruce Campbell <span font-size:50%; color:red">....................</span> as Ashley J. Williams<br>
+Curtis Armstrong <span font-size:50%; color:red">....................</span> as Charles De Mar<br>
+Demi Moore <span font-size:50%; color:red">....................</span> as Jules<br>
+George Wendt <span font-size:50%; color:red">....................</span> as Norm<br>
+Gordon Shumway <span font-size:50%; color:red">....................</span> as Alf<br>
+Jan Michael Vincent <span font-size:50%; color:red">....................</span> as Airwolf Pilot<br>
+Keanu Reeves <span font-size:50%; color:red">....................</span> as Ted Logan<br>
+Michael J. Fox <span font-size:50%; color:red">....................</span> as Alex P. Keaton<br>
+Nancy McKeon <span font-size:50%; color:red">....................</span> as Jo<br>
+Philip Michael Thomas <span font-size:50%; color:red">....................</span> as Tubbs<br>
+Richard Dean Anderson <span font-size:50%; color:red">....................</span> as Mac<br>
+Tom Selleck <span font-size:50%; color:red">....................</span> as Thomas Sullivan Magnum IV<br>
+Will Wheaton <span font-size:50%; color:red">....................</span> Redshirt<br></div>
+
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:125%; color:#eee8d5">Special Guest Star<br><br>The A Team<br>as<br>Themselves</div>
+
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:200%; color:#eee8d5">Music by</div>
+
+
+## 
+
+<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:200%; color:#eee8d5">Tangerine Dream</div>
+
 
 ## 
 
@@ -50,27 +87,4 @@ output:
 
 <div style="text-align:center;font-variant:small-caps; font-size:200%; color:#eee8d5"><img src="../../img/ARC.png" style="display:block; width:66%; margin: 0 auto; "></div>
 
-
-## 
-
-<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:200%; color:#eee8d5">Music by</div>
-
-## 
-
-<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:200%; color:#eee8d5">Tangerine Dream</div>
-
-
-## 
-
-<div style="text-align:justify-all; font-family:'Cooper Black'; font-variant:small-caps; font-size:50%; color:#eee8d5">With<br><br>Allie Sheedy<span font-size:50%; color:red">....................</span> Allison Reynolds<br>
-Anthony Michael Hall <span font-size:50%; color:red">....................</span> Gary Wallace<br>
-Keanu Reeves <span font-size:50%; color:red">....................</span> The One<br>
-Michael J. Fox <span font-size:50%; color:red">....................</span> Jamie Conway<br>
-Andrew McCarthy <span font-size:50%; color:red">....................</span> Clay Easton<br>
-Will Wheaton <span font-size:50%; color:red">....................</span> Redshirt<br></div>
-
-
-## 
-
-<div style="text-align:center; font-family:'Cooper Black'; font-variant:small-caps; font-size:150%; color:#eee8d5">Special Guest Star<br><br>Bob Newhart <span font-size:50%; color:red">....................</span> Psychoman</div>
 

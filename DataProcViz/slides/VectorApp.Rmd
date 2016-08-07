@@ -117,7 +117,7 @@ In R there a family of functions that allow for a succinct way of looping.
 
 Standardizing variables
 
-```{r eval=FALSE}
+```{r loopvsapply1, eval=FALSE}
 for (i in 1:ncol(mydf)){
   x = mydf[,i]
   for (j in 1:length(x)){
@@ -128,7 +128,7 @@ for (i in 1:ncol(mydf)){
 
 This would be a really bad way to use R.
 
-```{r, eval=-3}
+```{r loopvsapply2, eval=-3}
 stdize <- function(x) {
   (x-mean(x))/sd(x)
 }
@@ -138,7 +138,7 @@ apply(mydf, 2, stdize)
 
 ## Timings
 
-```{r, echo=F, eval=TRUE, cache=TRUE}
+```{r timings, echo=F, eval=TRUE, cache=TRUE}
 mydf = matrix(rnorm(100000), ncol=1000)
 doubleloop = function(){
   for (i in 1:ncol(mydf)){

@@ -26,6 +26,7 @@ output:
 ```{r setup, include=FALSE, eval=TRUE}
 knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eval=FALSE, cache=FALSE,
                       R.options=list(width=120), fig.width=8, fig.align = 'center')
+library(magrittr); library(dplyr); library(ggplot2);library(ggplot2movies)
 ```
 
 
