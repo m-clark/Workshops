@@ -1,0 +1,29 @@
+---
+title: "Indexing Exercises"
+output: 
+  html_notebook:
+    code: hide
+    css: notebooks.css
+    highlight: pygments
+    toc: yes
+    toc_float: yes
+---
+
+## Exercise #1
+
+Using the iris data set in base R (i.e. you already have access to it in your environment), show two different ways to grab the first 10 rows.
+
+```{r eval=FALSE}
+iris[1:10,]
+head(iris, 10)
+```
+
+## Exercise #2
+
+Using the iris data set in base R,  show two different ways to grab the first two columns (bonus if you can show three).
+
+```{r eval=FALSE}
+iris[,1:2]
+iris[c('Sepal.Length', 'Sepal.Width')]
+iris[,c('Sepal.Length', 'Sepal.Width')]
+```
