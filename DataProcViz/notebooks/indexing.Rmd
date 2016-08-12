@@ -2,28 +2,53 @@
 title: "Indexing Exercises"
 output: 
   html_notebook:
-    code: hide
     css: notebooks.css
     highlight: pygments
     toc: yes
     toc_float: yes
+    code: hide
 ---
 
-## Exercise #1
 
-Using the iris data set in base R (i.e. you already have access to it in your environment), show two different ways to grab the first 10 rows.
+This following is a refresher of base R indexing only.
 
-```{r eval=FALSE}
-iris[1:10,]
-head(iris, 10)
+Here is a matrix, a data.frame and a list.
+
+```
+mymatrix = matrix(rnorm(100), 10, 10)
+mydf = cars
+mylist = list(mymatrix, thisdf = mydf)
 ```
 
-## Exercise #2
 
-Using the iris data set in base R,  show two different ways to grab the first two columns (bonus if you can show three).
+## Exercise 1
 
-```{r eval=FALSE}
-iris[,1:2]
-iris[c('Sepal.Length', 'Sepal.Width')]
-iris[,c('Sepal.Length', 'Sepal.Width')]
+For the matrix, in separate operations, take a slice of rows, a selection of columns, and a single element.
+
+```{r}
+mymatrix[1:5, ]
+mymatrix[, 1:5]
+mymatrix[1,2]
 ```
+
+
+## Exercise 2
+
+For the data.frame, grab a column in 3 different ways.
+
+```{r}
+mydf$dist
+mydf[,2]
+mydf['dist']
+```
+
+
+## Exercise 3
+
+For the list grab an element by number and by name.
+
+```{r}
+mylist[2]
+mylist$thisdf
+```
+

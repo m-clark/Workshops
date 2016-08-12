@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 <div style="text-align:center;font-variant:small-caps; font-size:200%; color:#1e90ff"></div>
 
-```{r title echo=F, cache=F}
+```{r title, echo=F, cache=F}
 nodes = data.frame(id=1:2, label=c('Interactive', 'Visualization'), color='#1e90ff')
 edges = data.frame(from=1, to=2, color='transparent')
 library(visNetwork)
