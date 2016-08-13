@@ -10,48 +10,69 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 ## data.table
 
-data.table works in a notably different way than dplyr.
+<span class="pack">data.table</span> works in a notably different way than <span class="pack">dplyr</span>.
 
 However, you'd use it for the same reasons.
 
-Like dplyr, the data objects are both data.frames and a package specific class.
+Like <span class="pack">dplyr</span>, the data objects are both <span class="objclass">data.frames</span> and a package specific class.
 
 Faster subset, grouping, update, ordered joins and list columns
 
 
 ## data.table
 
-In general, data.table works with brackets as in base R.
+In general, <span class="pack">data.table</span> works with brackets as in base R.
 
-However, the brackets work like a function call and have several arguments.
+However, the brackets work like a function call!
 
-- Key arguments
+- Several key arguments
+
 ```{r}
 x[i, j, by, keyby, with = TRUE, ...]
 ```
 
 
-Importantly, you *can't use the brackets as you would with data.frames*.
+Importantly: 
+
+*you can't use the brackets as you would with data.frames*.
 
 ```{r, eval=TRUE}
 library(data.table)
-df = data.table(x=rnorm(6), g=1:3, y=runif(6))
+df = data.table(x=sample(1:10, 6), g=1:3, y=runif(6))
 df[,4]
 ```
 
+## data.table
+
+```{r}
+x[i, j, by, keyby, with = TRUE, ...]
+```
+
+What **i** and **j** can be are fairly complex. 
+
+In general, you use **i** for filtering by rows.
+
+ 
+```{r, results='hold', eval=TRUE}
+df[2]
+df[2,]
+```
 
 
 ## data.table
 
-Grab rows
-
-```{r, eval=T}
-df[1:3,]
+```{r}
+x[i, j, by, keyby, with = TRUE, ...]
 ```
 
-Grab columns. 
-```{r, eval=T}
-df[,y]
+In general, you use **j** to select (by name!) or create new columns.
+
+- Define a new variable with <span class="func">:=</span>
+
+ 
+```{r, results='hold', eval=T}
+df[,x]
+df[,z:=x+y]  # df now has a new column
 ```
 
 
@@ -59,12 +80,17 @@ df[,y]
 
 Dropping columns is awkward.
 
-This is because the second part of the data.table object is an argument 'j'.
+- because **j** is an argument
 
-```{r, eval=T}
-df[,-y]             
-df[,-'y', with=F]
+```{r, eval=T, results='hold'}
+df[,-y]             # creates negative values of y
+df[,-'y', with=F]   # drops y, but now needs quotes
+df[,y:=NULL]        # drops y, but this is just a base R approach
+df$y = NULL
 ```
+
+
+
 
 ## Grouped operations
 
@@ -73,22 +99,28 @@ group-by, with creation of a new variable.
 Note that these actually modify df *in place*.
 ```{r eval=T}
 df1 = df2 = df
-df[,sum(x,y), by=g]
-df1[,newvar := sum(x,y), by=g]
+df[,sum(x,y), by=g]                  # sum of all x and y values
+df1[,newvar := sum(x), by=g]         # add new variable to the original data 
 df1
 ```
 
+
+
+## Grouped operations
+
 We can also create groupings on the fly.
+
+For a new summary data set, we'll take the following approach.
+
 ```{r eval=T}
-df2[,newvar := sum(x,y), by=g==1]
-df2
+df2[, list(meanx = mean(x), sumx = sum(x)), by=g==1]
 ```
 
 
 
 ## Faster!
 
-- joins: and easy to do
+- joins: and easy to do (note that i can be a data.table)
 
 ```{r}
 df1[df2]
@@ -147,10 +179,10 @@ Faster methods are great to have.
 
 Drawbacks:
 
-- You may frequently forget it doesn't work like a data.frame
-    - lost programming time
+- Complex
 - The syntax can be awkward
-- While one can pipe to and from data.tables, piping with it requires more brackets
+- It doesn't work like a data.frame
+- Piping with brackets
 
 
 
@@ -159,6 +191,6 @@ Drawbacks:
 
 If speed and/or memory is (potentially) a concern, data.table
 
-For interactive exploratoin, dplyr
+For interactive exploration, dplyr
 
 Piping allows one to use both, so no need to choose.
