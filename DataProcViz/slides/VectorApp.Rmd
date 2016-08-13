@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 ## Boolean Indexing
 
-We can take values corresponding to some operation that results in `TRUE` or `FALSE`.
+<span class="objclass">Logicals</span> are objects with values of `TRUE` or `FALSE`.
 
 Assume x is a vector of numbers.
 
@@ -19,9 +19,11 @@ idx
 x[idx]
 ```
 
+
+
 ## Flexiblity
 
-We actually don't have to create a Boolean object before using it. 
+We don't have to create a Boolean object before using it. 
 
 R indexing is ridiculously flexible.
 
@@ -31,6 +33,8 @@ x[x != 3]
 x[ifelse(x > 2, T, F)]
 x[{y = idx; y}]
 ```
+
+
 
 ## Vectorized operations
 
@@ -57,17 +61,21 @@ mydf$y = 'No'
 mydf$y[mydf$x > 2] = 'Yes'
 ```
 
-This gets us the same thing.
+This gets us the same thing, and would be much faster.
 
 
 
 ## Vectorized operations
 
-Boolean indexing provides an example of a vectorized operation.
+Boolean indexing is an example of a vectorized operation.
 
-The whole vector is considered rather than each element individually.
+The whole vector is considered. 
+
+- Rather than each element individually
 
 This is always faster.
+
+
 
 ## Vectorized operations
 
@@ -77,7 +85,7 @@ Log all values in a matrix.
 mymatrix_log = log(mymatrix)
 ```
 
-Would be a lot faster than looping over elements, rows or columns.
+Way faster than looping over elements, rows or columns.
 
 
 
@@ -85,37 +93,37 @@ Would be a lot faster than looping over elements, rows or columns.
 
 Many vectorized functions already exist in R.
 
-They are also often written in C, Fortran etc., and so even faster.
+They are often written in C, Fortran etc., and so even faster.
   
 
 ## Apply functions
 
-In R there a family of functions that allow for a succinct way of looping.
+A family of functions allows for a succinct way of looping.
 
-- apply
-- lapply, sapply, vapply
-- tapply
-- mapply
-- replicate
+- <span class="func">apply</span>
+- <span class="func">lapply</span>, <span class="func">sapply</span>, <span class="func">vapply</span>
+- <span class="func">tapply</span>
+- <span class="func">mapply</span>
+- <span class="func">replicate</span>
 
 
 
 ## Apply functions
 
-- apply
+- <span class="func">apply</span>
     - arrays, matrices, data.frames
-- lapply, sapply, vapply
+- <span class="func">lapply</span>, <span class="func">sapply</span>, <span class="func">vapply</span>
     - lists, data.frames, vectors
-- tapply
+- <span class="func">tapply</span>
     - grouped operations (table apply)
-- mapply
+- <span class="func">mapply</span>
     - multivariate version of sapply
-- replicate
+- <span class="func">replicate</span>
     - similar to sapply
     
 ## Example
 
-Standardizing variables
+Standardizing variables.
 
 ```{r loopvsapply1, eval=FALSE}
 for (i in 1:ncol(mydf)){
@@ -128,13 +136,15 @@ for (i in 1:ncol(mydf)){
 
 This would be a really bad way to use R.
 
-```{r loopvsapply2, eval=-3}
+```{r loopvsapply2, eval=F}
 stdize <- function(x) {
   (x-mean(x))/sd(x)
 }
 
 apply(mydf, 2, stdize)
 ```
+
+
 
 ## Timings
 
@@ -173,7 +183,7 @@ test
 Benefits
   
   - Cleaner/simpler code
-  - Possibly reproducible
+  - Potentially more reproducible
       - more likely to use generalizable functions
   - Parallelizable
     
@@ -190,11 +200,11 @@ ALWAYS can *potentially* be faster than loops.
 
 ## Personal experience
 
-I use R every day, and I only use a loop for a sequential operation.
+I use R every day, and rarely use explicit loops.
 
 - Note: no speed difference for a for loop vs. using while
 - If you must use an explicit loop, create an empty object and fill in
-    - Fastet
+    - Faster
 
 I never use a double loop.
 
@@ -202,7 +212,7 @@ I never use a double loop.
 
 ## Apply functions
 
-Using apply functions should be a part of your regular R experience.
+Apply functions should be a part of your regular R experience.
 
 Other versions we'll talk about have been optimized.
 
