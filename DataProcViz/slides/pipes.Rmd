@@ -137,6 +137,6 @@ Extremely useful for data exploration.
 
 Common in many visualization packages.
 
-See the <span class="pack">magrittr</span> packge for more pipes.
+See the <span class="pack">magrittr</span> package for more pipes.
 
 

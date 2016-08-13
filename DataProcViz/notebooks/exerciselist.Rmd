@@ -1,0 +1,25 @@
+---
+title: "Exercises"
+output: 
+  html_document:
+    css: notebooks.css
+---
+
+
+[Data Structures](dataStructures.nb.html)
+
+[I/O](IO.nb.html)
+
+[Indexing](indexing.nb.html)
+
+[Vectorization and apply functions](VectorApp.nb.html)
+
+[Piping and dplyr](dplyr.nb.html)
+
+[data.table](datatable.nb.html)
+
+[ggplot2](ggplot2.nb.html)
+
+[Interactive Visualization](interactive.nb.html)
+
+

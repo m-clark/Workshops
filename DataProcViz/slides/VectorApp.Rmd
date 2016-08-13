@@ -202,7 +202,7 @@ Benefits
       - more likely to use generalizable functions
   - Parallelizable
     
-<span class="emph">NOT</span> faster than explict loops.
+<span class="emph">NOT</span> faster than explicit loops.
 
 - single loop over columns was as fast as apply
 - Replicate and mapply are especially slow

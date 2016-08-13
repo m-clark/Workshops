@@ -12,6 +12,8 @@ output:
 
 # Exercise 0
 
+Install and load the <span class="pack">data.table</span> package.
+
 Create the following data table.
 
 ```

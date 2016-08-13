@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 ## plyr
 
-Original data managment package of the three.
+Original data management package of the three.
 
 More general than <span class="pack">dplyr.</span>
 
@@ -87,7 +87,7 @@ Some key operations:
 
 <span class="func">mutate</span>/<span class="func">transmute</span>: create new variables
 
-<span class="func">summarize</span>: summarise/aggregate
+<span class="func">summarize</span>: summarize/aggregate
 
 <span class="func">do</span>: arbitrary operations
 

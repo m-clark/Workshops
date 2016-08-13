@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 ## ggplot2
 
-ggplot2 is an extremely popular package for visualization in R.
+<span class="pack">ggplot2</span> is an extremely popular package for visualization in R.
 
 - and copied in other languages/programs
 
@@ -43,7 +43,7 @@ Strengths:
 
 ## Aesthetics
 
-Aesthetics allow one to map data to aesthetic aspects of the plot.
+<span class="emph">Aesthetics</span> allow one to map data to aesthetic aspects of the plot.
 
 - Size
 - Color
@@ -66,23 +66,23 @@ In most cases you'll start as follows.
 ggplot(aes(x=myvar, y=myvar2), data=mydata)
 ```
 
-This would not produce anything except for a plot background.
+This would just produce a plot background.
 
 
 ## Piping
 
-Layers are added via piping.
+<span class="emph">Layers</span> are added via piping.
 
-The first layers added are typically geoms:
+The first layers added are typically <span class="emph">geoms</span>:
 
 - points
 - lines
 - density
 - text
 
-ggplot2 was using pipes before it was cool, and so it has a different pipe.
+<span class="pack">ggplot2</span> was using pipes before it was cool, and so it has a different pipe.
 
-Othewise, the concept is the same as before.
+Otherwise, the concept is the same as before.
 
 ```{r pipeplus, eval=FALSE}
 ggplot(aes(x=myvar, y=myvar2), data=mydata) +
@@ -122,7 +122,9 @@ ggplot(aes(x=carat, y=price), data=diamonds) +
 
 There are many statistical functions built in.
 
-One of the key strengths of ggplot is that you don't have to do much preprocessing.
+Key strength: you don't have to do much preprocessing.
+
+Quantile regression lines:
 
 ```{r ggquant}
 ggplot(mpg, aes(displ, hwy)) + 
@@ -133,6 +135,8 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ## Stats
 
+Loess (or additive model) smooth:
+
 ```{r ggsmooth}
 ggplot(mpg, aes(displ, hwy)) + 
   geom_point() +
@@ -141,6 +145,8 @@ ggplot(mpg, aes(displ, hwy)) +
 
 
 ## Stats
+
+Bootstrapped confidence intervals:
 
 ```{r ggstatsum}
 ggplot(mtcars, aes(cyl, mpg)) + 
@@ -151,15 +157,15 @@ ggplot(mtcars, aes(cyl, mpg)) +
 
 ## Facets
 
-Facets allow for panelled display, a very common operation.
+<span class="emph">Facets</span> allow for paneled display, a very common operation.
 
 In general, we often want comparison plots.
 
-facet_grid will produce a grid.
+<span class="func">facet_grid</span> will produce a grid.
 
 - Often this is all that's needed
 
-facet_wrap is more flexible.
+<span class="func">facet_wrap</span> is more flexible.
 
 Both use a formula approach to specify the grouping.
 
@@ -202,7 +208,7 @@ ggplot(aes(x=carat, y=price), data=diamonds) +
         axis.text.y=element_text(size=20),
         strip.text=element_text(color='forestgreen'),
         strip.background=element_blank(),
-        panel.grid.minor=element_line(color='blue'),
+        panel.grid.minor=element_line(color='lightblue'),
         legend.key=element_rect(linetype=4),
         legend.position='bottom')
 ```
@@ -220,7 +226,7 @@ ggplot(aes(x=carat, y=price), data=diamonds) +
         axis.text.y=element_text(size=20),
         strip.text=element_text(color='forestgreen'),
         strip.background=element_blank(),
-        panel.grid.minor=element_line(color='blue'),
+        panel.grid.minor=element_line(color='lightblue'),
         legend.key=element_rect(linetype=4),
         legend.position='bottom')
 ```
@@ -229,17 +235,17 @@ ggplot(aes(x=carat, y=price), data=diamonds) +
 
 ## Themes
 
-In the last example you saw two uses of a theme.
+In the last example you saw two uses of a <span class="emph">theme</span>.
 
 - built-in
-- specific customizations
+- specific customization
 
 Each argument takes on a specific value or an element function:
 
-- element_rect
-- element_line
-- element_text
-- element_blank
+- <span class="func">element_rect</span>
+- <span class="func">element_line</span>
+- <span class="func">element_text</span>
+- <span class="func">element_blank</span>
 
 
 ## Themes
@@ -249,12 +255,12 @@ The base theme is not too good.
 - not for web
 - doesn't look good for print either
 
-You will almost invariably need to tweek it.
+You will almost invariably need to tweak it.
 
 
 ## Extensions
 
-While many contributed before, ggplot2 now has an extension system.
+<span class="pack">ggplot2</span> now has its own extension system.
 
 There is even a website to track the extensions.
 
@@ -271,7 +277,7 @@ Examples include:
 
 ## Summary ggplot2
 
-ggplot2 is an easy to use, but powerful visualization tool.
+<span class="pack">ggplot2</span> is an easy to use, but powerful visualization tool.
 
 Allows one to think in many dimensions for any graph:
 
@@ -282,6 +288,6 @@ Allows one to think in many dimensions for any graph:
 - opacity
 - facet
 
-2d graphs are not useful for conveying anything but the simplest ideas.
+2d graphs are only useful for conveying the simplest of ideas.
 
-Use ggplot2 to easily go beyond 2d for interesting visualizations.
+Use <span class="pack">ggplot2</span> to easily create more interesting visualizations.

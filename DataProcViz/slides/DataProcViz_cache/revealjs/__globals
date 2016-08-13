@@ -15,3 +15,4 @@ finecontrol	~	aes	c	carat	clarity	diamonds	element_blank	element_line	element_re
 setupInteractive	$	::	F	list	T
 visNetworkinitial	!=	%>%	c	data.frame	filter	from	rep	sample	set.seed	T	to
 ggvisSetup	%>%	bballLong	head
+plotly2	%>%	~	add_trace	am	amFactor	arrange	c	factor	gam	hovertext	library	mpg	mtcars	mutate	paste	plot_ly	predict	prediction	wt

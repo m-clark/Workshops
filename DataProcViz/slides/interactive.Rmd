@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 ## 
 
-<div style="text-align:center;font-variant:small-caps; font-size:200%; color:#1e90ff"></div>
+<div style="text-align:center;font-variant:small-caps; font-size:64pt; color:#1e90ff"></div>
 
 ```{r title, echo=F, cache=F}
 nodes = data.frame(id=1:2, label=c('Interactive', 'Visualization'), color='#1e90ff')
@@ -38,7 +38,7 @@ Many packages use <span class="pack">htmlwidgets</span>, **d3** (JavaScript libr
 General:
 
   - <span class="pack">plotly</span>
-    - used also in Python, Matlab, Julia, aside from many interactive plots, can convert ggplot2 images to interactive ones.
+    - used also in Python, Matlab, Julia, can convert ggplot2 images to interactive ones.
   - <span class="pack">ggvis</span>
     - interactive successor to to ggplot though not currently actively developed
   - <span class="pack">rbokeh</span>
@@ -59,32 +59,36 @@ Specific functionality:
 
 ## Piping for Visualization
 
-One of the advantages to piping is that it's not limited to dplyr style data management functions.
+One of the advantages to piping is that it's not limited to <span class="pack">dplyr</span> style data management functions.
 
-<span class='emph'>*Any*</span> R function can be potentially piped to, and we've seen several examples so far.
+<span class='emph'>*Any*</span> R function can be potentially piped to.
+
+- several examples have already been shown.
 
 This facilitates data exploration, especially visually.
 
 - don't have to create objects
 - new variables are easily created and subsequently manipulated just for vis
-- data manipulation not separated from visualziation
+- data manipulation not separated from visualization
 
 
 ## htmlwidgets
 
-Many newer visualization packages take advantage of piping as well.
+Many newer visualization packages take advantage of piping.
 
-<span class='pack'>htmlwidgets</span> is a package that makes it easy to use R to create javascript visualizations.
+<span class='pack'>htmlwidgets</span> is a package that makes it easy to create javascript visualizations.
 
 - i.e. what you see everywhere on the web.
 
 The packages using it typically are pipe-oriented and produce interactive plots.
 
+
+
 ## plotly example
 
-A couple demonstrations with plotly.
+A couple demonstrations with <span class="pack">plotly</span>.
 
-Note the layering as with ggplot2.
+Note the layering as with <span class="pack">ggplot2</span>.
 
 Piping used before plotting.
 
@@ -95,13 +99,31 @@ midwest %>%
   plot_ly(x=percollege, y=percbelowpoverty, mode='markers') 
 ```
 
+
+
 ## plotly example
 
-Plotly has modes, which allow for points, lines, text and combinations.
+<span class="pack">plotly</span> has <span class="emph">modes</span>, which allow for points, lines, text and combinations.
 
-Traces work similar to geoms.
+<span class="emph">Traces</span> work similar to geoms.
 
-```{r plotly2, cache=FALSE}
+```{r plotly2, eval=FALSE}
+library(mgcv)
+
+mtcars %>% 
+  mutate(amFactor = factor(am, labels=c('auto', 'manual')),
+         hovertext = paste(wt, mpg, amFactor),
+         prediction = predict(gam(mpg~s(wt), data=mtcars))) %>% 
+  arrange(wt) %>% 
+  plot_ly(x=wt, y=mpg, color=amFactor, width=800, height=500, mode='markers') %>% 
+  add_trace(x=wt, y=prediction, alpha=.5, hover=hovertext, name='gam prediction')
+```
+
+
+## plotly example
+
+
+```{r plotly2b, echo=FALSE, cache=FALSE}
 library(mgcv)
 
 mtcars %>% 
@@ -115,9 +137,10 @@ mtcars %>%
 
 ## ggplotly
 
-The nice thing about plotly is that we can feed a ggplot to it.
+The nice thing about <span class="pack">plotly</span> is that we can feed a <span class="objclass">ggplot</span> to it.
 
-It would have been easier to use geom_smooth, so let's do so.
+It would have been easier to use <span class="func">geom_smooth</span>, so let's do so.
+
 
 ```{r ggplotly, cache=FALSE}
 gp = mtcars %>% 
@@ -128,14 +151,17 @@ gp = mtcars %>%
   ggplot(aes(x=wt, y=mpg)) +
   geom_smooth() +
   geom_point(aes(color=amFactor))
-ggplotly()
+ggplotly(width='auto')
 ```
+
 
 
 
 ## dygraphs
 
-Dygraphs are useful for time-series.
+<span class="pack">dygraphs</span> is useful for time-series.
+
+- Uses the <span class="pack">dygraphs.js</span> library
 
 ```{r dygraphdata, fig.height=3, cache=FALSE}
 library(dygraphs)
@@ -148,6 +174,10 @@ cbind(ldeaths, mdeaths, fdeaths) %>%
 
 
 ## visNetwork
+
+<span class="pack">visNetwork</span> allows for network visualizations
+
+- Uses the <span class="pack">vis.js</span> library
 
 ```{r visNetworkinitial, echo=FALSE, cache=TRUE}
 set.seed(1352)
@@ -172,6 +202,8 @@ visNetwork(nodes, edges, height=600, width=800) %>%
 
 
 ## data table
+
+Use the <span class="pack">DT</span> package for interactive dataframes.
 
 ```{r datatable, cache=FALSE}
 library(DT)
@@ -198,4 +230,9 @@ Interactivity allows for even more dimensions to be brought to a graphic.
 
 Interactive graphics are more fun too!
 
+- But they must serve a purpose
+- Too often they are simply distraction, and detract from the data story
+
 Just a couple visualization packages can go a very long way.
+
+
