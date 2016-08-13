@@ -11,7 +11,9 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 ##
 
-Note: more detail on much of this part is given in another workshop.
+Note: 
+
+More detail on much of this part is given in another workshop.
 
 
 
@@ -48,9 +50,15 @@ mydf %>%
   summary
 ```
 
-Start with a data.frame, select columns from it, filter/subset it, get a summary.
+Start with a data.frame %>%  
 
-## Using created variables as they are created
+&nbsp;&nbsp;&nbsp;&nbsp;select columns from it %>% 
+  
+&nbsp;&nbsp;&nbsp;&nbsp;filter/subset it %>% 
+  
+&nbsp;&nbsp;&nbsp;&nbsp;get a summary
+
+## Using variables as they are created
 
 We can use variables as soon as they are created.
 
@@ -75,16 +83,20 @@ basegraph %>%
 
 ## The dot
 
-Sometimes you'll want to use functions in a way in which they won't be aware of the piped object or the columns in it.
+Most functions are not 'pipe-aware' by default.
 
-Example: pipe to a modeling function
+Example: pipe to a modeling function.
 
 ```{r}
 mydf %>% 
   lm(y ~ x)  # error
 ```
 
-While other pipes can do this (e.g. `%$%` in magrittr) one can use a dot.
+Other pipes can handle this.
+
+  - e.g. <span class="func">%$%</span> in magrittr
+
+But generally, one can use a dot.
 
 - The dot refers to the object before the pipe.
 
@@ -99,9 +111,9 @@ mydf %>%
 Piping is not just for data.frames.
 
 >- The following starts with a character vector.
->- Sends it to a recursive function (named ..).
->- .. is created on-the-fly. 
->- After the function is created, it's used on  ., representing the string.
+>- Sends it to a recursive function (named <span class="func">..</span>).
+>- <span class="func">..</span> is created on-the-fly. 
+>- After the function is created, it's used on ., representing the string.
 >- Result: pipes between the words.
 
 ```{r provocation1, eval=T, echo=-1}

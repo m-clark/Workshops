@@ -100,6 +100,8 @@ They are often written in C, Fortran etc., and so even faster.
 
 A family of functions allows for a succinct way of looping.
 
+Common ones include:
+
 - <span class="func">apply</span>
 - <span class="func">lapply</span>, <span class="func">sapply</span>, <span class="func">vapply</span>
 - <span class="func">tapply</span>
@@ -134,7 +136,7 @@ for (i in 1:ncol(mydf)){
 }
 ```
 
-This would be a really bad way to use R.
+The above would be a really bad way to use R.
 
 ```{r loopvsapply2, eval=F}
 stdize <- function(x) {
@@ -147,9 +149,15 @@ apply(mydf, 2, stdize)
 
 
 ## Timings
+The previous demonstrates how to use apply.
+
+However, there is a <span class="func">scale</span> function in base R.
 
 ```{r timings, echo=F, eval=TRUE, cache=TRUE}
 mydf = matrix(rnorm(100000), ncol=1000)
+stdize <- function(x) {
+  (x-mean(x))/sd(x)
+}
 doubleloop = function(){
   for (i in 1:ncol(mydf)){
   x = mydf[,i]
@@ -169,11 +177,18 @@ singleloop = function(){
 
 library(plyr)
 
+library(parallel)
+cl = makeCluster(8)
+clusterExport(cl, c('stdize', 'mydf'))
+doParallel::registerDoParallel(cl)
+
 test = microbenchmark::microbenchmark(doubleloop=doubleloop(),
                                       singleloop=singleloop(), 
                                       plyr=aaply(mydf, 2, stdize),
                                       apply=apply(mydf, 2, stdize), 
+                                      parApply=parApply(cl, mydf, 2, stdize),
                                       vectorized=scale(mydf), times=25)
+stopCluster(cl)
 test
 ```
 
@@ -202,7 +217,7 @@ ALWAYS can *potentially* be faster than loops.
 
 I use R every day, and rarely use explicit loops.
 
-- Note: no speed difference for a for loop vs. using while
+- Note: no speed difference for a for loop vs. using <span class="func">while</span>
 - If you must use an explicit loop, create an empty object and fill in
     - Faster
 

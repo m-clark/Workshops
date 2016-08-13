@@ -24,8 +24,8 @@ Not as useful for most common operations, but contains:
 
 <span class="func">**ad**ply</span>, <span class="func">**dl**ply</span> etc.
 
-- First letter is the current object
-- Second letter is the returned object
+- First letter represents the current object (array, data.frame, list)
+- Second letter represents the returned object
 
 ```{r eval=T}
 library(plyr)
@@ -44,9 +44,9 @@ Option to parallelize.
 
 <span class="func">join_all</span>: Recursively join a list of data frames
 
-<span class="func">rbind.fill</span>: Combine data.frames by row, filling in missing columns.
+<span class="func">rbind.fill</span>: row bind data.frames, filling in missing columns.
 
-<span class="func">mapvalues</span>/revalue: replace values
+<span class="func">mapvalues</span>/<span class="func">revalue</span>: replace values
 
 <span class="func">round_any</span>: Round to multiple of any number.
 
@@ -79,7 +79,7 @@ Some key operations:
 
 <span class="func">select</span>: grab columns
 
-  - select helpers: <span class="func">one</span>\_of, <span class="func">starts</span>\_with, <span class="func">num_range</span> etc.
+  - select helpers: <span class="func">one\_of</span>, <span class="func">starts\_with</span>, <span class="func">num_range</span> etc.
 
 <span class="func">filter</span>/<span class="func">slice</span>: grab rows
 
@@ -99,7 +99,7 @@ Various join/merge functions.
 
 Little things like:
 
-- <span class="func">n</span>, <span class="func">n</span>\_distinct, <span class="func">nth</span>, <span class="func">n</span>\_groups, <span class="func">count</span>, <span class="func">recode</span>, <span class="func">between</span>
+- <span class="func">n</span>, <span class="func">n\_distinct</span>, <span class="func">nth</span>, <span class="func">n\_groups</span>, <span class="func">count</span>, <span class="func">recode</span>, <span class="func">between</span>
 
 No need to quote variable names.
 
@@ -168,7 +168,7 @@ newData = oldData %>%
 - you can do all this sort of stuff with base R
 - <span class="func">with</span>, <span class="func">within</span>, <span class="func">subset</span>, <span class="func">transform</span>, etc.
 
-Even though the initial base R approach depicted is fairly concise, it still can be potentially: 
+Even though the initial base R approach depicted is fairly concise, it still can potentially be: 
 
 >- noisier
 >- less legible
@@ -188,7 +188,7 @@ Two primary functions for manipulating data
 Other useful functions include:
 
 - <span class="func">unite</span>: paste together multiple columns into one
-- <span class="func">spread</span>: complement of unite
+- <span class="func">separate</span>: complement of unite
 
 
 
@@ -207,9 +207,9 @@ stocks %>% gather(stock, price, -time) %>% head
 
 ## Personal Opinion
 
-I find the <span class="pack">dplyr</span> grammar to be clear for a lot of standard data processing.
+The <span class="pack">dplyr</span> grammar is clear for a lot of standard data processing tasks, and some not so common.
 
-The best usage of it is for on-the-fly data exploration and visualization.
+Extremely useful for data exploration and visualization.
 
 - No need to create/overwrite existing objects
 - Can overwrite columns as they are created
@@ -224,7 +224,7 @@ Drawbacks:
     
 ## On the horizon
 
-multidplyr
+<span class="pack">multidplyr</span>
 
 Partitions the data across a cluster.
 

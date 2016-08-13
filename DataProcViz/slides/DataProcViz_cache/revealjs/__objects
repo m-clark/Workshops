@@ -1,4 +1,4 @@
-timings	doubleloop	mydf	singleloop	test	.Random.seed
+timings	cl	doubleloop	mydf	singleloop	stdize	test	.Random.seed
 aes	
 layer	
 pipeplus	

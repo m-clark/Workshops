@@ -1,4 +1,4 @@
-timings	::	[<-	aaply	apply	for	length	library	matrix	mean	ncol	rnorm	scale	sd	stdize
+timings	::	[<-	aaply	apply	c	clusterExport	for	length	library	makeCluster	matrix	mean	ncol	parApply	rnorm	scale	sd	stopCluster
 aes	aes	g	myvar	myvar2	myvar3
 layer	aes	ggplot	mydata	myvar	myvar2
 pipeplus	aes	geom_point	ggplot	mydata	myvar	myvar2

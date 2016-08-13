@@ -21,7 +21,7 @@ for(i in 1:n){
 }
 ```
 
-Create the same x object, and demonstrate a vectorized approach to doing the same thing.
+Create the same x object, and demonstrate a vectorized approach to doing the same operation that the above attempts.
 
 ```{r eval=FALSE}
 n = 1000
