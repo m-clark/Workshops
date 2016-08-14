@@ -11,7 +11,7 @@ output:
 
 # Exercise 0
 
-Install and load the ggplot2movies package. Look at the help file for the `movies` data set.
+Install and load the <span class="pack">ggplot2movies</span> package. Look at the help file for the `movies` data set.
 
 
 ```{r}
