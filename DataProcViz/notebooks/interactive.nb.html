@@ -254,15 +254,50 @@ div.tocify {
 <!-- rnb-text-begin -->
 <div id="exercise-0" class="section level1">
 <h1>Exercise 0</h1>
-<p>Install and load the <span class="pack">plotly</span> package.</p>
+<p>Install and load the <span class="pack">plotly</span> package. Load the <span class="pack">dplyr</span> and <span class="pack">ggplot2</span> packages if necessary.</p>
 </div>
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
-<p>use dplyr, plotly</p>
+<p>Using <span class="pack">dplyr</span> group by year, and summarize to create a new variable that is the Average rating. Then create a plot with <span class="pack">plotly</span> for a line or scatter plot (for the latter, use the argument <code>mode='markers'</code>). It will take the following form:</p>
+<pre><code>data %&gt;% 
+  group_by() %&gt;% 
+  summarize() %&gt;% 
+  plot_ly()</code></pre>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin -->
+<pre class="r"><code>sapply(c('dplyr', 'ggplot2movies', 'plotly'), library, character.only=T)
+
+movies %&gt;% 
+  group_by(year) %&gt;% 
+  summarise(Avg_Rating=mean(rating)) %&gt;% 
+  plot_ly(x=year, y=Avg_Rating)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="exercise-2" class="section level1">
+<h1>Exercise 2</h1>
+<p>This time group by year and Drama. In the <span class="func">summarise</span> create average rating again, but also a variable representing the average number of votes. In your plotly line, use the size and color arguments to represent whether the average number of votes and whether it was drama or not respectively. Use <code>mode = 'markers'</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin -->
+<pre class="r"><code>movies %&gt;% 
+  group_by(year, Drama) %&gt;% 
+  summarise(Avg_Rating=mean(rating),
+            Avg_Votes = mean(votes)) %&gt;% 
+  plot_ly(x=year, y=Avg_Rating, size=Avg_Votes, color=Drama, mode='markers')</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="exercise-3" class="section level1">
+<h1>Exercise 3</h1>
+<p>Create a ggplot of your design and then use <span class="func">ggplotly</span> to make it interactive.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkludGVyYWN0aXZlIEV4ZXJjaXNlcyINCm91dHB1dDogDQogIGh0bWxfbm90ZWJvb2s6DQogICAgY3NzOiBub3RlYm9va3MuY3NzDQogICAgaGlnaGxpZ2h0OiBweWdtZW50cw0KICAgIHRvYzogeWVzDQogICAgdG9jX2Zsb2F0OiB5ZXMNCiAgICBjb2RlOiBoaWRlDQotLS0NCg0KIyBFeGVyY2lzZSAwDQoNCkluc3RhbGwgYW5kIGxvYWQgdGhlIDxzcGFuIGNsYXNzPSJwYWNrIj5wbG90bHk8L3NwYW4+IHBhY2thZ2UuDQoNCiMgRXhlcmNpc2UgMQ0KDQp1c2UgZHBseXIsIHBsb3RseQ==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkludGVyYWN0aXZlIEV4ZXJjaXNlcyINCm91dHB1dDogDQogIGh0bWxfbm90ZWJvb2s6DQogICAgY3NzOiBub3RlYm9va3MuY3NzDQogICAgaGlnaGxpZ2h0OiBweWdtZW50cw0KICAgIHRvYzogeWVzDQogICAgdG9jX2Zsb2F0OiB5ZXMNCiAgICBjb2RlOiBoaWRlDQotLS0NCg0KIyBFeGVyY2lzZSAwDQoNCkluc3RhbGwgYW5kIGxvYWQgdGhlIDxzcGFuIGNsYXNzPSJwYWNrIj5wbG90bHk8L3NwYW4+IHBhY2thZ2UuIExvYWQgdGhlIDxzcGFuIGNsYXNzPSJwYWNrIj5kcGx5cjwvc3Bhbj4gYW5kIDxzcGFuIGNsYXNzPSJwYWNrIj5nZ3Bsb3QyPC9zcGFuPiBwYWNrYWdlcyBpZiBuZWNlc3NhcnkuDQoNCg0KDQojIEV4ZXJjaXNlIDENCg0KVXNpbmcgPHNwYW4gY2xhc3M9InBhY2siPmRwbHlyPC9zcGFuPiBncm91cCBieSB5ZWFyLCBhbmQgc3VtbWFyaXplIHRvIGNyZWF0ZSBhIG5ldyB2YXJpYWJsZSB0aGF0IGlzIHRoZSBBdmVyYWdlIHJhdGluZy4gIFRoZW4gY3JlYXRlIGEgcGxvdCB3aXRoIDxzcGFuIGNsYXNzPSJwYWNrIj5wbG90bHk8L3NwYW4+IGZvciBhIGxpbmUgb3Igc2NhdHRlciBwbG90IChmb3IgdGhlIGxhdHRlciwgdXNlIHRoZSBhcmd1bWVudCBgbW9kZT0nbWFya2VycydgKS4gSXQgd2lsbCB0YWtlIHRoZSBmb2xsb3dpbmcgZm9ybToNCg0KYGBgDQpkYXRhICU+JSANCiAgZ3JvdXBfYnkoKSAlPiUgDQogIHN1bW1hcml6ZSgpICU+JSANCiAgcGxvdF9seSgpDQpgYGANCg0KYGBge3J9DQpzYXBwbHkoYygnZHBseXInLCAnZ2dwbG90Mm1vdmllcycsICdwbG90bHknKSwgbGlicmFyeSwgY2hhcmFjdGVyLm9ubHk9VCkNCg0KbW92aWVzICU+JSANCiAgZ3JvdXBfYnkoeWVhcikgJT4lIA0KICBzdW1tYXJpc2UoQXZnX1JhdGluZz1tZWFuKHJhdGluZykpICU+JSANCiAgcGxvdF9seSh4PXllYXIsIHk9QXZnX1JhdGluZykNCmBgYA0KDQoNCiMgRXhlcmNpc2UgMg0KDQpUaGlzIHRpbWUgZ3JvdXAgYnkgeWVhciBhbmQgRHJhbWEuIEluIHRoZSA8c3BhbiBjbGFzcz0iZnVuYyI+c3VtbWFyaXNlPC9zcGFuPiBjcmVhdGUgYXZlcmFnZSByYXRpbmcgYWdhaW4sIGJ1dCBhbHNvIGEgdmFyaWFibGUgcmVwcmVzZW50aW5nIHRoZSBhdmVyYWdlIG51bWJlciBvZiB2b3Rlcy4gSW4geW91ciBwbG90bHkgbGluZSwgdXNlIHRoZSBzaXplIGFuZCBjb2xvciBhcmd1bWVudHMgdG8gcmVwcmVzZW50IHdoZXRoZXIgdGhlIGF2ZXJhZ2UgbnVtYmVyIG9mIHZvdGVzIGFuZCB3aGV0aGVyIGl0IHdhcyBkcmFtYSBvciBub3QgcmVzcGVjdGl2ZWx5LiBVc2UgYG1vZGUgPSAnbWFya2VycydgLg0KDQpgYGB7cn0NCm1vdmllcyAlPiUgDQogIGdyb3VwX2J5KHllYXIsIERyYW1hKSAlPiUgDQogIHN1bW1hcmlzZShBdmdfUmF0aW5nPW1lYW4ocmF0aW5nKSwNCiAgICAgICAgICAgIEF2Z19Wb3RlcyA9IG1lYW4odm90ZXMpKSAlPiUgDQogIHBsb3RfbHkoeD15ZWFyLCB5PUF2Z19SYXRpbmcsIHNpemU9QXZnX1ZvdGVzLCBjb2xvcj1EcmFtYSwgbW9kZT0nbWFya2VycycpDQpgYGANCg0KDQojIEV4ZXJjaXNlIDMNCg0KQ3JlYXRlIGEgZ2dwbG90IG9mIHlvdXIgZGVzaWduIGFuZCB0aGVuIHVzZSA8c3BhbiBjbGFzcz0iZnVuYyI+Z2dwbG90bHk8L3NwYW4+IHRvIG1ha2UgaXQgaW50ZXJhY3RpdmUuDQo=</div>
 
 
 </div>
