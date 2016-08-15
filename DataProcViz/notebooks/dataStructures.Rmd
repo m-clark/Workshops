@@ -9,13 +9,13 @@ output:
     code: hide
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = T, message = F, warning = F, R.options=list(width=120), 
+knitr::opts_chunk$set(cache = F, message = F, warning = F, R.options=list(width=120), 
                       fig.width=8, fig.align = 'center', comment=NA, autodep=T)
 ```
 
 ## Excercise #1
 
-Create an object that is a <span class="objclass">matrix</span> and/or a <span class="objclass">data.frame</span>, and inspect its class or structure.
+Create an object that is a <span class="objclass">matrix</span> and/or a <span class="objclass">data.frame</span>, and inspect its <span class="emph">class</span> or <span class="emph">structure</span>.
 
 ```{r}
 mydf = data.frame(A=1:3, B=letters[1:3])

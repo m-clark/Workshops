@@ -11,7 +11,7 @@ output:
 
 # Exercise 0
 
-Install and load the <span class="pack">ggplot2movies</span> package. Look at the help file for the `movies` data set.
+Install and load the <span class="pack">dplyr</span> <span class="pack">ggplot2movies</span> packages. Look at the help file for the `movies` data set, which contains data from IMDB.
 
 
 ```{r}
@@ -26,7 +26,7 @@ Using the movies data set, perform each of the following actions separately.
 
 ## Exercise 1a
 
-Use <span class="func">mutate</span> and the <span class="func">scale</span> function to create a centered version of the rating variable.  A centered variable is one whose mean has been subtracted from it. The process will take the following form:
+Use <span class="func">mutate</span> to create a centered version of the rating variable.  A centered variable is one whose mean has been subtracted from it. The process will take the following form:
 
 ```
 data %>% 

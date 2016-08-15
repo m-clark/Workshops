@@ -133,7 +133,7 @@ df1[df2]
 
 ## Timings
 
-The following demonstrates some timings from [here](http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega/34167477#34167477)
+The following demonstrates some timings from [here](http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega/34167477#34167477).
 
 - Reproduced on my own machine
 - based on 50 million observations
@@ -194,3 +194,37 @@ If speed and/or memory is (potentially) a concern, data.table
 For interactive exploration, dplyr
 
 Piping allows one to use both, so no need to choose.
+
+And on the horizon...
+
+## dtplyr
+
+Coming soon to an R near you.
+
+> This implements the data table back-end for 'dplyr' so that you can seamlessly use data table and 'dplyr' together.
+
+
+Or play with now.
+
+```{r echo=FALSE, eval=TRUE, cache=F}
+# something weird with n() function in chunk; saved out
+# detach(package:data.table); library(dplyr); library(dtplyr)
+# set.seed(123)
+# # n = 5e7  possible conflict with n()?
+# k = 5e5
+# x = runif(5e7)
+# grp = sample(k, 5e7, TRUE)
+# 
+# dtplyrtest = system.time({
+#     df = tbl_dt(data.frame(x, grp))
+#     r.dplyr = summarise(group_by(df, grp), sum(x), n())
+# })
+# timingsdtplyr = append(timing[6:7], list(dtplyr=dtplyrtest))
+# save(timingsdtplyr, 'data/timingsdtplyr.RData')
+load('../data/timingsdtplyr.RData')
+data_frame(package=names(timingsdtplyr)) %>% 
+  mutate(timing = sapply(timingsdtplyr, `[[`, "elapsed")) %>% 
+  arrange(desc(timing)) %>% 
+  pander::pander()
+```
+
