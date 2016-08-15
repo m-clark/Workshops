@@ -135,7 +135,7 @@ x["b"]
 
 ## Data Frames
 
-<span class="objclass">data.frame</span> are a very commonly used data structure. 
+<span class="objclass">data.frame</span>s are a very commonly used data structure. 
 
 They do not have to have the same type of element.  
 
