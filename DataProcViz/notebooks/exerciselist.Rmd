@@ -19,7 +19,7 @@ Note that in each exercise, the code is hidden by default, allowing you to test 
 
 [data.table](datatable.nb.html)
 
-[ggplot2](ggplot2.nb.html)
+[ggplot2](ggplot.nb.html)
 
 [Interactive Visualization](interactive.nb.html)
 

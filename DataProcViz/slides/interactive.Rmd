@@ -96,7 +96,7 @@ Piping used before plotting.
 library(plotly)
 midwest %>% 
   filter(inmetro==T) %>% 
-  plot_ly(x=percollege, y=percbelowpoverty, mode='markers') 
+  plot_ly(x=percbelowpoverty, y=percollege, mode='markers') 
 ```
 
 
@@ -113,10 +113,10 @@ library(mgcv)
 mtcars %>% 
   mutate(amFactor = factor(am, labels=c('auto', 'manual')),
          hovertext = paste(wt, mpg, amFactor),
-         prediction = predict(gam(mpg~s(wt), data=mtcars))) %>% 
+         prediction = predict(gam(mpg~s(wt, am, bs='fs'), data=mtcars))) %>% 
   arrange(wt) %>% 
   plot_ly(x=wt, y=mpg, color=amFactor, width=800, height=500, mode='markers') %>% 
-  add_trace(x=wt, y=prediction, alpha=.5, hover=hovertext, name='gam prediction')
+  add_trace(x=wt, y=prediction, color=amFactor, alpha=.5, hover=hovertext, name='gam prediction')
 ```
 
 
@@ -129,10 +129,10 @@ library(mgcv)
 mtcars %>% 
   mutate(amFactor = factor(am, labels=c('auto', 'manual')),
          hovertext = paste(wt, mpg, amFactor),
-         prediction = predict(gam(mpg~s(wt), data=mtcars))) %>% 
+         prediction = predict(gam(mpg~s(wt, am, bs='fs'), data=mtcars))) %>% 
   arrange(wt) %>% 
   plot_ly(x=wt, y=mpg, color=amFactor, width=800, height=500, mode='markers') %>% 
-  add_trace(x=wt, y=prediction, alpha=.5, hover=hovertext, name='gam prediction')
+  add_trace(x=wt, y=prediction, color=amFactor, alpha=.5, hover=hovertext, name='gam prediction')
 ```
 
 ## ggplotly

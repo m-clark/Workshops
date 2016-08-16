@@ -16,10 +16,12 @@ output:
     smart: true
     background_transition: slide
     css: slides.css
+    toc-progress: create
     reveal_options:
       slideNumber: true
       previewLinks: true
       viewDistance: 3
+      reveal_plugins: ["toc-progress"]
 ---
 
 ```{r setup, include=FALSE, eval=TRUE}
@@ -98,6 +100,7 @@ With the right tools, data exploration can be:
 - easier
 - faster
 - more efficient
+- more fun!
 
 Use them to wring your data dry of what it has to offer.
 

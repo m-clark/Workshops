@@ -117,7 +117,7 @@ How might we go about this?
 
 ## Some base R approaches
 
-Tedious, or typically two steps just to get the columns you want.
+Tedious, or multiple objects just to get the columns you want.
 
 ```{r baseRexample1, eval=FALSE}
 # numeric indexes; not conducive to readibility or reproducibility
@@ -154,7 +154,7 @@ And this is for fairly straightforward operations.
 newData = oldData %>% 
   filter(Z == 'Yes', Q == 'No') %>% 
   select(num_range('X', 1:10), contains('var'), starts_with('XYZ')) %>% 
-  top_n(var2, n=50) %>% 
+  top_n(n=50, var2) %>% 
   arrange(desc(var1))
 ```
 

@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=T, eva
 
 ## 
 
-<div style="text-align:center;font-variant:small-caps; font-family:TRON; font-size:200%; color:#1e90ff">Vectorization</div>
+<div style="text-align:center;font-variant:small-caps; font-family:TRON, Lato, sans-serif; font-size:200%; color:#1e90ff">Vectorization</div>
 
 ## Boolean Indexing
 
@@ -23,7 +23,7 @@ x[idx]
 
 ## Flexiblity
 
-We don't have to create a Boolean object before using it. 
+We don't have to create an explicit object. 
 
 R indexing is ridiculously flexible.
 
@@ -72,6 +72,7 @@ Boolean indexing is an example of a vectorized operation.
 The whole vector is considered. 
 
 - Rather than each element individually
+- Any preprocessing is done once rather than n times
 
 This is always faster.
 
@@ -197,12 +198,14 @@ test
 
 Benefits
   
-  - Cleaner/simpler code
-  - Potentially more reproducible
-      - more likely to use generalizable functions
-  - Parallelizable
+- Cleaner/simpler code
+- Environment kept clear of unnecessary objects
+- Potentially more reproducible
+    - more likely to use generalizable functions
+- Might be faster
+- Parallelizable
     
-<span class="emph">NOT</span> faster than explicit loops.
+<span class="emph">NOT</span> necessarily faster than explicit loops.
 
 - single loop over columns was as fast as apply
 - Replicate and mapply are especially slow

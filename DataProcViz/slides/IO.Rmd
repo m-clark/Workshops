@@ -80,7 +80,7 @@ And many, many others.
 
 ## On the horizon
  
-<span class="pack">feather</span>: designed to make reading and writing data frames efficient
+<span class="pack">feather</span>: designed to make reading/writing data frames efficient
 
 Works in both Python and R.
 

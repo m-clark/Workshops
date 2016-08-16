@@ -97,6 +97,7 @@ With the right tools, data exploration can be:
 - easier
 - faster
 - more efficient
+- more fun!
 
 Use them to wring your data dry of what it has to offer.
 

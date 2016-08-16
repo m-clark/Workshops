@@ -41,7 +41,7 @@ Here, we'll focus on their use with the dplyr package.
 
 Later, we'll use it for visualizations.
 
-Example.
+Example:
 
 ```{r}
 mydf %>% 
@@ -72,7 +72,7 @@ mydf %>%
 
 ## Pipes for Visualization (more later)
 
-Generic example.
+Generic example:
 
 ```{r}
 basegraph %>% 
@@ -92,7 +92,7 @@ mydf %>%
   lm(y ~ x)  # error
 ```
 
-Other pipes can handle this.
+Other pipes can would work in this situation.
 
   - e.g. <span class="func">%$%</span> in magrittr
 

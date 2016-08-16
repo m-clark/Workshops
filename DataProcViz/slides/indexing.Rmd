@@ -78,6 +78,7 @@ List/Data.frame extraction
 
 <span class="func">$</span> : grab specific elements/columns
 
+<span class="func">@</span>: extract slot for S4 objects
 
 
 ## List/Data.frame extraction

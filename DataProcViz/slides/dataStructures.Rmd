@@ -139,17 +139,17 @@ x["b"]
 
 ## Data Frames
 
-<span class="objclass">data.frame</span>s are a very commonly used data structure. 
+<span class="objclass">data.frames</span> are a very commonly used data structure. 
 
 They do not have to have the same type of element.  
 
-This is because the `data.frame` class is actually just a list.  
+This is because the data.frame class is actually just a list.  
 
-As such, everything about lists applies to data.frames.
+- As such, everything about lists applies to them
 
-But they can also be indexed by row or column as well 
+But they can also be indexed by row or column as well.
 
-- like matrices.
+- like matrices
 
 
 

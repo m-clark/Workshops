@@ -43,7 +43,7 @@ Strengths:
 
 ## Aesthetics
 
-<span class="emph">Aesthetics</span> allow one to map data to aesthetic aspects of the plot.
+<span class="emph">Aesthetics</span> map data to aesthetic aspects of the plot.
 
 - Size
 - Color
