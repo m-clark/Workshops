@@ -84,7 +84,7 @@ Now put it all together in one set of piped operations.
 
 - Filter to post 1990 movies
 - select the same variables as before but also the mpaa, Action, and Drama variables
-- group by action *and* Action *or* Drama
+- group by mpaa *and* Action *or* Drama
 - get the average rating
 
 

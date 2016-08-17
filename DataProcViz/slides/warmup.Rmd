@@ -24,7 +24,7 @@ output:
 
 ## 
 
-<div style="text-align:center; font-family:'Ostrich Sans'; font-weight: bold; font-variant:small-caps; font-size:500%; background-color:magenta; color:#eee8d5">Visualization</div>
+<div style="text-align:center; font-family:'OCR A'; font-weight: bold; font-variant:small-caps; font-size:500%; color:#eee8d5">Visualization</div>
 
 ## 
 
@@ -89,3 +89,8 @@ William Katt <span font-size:50%; color:red">....................</span> as The 
 <div style="text-align:center;font-variant:small-caps; font-size:200%; color:#eee8d5"><img src="../../img/ARC.png" style="display:block; width:66%; margin: 0 auto; "></div>
 
 
+##
+
+<div style="text-align:center; font-family:'Cooper Black'; font-size:150%; color:#eee8d5">
+Go to the following page for slides and exercises. <br>
+m-clark.github.io/workshops <br>Data Processing <br> and <br> Visualization in R</div>
