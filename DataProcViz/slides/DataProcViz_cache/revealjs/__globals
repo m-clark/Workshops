@@ -16,3 +16,4 @@ setupInteractive	$	::	F	list	T
 visNetworkinitial	!=	%>%	c	data.frame	filter	from	rep	sample	set.seed	T	to
 ggvisSetup	%>%	bballLong	head
 plotly2	%>%	~	add_trace	am	amFactor	arrange	c	factor	gam	hovertext	library	mpg	mtcars	mutate	paste	plot_ly	predict	prediction	wt
+unnamed-chunk-30	.	[[	append	as.data.table	data.frame	elapsed	group_by	library	list	order	runif	sample	sapply	set.seed	sum	summarise	system.time	tbl_dt	timing	V1	V2
