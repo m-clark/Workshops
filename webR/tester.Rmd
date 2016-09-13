@@ -1,0 +1,82 @@
+--- 
+title: <span style="font-size:150%; font-variant:small-caps; font-style:italic">webR</span>
+author: |
+  
+  <div class="title"><span style="font-size:125%; font-variant:small-caps; font-style:normal">[Michael Clark](http://m-clark.github.io)</span><br><br>
+  [<img src="../img/CSCAR.png", width='150%'>](http://cscar.research.umich.edu/)</div>
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+
+
+<!-- --- -->
+<!-- title: <span style="font-size:150%; font-variant:small-caps; font-style:italic">webR</span> -->
+<!-- author: | -->
+
+<!--   <div class="title"><span style="font-size:125%; font-variant:small-caps; font-style:normal">[Michael Clark](http://m-clark.github.io)</span><br><br> -->
+<!--   [<img src="../img/CSCAR.png", width='150%'>](http://cscar.research.umich.edu/)</div> -->
+<!-- date: "`r Sys.Date()`" -->
+<!-- output: -->
+<!--   rmdformats::material: -->
+<!--     css: ../notebooks.css -->
+<!--     highlight: pygments -->
+<!--     theme: sandstone -->
+<!-- --- -->
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=FALSE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+
+# Webscraping
+Examples with rvest
+
+- wikipedia
+- sports
+- messy
+
+# APIs
+
+Examples with twitter and qualtrics
+
+No special tools vs. packages
+
+# Publishing
+## Markdown
+## CSS etc.
+## Presentations
+## bookdown
+
+# Visualization
+
+## htmlwidgets
+Many newer visualization packages take advantage of piping.
+
+<span class='pack'>htmlwidgets</span> is a package that makes it easy to create javascript visualizations.
+
+- i.e. what you see everywhere on the web.
+
+The packages using it typically are pipe-oriented and produce interactive plots.
+
+## Shiny
+## dashboards
