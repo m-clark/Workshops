@@ -1,0 +1,12 @@
+
+# APIs
+
+Examples with twitter and qualtrics
+
+No special tools vs. packages
+
+# Publishing
+## Markdown
+## CSS etc.
+## Presentations
+## bookdown

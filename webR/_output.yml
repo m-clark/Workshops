@@ -1,0 +1,16 @@
+bookdown::tufte_html2:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./"><span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#ff5503">webR</span></a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit:
+      link: https://github.com/rstudio/bookdown-demo/edit/master/%s
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+bookdown::epub_book: default

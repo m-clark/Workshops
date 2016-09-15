@@ -1,0 +1,50 @@
+--- 
+title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">webR</span>
+author: "Michael Clark"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+    bookdown::tufte_html_book:
+      toc: yes
+      css: toc.css
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: m-clark/Workshops
+description: "An introduction to using R for the web."
+---
+
+# Prerequisites
+```{r echo=FALSE}
+library(tufte)
+```
+
+`r newthought('Well known for its statistical capabilities')`, R can also be used for web-scraping, connecting with websites via APIs, html documents and presentations, interactive visualizations, dashboards, and even building entire, possibly interactive, websites.  This talk will provide an overview of web-based use of R. Conceptual introductions, package synopses, and small demonstrations will be presented.
+
+
+Basic R knowledge is all that is required.  Not even statistical knowledge of any kind is assumerd.
+
+
+Color coding:
+
+
+<span class="emph">emphasis</span>
+
+<span class="pack">package</span>
+
+<span class="func">function</span>
+
+<span class="objclass">object/class</span>
+
+<a>link</a>
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+`r margin_note('tufte goes here!')`
+

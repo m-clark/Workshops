@@ -1,0 +1,18 @@
+
+
+# Visualization
+
+
+
+## htmlwidgets
+
+Many newer visualization packages take advantage of piping.
+
+<span class='pack'>htmlwidgets</span> is a package that makes it easy to create javascript visualizations.
+
+- i.e. what you see everywhere on the web.
+
+The packages using it typically are pipe-oriented and produce interactive plots.
+
+## Shiny
+## dashboards
