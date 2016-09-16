@@ -1,7 +1,25 @@
-# Webscraping
+--- 
+title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">webR</span>
+author: "Michael Clark"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+    bookdown::gitbook:
+      css: [../notebooks.css]
+---
 
-Examples with rvest
+# Web scraping
 
-- wikipedia
-- sports
-- messy
+
+We begin with a discussion on <span class="emph">web scraping</span>. The term itself is ambiguous, and could potentially mean anything[^otherwsnames], but the gist is that there is something out on the web (or connected machine) that we want, and we'd like ot use R to get it.
+
+
+As a starting point, open a browser and go to a website of your preference. For most browsers, Ctrl+U will open up the underlying html file.  If you're on a typical webpage it will almost certainly look like a mess.  Simpler pages are actually somewhat able to be followed, while more complex/secure pages are not.  The take home message is that what you want is represented by something in there, and you'll have to know something about that structure in order to get it.
+
+Unfortunately, web designers in general are notoriously bad at what they do[^webdesign], which will make your job difficult.  Thankfully you can use R and possibly other tools to make the process at least somewhat less painful.
+
+## Examples with rvest
+
+### wikipedia
+### sports
+### messy

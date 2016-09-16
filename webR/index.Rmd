@@ -4,9 +4,11 @@ author: "Michael Clark"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
-    bookdown::tufte_html_book:
-      toc: yes
-      css: toc.css
+    bookdown::gitbook:
+      css: [../notebooks.css]
+    # bookdown::tufte_html_book:
+    #   toc: yes
+    #   css: [toc.css, ../notebooks.css]
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -23,7 +25,7 @@ library(tufte)
 `r newthought('Well known for its statistical capabilities')`, R can also be used for web-scraping, connecting with websites via APIs, html documents and presentations, interactive visualizations, dashboards, and even building entire, possibly interactive, websites.  This talk will provide an overview of web-based use of R. Conceptual introductions, package synopses, and small demonstrations will be presented.
 
 
-Basic R knowledge is all that is required.  Not even statistical knowledge of any kind is assumerd.
+Basic R knowledge is all that is required.  Not even statistical knowledge of any kind is assumed.
 
 
 Color coding:
@@ -47,4 +49,10 @@ knitr::write_bib(c(
 ```
 
 `r margin_note('tufte goes here!')`
+
+
+
+[^otherwsnames]: Called by various names by people with too much time on their hands: web harvesting, data scraping (presumptuous), etc.
+[^webdesign]: Think about your R code, now remove the spaces, do not commment anything, use reserved words for common names, and reject any known coding style.  That would describe about 99% of typical website design.
+
 
