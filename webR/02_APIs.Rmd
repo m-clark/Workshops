@@ -1,12 +1,71 @@
 
 # APIs
 
-Examples with twitter and qualtrics
 
-No special tools vs. packages
+An application programming interface allows one to interact with a website.  In the simplest situation, this is merely a url-based approach to grabbing what you need.
 
-# Publishing
-## Markdown
-## CSS etc.
-## Presentations
-## bookdown
+As an example consider the following generic url
+
+`http://somewebsite.com/key?par1;par2`
+
+The key ingredients are:
+
+- the base url
+- some authorization component (e.g. key)
+- the parameters of interest that specify what you want to grab from that website.
+
+With R, once we have authorization we can then simply feed the parameters that tell the server what data to provide.
+We can do this in a raw fashion, where we make the url, or web adress, that has the necessary specification and simply take what it provides.  Alternatively, there are many R packages to make the process easier for things like Twitter, Qualtrics, and many, many other places.
+
+One issue is that I find APIs are generally poorly documented after a certain level of detail, often telling you what the parameters are but not the values they can take on.  As an example, if something says it wants a date, you're left to guess what the date format is expected.  Just be aware that you may still have some guesswork left even if a lot of information is provided initially.
+
+
+## Raw Example
+
+Basic functions of the raw approach are requests to a server things like GET and POST, commands that tell the server to provide something or perhaps provide data to it.
+
+```{r echo=FALSE}
+source('nytimeskey.R')
+```
+```{r}
+# raw approach
+library(httr)
+most_viewed_base = GET('https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/30.json', query=list(`api-key`=api))
+# see the url created
+most_viewed_base$url
+most_viewed = content(most_viewed_base)
+lapply(most_viewed$results, function(x) data_frame(title=x$title, date=x$published_date)) %>% 
+  bind_rows() %>% 
+  arrange(desc(date))
+```
+
+```{r}
+comments_base = GET('http://api.nytimes.com/svc/community/v3/user-content/by-date.json', query=list(date='09/09/2016'))
+comments_base$url
+comments = content(comments_base)
+sapply(comments$results$comments, function(x) x$commentBody)
+```
+
+
+## R packages
+
+Many R packages allow extremely easy access
+
+```{r}
+library(rtimes)
+article_search = as_search(q="bomb", begin_date = '20160918', end_date = '20160919')[-(1:2)]
+
+lapply(article_search$data, function(x) data_frame(snippet=x$snippet, date= x$pub_date)) %>% 
+  bind_rows() %>% 
+  arrange(desc(date))
+```
+
+With the WikipediR package, getting the whole content of a page is just one possibility, and it feeds nicely into rvest functionality for more processing.
+
+```{r}
+library(WikipediR)
+r_wikipedia = page_content(language='en', 'wikipedia', page_name = 'R_(programming_language)')
+r_wikipedia$parse$text$`*` %>% read_html %>% html_text() 
+```
+
+

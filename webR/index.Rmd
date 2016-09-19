@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE, comment=NA, cache=F, message = F, warnings=F,
 library(tufte); library(tidyverse)
 ```
 
-`r newthought('Well known for its statistical capabilities')`, R can also be used for web-scraping, connecting with websites via APIs, html documents and presentations, interactive visualizations, dashboards, and even building entire, possibly interactive, websites.  This talk will provide an overview of web-based use of R. Conceptual introductions, package synopses, and small demonstrations will be presented. Basic R knowledge is all that is required.  Not even statistical knowledge of any kind is assumed.  
+`r newthought('Well known for its statistical capabilities')`, R can also be used for web-scraping, connecting with websites via APIs, html documents and presentations, interactive visualizations, dashboards, and even building entire, possibly interactive, websites.  This talk will provide an overview of web-based use of R. Conceptual introductions, package synopses, and small demonstrations will be presented. Basic R knowledge is all that is required, and not even statistical knowledge of any kind is assumed.  The focus will be on breadth (e.g. common use) rather than depth.
 
 
 One of the things you'll want to do before getting started is to peruse the Task Views for [Web Technologies](https://cran.r-project.org/web/views/WebTechnologies.html).

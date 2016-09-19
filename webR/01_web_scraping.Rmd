@@ -33,7 +33,7 @@ I wouldn't even call this web scraping, just as you wouldn't if you were getting
 
 ## Key concepts
 
-The web works in mysterious ways, but you don't have to know a lot about it to use it or benefit from its data.  Many people have had their own websites for years without knowing a lick of html.  For our purposes, it helps to know a little, at least so that we know what to look for.
+The web works in mysterious ways, but you don't have to know a lot about it to use it or benefit from its data.  Many people have had their own websites for years without knowing any html.  For our purposes, it helps to know a little, at least so that we know what to look for.
 
 Common elements or <span class="emph">tags</span> of a webpage include things like `div` `table` and `ul` and `body`, and within such things our data will be found.  Just like in R, these can have their own <span class="emph">class</span>, e.g. `<table class="wikitable sortable">`, and this allows even easier access to the objects of specific interest. As an example, take a look at the code from the wikipedia page for [towns in Michigan](https://en.wikipedia.org/wiki/List_of_cities,_villages,_and_townships_in_Michigan).
 
@@ -98,7 +98,7 @@ We know which class object we want though, so we could have used html_nodes to g
 html_nodes(towns, '.wikitable.sortable') %>% html_table() %>% .[[1]] %>% head
 ```
 
-In general though, if you know it's a table, then use html_table.  When the table has no class then you'll have to use a magic number to grab it, so don't expect your code to hold up in the future when the website changes.
+Here the `.` represents the class/subclass (use `#` for ids). In general though, if you know it's a table, then use html_table.  When the table has no class then you'll have to use a magic number to grab it, so don't expect your code to hold up in the future when the website changes.
 
 So let's put this all together.
 
@@ -117,16 +117,13 @@ towns %>%
   lazerhawk::theme_trueMinimal()
 ```
 
-I won't go into details about the rest of the code, as that's for another [workshop](http://m-clark.github.io/workshops/dplyr/mainSlides.html).
-
-
-#### sports
+I won't go into details about the rest of the code regarding data processing, as that's for another [workshop](http://m-clark.github.io/workshops/dplyr/mainSlides.html).
 
 
 
-#### messy
+#### Issues
 
-imdb?
+
 
 
 
