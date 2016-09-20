@@ -32,7 +32,7 @@ source('nytimeskey.R')
 library(httr)
 most_viewed_base = GET('https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/30.json', query=list(`api-key`=api))
 # see the url created
-most_viewed_base$url
+# most_viewed_base$url # tacks on ?api-key=YOURAPI at the end
 most_viewed = content(most_viewed_base)
 lapply(most_viewed$results, function(x) data_frame(title=x$title, date=x$published_date)) %>% 
   bind_rows() %>% 
