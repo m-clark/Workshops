@@ -2,7 +2,7 @@
 
 # Visualization
 
-
+R has come a long way very quickly with regard to interactive and web-based visualization.
 
 ## htmlwidgets
 
@@ -13,6 +13,21 @@ Many newer visualization packages take advantage of piping.
 - i.e. what you see everywhere on the web.
 
 The packages using it typically are pipe-oriented and produce interactive plots.
+
+```{r}
+Rlogo = file.path(R.home('doc'), 'html', 'logo.jpg')
+points = cbind(lon=c(-83.738233,-83.7582789), lat=c(42.280799, 42.2668577))
+library(leaflet)
+leaflet() %>% 
+  addTiles() %>% 
+  setView(mean(points[,1]), mean(points[,2]), zoom = 14) %>% 
+  addMarkers(points[,1], points[,2], 
+             icon=list(iconUrl=c('../img/Rlogo.png', 'img/UM.png'),
+                       iconSize = c(75, 75)),
+             popup = c('CSCAR', 'Big House'))
+```
+
+
 
 ## Shiny
 ## dashboards

@@ -1,6 +1,30 @@
 
 # Publishing
+
+The publishing capabilities in R are phenomenal, and keep expanding all the time.  From standard type documents (including pdf and word) to building whole websites with loads of interactivity, R can generally take you where you want to go.
+
 ## Markdown
-## CSS etc.
+
+
+## HTML, CSS etc.
+
+
+## Documents
+
+### Journals
+
 ## Presentations
-## bookdown
+
+For better or worse, at present there are multiple types of presentations one might use in R.  
+
+- <span class="emph">ioslides</span>:	HTML presentation with ioslides
+- <span class="emph">reveal.js</span>:	HTML presentation with reveal.js
+- <span class="emph">Slidy</span>:	HTML presentation with W3C Slidy
+- <span class="emph">Beamer</span>:	PDF presentation with LaTeX Beamer
+
+These days I cannot think of a reason to do a set of pdf slides as there is no real benefit to doing so. The others are more configurable and can work on any device as easily. 
+
+## Other
+
+### Customization
+

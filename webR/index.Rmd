@@ -4,7 +4,7 @@ author: "Michael Clark"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
-    bookdown::gitbook:
+    bookdown::gitbook(number_sections = FALSE):
       css: [../notebooks.css]
       highlight: pygments
     # bookdown::tufte_html_book:
@@ -24,18 +24,18 @@ knitr::opts_chunk$set(echo = TRUE, comment=NA, cache=F, message = F, warnings=F,
 ```
 
 
-# Prerequisites
+# Introduction {.unnumbered} 
 
 ```{r echo=FALSE}
 library(tufte); library(tidyverse)
 ```
 
-`r newthought('Well known for its statistical capabilities')`, R can also be used for web-scraping, connecting with websites via APIs, html documents and presentations, interactive visualizations, dashboards, and even building entire, possibly interactive, websites.  This talk will provide an overview of web-based use of R. Conceptual introductions, package synopses, and small demonstrations will be presented. Basic R knowledge is all that is required, and not even statistical knowledge of any kind is assumed.  The focus will be on breadth (e.g. common use) rather than depth.
+`r newthought('Well known for its statistical capabilities')`, R can also be used for web-scraping, connecting with websites via APIs, html documents and presentations, interactive visualizations, dashboards, and even building entire, possibly interactive, websites.  This document and related talk will provide an overview of web-based use of R. Conceptual introductions, package synopses, and small demonstrations will be presented. 
 
 
-One of the things you'll want to do before getting started is to peruse the Task Views for [Web Technologies](https://cran.r-project.org/web/views/WebTechnologies.html).
+## Prerequisites {.unnumbered} 
 
-
+Basic R knowledge is all that is required, and not even statistical knowledge of any kind is assumed.  The focus will be on breadth (e.g. common use) rather than depth. One of the things you'll want to do before getting started is to peruse the Task Views for [Web Technologies](https://cran.r-project.org/web/views/WebTechnologies.html).
 
 
 Color coding:
@@ -48,9 +48,7 @@ Color coding:
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
+knitr::write_bib(c(.packages(), 'bookdown', 'knitr', 'rmarkdown'), 'packages.bib')
 ```
 
 
