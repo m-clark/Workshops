@@ -2,26 +2,26 @@
 
 # Visualization
 
-R has come a long way very quickly with regard to interactive and web-based visualization.
+For standard approaches, R already is one of the more powerful data visualization tools out there, to the point the look is being replicated across other platforms.  However, R has come a long way very quickly with regard to interactive and web-based visualization, to the point that it is as easy to do an interactive, web-ready graph as it is the standard plot.  The following provides an overview of tools to be aware of for web-based visualization in R.
+
 
 ## htmlwidgets
 
-Many newer visualization packages take advantage of piping.
+Many newer visualization packages take advantage of javascript for graphical web-based display, as well as a piping approach to add layers of visual information to a plot. <span class='pack'>htmlwidgets</span> is a package that makes it easy to create javascript visualizations, i.e. what you see everywhere on the web.  The packages using it typically are pipe-oriented (`%>%`) and specifically produce interactive plots.
 
-<span class='pack'>htmlwidgets</span> is a package that makes it easy to create javascript visualizations.
+The following example is the leaflet package.  Aside from the icons, you can create this same interactive graph from essentially nothing. As with most graphing approaches in R, we start with a base, which may or may not contain additional layout or other information.  From there we add subsequent layers of information/visuals until the final goal is reached. 
 
-- i.e. what you see everywhere on the web.
-
-The packages using it typically are pipe-oriented and produce interactive plots.
 
 ```{r}
 Rlogo = file.path(R.home('doc'), 'html', 'logo.jpg')
-points = cbind(lon=c(-83.738233,-83.7582789), lat=c(42.280799, 42.2668577))
+
+points = cbind(lon=c(-83.738233,-83.7582789), lat=c(42.280799, 42.2668577)) # latitude and longitude locations
+
 library(leaflet)
-leaflet() %>% 
-  addTiles() %>% 
-  setView(mean(points[,1]), mean(points[,2]), zoom = 14) %>% 
-  addMarkers(points[,1], points[,2], 
+leaflet() %>%                                                           # base plot nothing to see
+  addTiles() %>%                                                        # base plot, the whole world
+  setView(mean(points[,1]), mean(points[,2]), zoom = 14) %>%            # set location
+  addMarkers(points[,1], points[,2],                                    # add points etc.
              icon=list(iconUrl=c('../img/Rlogo.png', 'img/UM.png'),
                        iconSize = c(75, 75)),
              popup = c('CSCAR', 'Big House'))
