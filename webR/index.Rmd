@@ -19,7 +19,7 @@ description: "An introduction to using R for the web."
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, comment=NA, cache=F, message = F, warnings=F, 
+knitr::opts_chunk$set(echo = TRUE, comment=NA, cache=F, message = F, warning=F, 
                       R.options=list(width=120), fig.align='center')
 ```
 

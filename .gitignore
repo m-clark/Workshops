@@ -4,3 +4,10 @@
 .Ruserdata
 *nytimeskey*
 webR/img/UM.png
+dsSeries/data/Medicare_Provider_Util_Payment_PUF_CY2014*
+DataProcViz/slides/*_cache
+
+# the following already had a repo before workshops directory was created
+# and so are ignored to avoid submodule nonsense
+Introduction-to-RStudio
+data-manipulation-in-r
