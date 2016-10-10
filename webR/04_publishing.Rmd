@@ -1,13 +1,53 @@
 
 # Publishing
 
-The publishing capabilities in R are phenomenal, and keep expanding all the time.  From standard type documents (including pdf and word) to building whole websites with loads of interactivity, R can generally take you where you want to go.
-
-## Markdown
+The publishing capabilities in R are phenomenal, and keep expanding all the time.  From traditional document types (including pdf and MS Word) to building whole websites with loads of interactivity, R can generally take you where you want to go.  The ability to imbed the data in the document is clearly important in academia for the facilitation of ideas and discovery, as well as conducting more reproducible research.  However, such capabilities can benefit anyone.
 
 
-## HTML, CSS etc.
+## Publishing Languages
+### Markdown
 
+[Markdown](http://daringfireball.net/projects/markdown/) serves as the basis for much of the approach.  Markdown provides an easy way to create html products without coding any raw html.  It is extremely limited in this regard, but for most text it's all you need.  Despite it's utility, there is no standard for markdown and it hasn't been developed in years. Thus there are many flavors of markdown, of which Rmarkdown is one.
+
+### Rmarkdown
+
+Rmarkdown is Markdown with some other stuff that allows you to work with R.  Like shiny is for webpages, it's a framework for authoring with data science in mind.  You no longer ever need your documents and data to be separated[^journals].
+
+The basic process is that you write an Rmarkdown document and it is then knit into the desired format, e.g. html or pdf.  Use `File/New File/R Markdown...` in RStudio to get started.
+
+<img src="img/markdown_doc.png" style="display:block; margin: 0 auto;">
+
+
+The following shows what a markdown file might look like. You see YAML for the first few lines, basic text intermingled with basic markdown (e.g. \** adds bold, # are headers), and R chunks, where R code resides. The R code itself may remain hidden, exposed but not run, or run along with the rest of the output and the results shown in the text.
+
+<img src="img/markdown_file.png" style="display:block; margin: 0 auto;">
+
+Much of this process is made possible via the knitr package, which takes the .Rmd file and *knits* it into the desired format, using things like [pandoc](http://pandoc.org/) and other tools to do so.
+
+You can always change the output so it doesn't really matter what you select at the initial point. It might be obvious, but you'll need outside programs for some things.  For example, you can't knit a MS Word doc[^msword] if it's not installed on your computer. Likewise, you'll need a $\LaTeX$ installation to create a pdf.  You should also know that what a document renders to in html will not have the exact same look in pdf or MS Word, nor could it be expected to.  If you select an inferior format for your publication, don't expect all the bells and whistles that worked in a better format.
+
+
+### HTML, CSS etc.
+
+For customization you'll need to learn at least a little html and CSS, and possibly quite a bit once you go down the rabbit hole, along with other languages such as javascript. HTML is what is behind most of the web you actually see and interact with, allowing one to create a webpage in mostly tabular format of some kind. CSS allows you have a consistent style across a collection of pages usually amalgamated to form an entire website.  Javascript allows one to build applications that run within the browser, and a host of other languages process data on the server side.
+
+### $\LaTeX$
+
+It used to be the case that $\LaTeX$ served as the (sole?) means for producing high-quality documents in academia.  Some are still under the impression this is the case, but these days, pdf and similar print-first output is neither needed nor really should be the primary means of scientific communication.  $\LaTeX$ is still useful for forumlas, but even that is translated via Mathjax and similar to the web.  For example, inserting the following bit in an Rmarkdown document `$$y = X\beta + \epsilon$$` will produce the following when the document is 'knit':
+
+$$y = X\beta + \epsilon$$
+
+
+
+One can also use various latex packages as well if needed.  However, with Rmarkdown, using raw latex is rarely needed outside of formal mathematical exposition.
+
+### YAML
+
+YAML (or YAML Aint Markup Language) serves as the means to configure your Rmarkdown files[^yaml].  The syntax is very simple, and in the context here allows you to specify things like the output type, title, other css files to use and so forth. This will start any Rmarkdown file you use unless you have one main file that calls other Rmd files.
+
+### Pandoc
+
+Pandoc is a universal converter, allowing documents to flop from one format to another.  It reads the markdown, HTML, $\LaTeX$, and everything else and converts it to an HTML, pdf etc. document.  
 
 ## Documents
 
@@ -17,14 +57,23 @@ The publishing capabilities in R are phenomenal, and keep expanding all the time
 
 For better or worse, at present there are multiple types of presentations one might use in R.  
 
+<img src="img/presentation.png" style="display:block; margin: 0 auto;">
+
 - <span class="emph">ioslides</span>:	HTML presentation with ioslides
 - <span class="emph">reveal.js</span>:	HTML presentation with reveal.js
 - <span class="emph">Slidy</span>:	HTML presentation with W3C Slidy
 - <span class="emph">Beamer</span>:	PDF presentation with LaTeX Beamer
 
-These days I cannot think of a reason to do a set of pdf slides as there is no real benefit to doing so. The others are more configurable and can work on any device as easily. 
+These days I cannot think of a reason to do a set of pdf slides as there is no benefit to doing so. The others are more configurable and can work on any device as easily.  Given that you can run something like an interactive shiny app as part of a presentation, why would you give that up?[^ripbeamer]
 
 ## Other
 
 ### Customization
 
+[^journals]: Unfortunately, many journals still seem to think it's 1985 where people mostly access them in print form in the library.  These are also journals that aren't being cited as much anymore.  Accessibility and openness are the hallmarks of science, and any journal outlets that have not figured this out should not be allowed to ride the coattails of their past status.
+
+[^msword]: I've yet to come across any reason to still be using MS Word nowadays.  It is easier to create an MS Word document via markdown than it is to use the program itself.
+
+[^ripbeamer]: R.I.P. beamer.
+
+[^yaml]: There are other things that YAML is that I do not understand or care to.
