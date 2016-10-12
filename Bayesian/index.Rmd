@@ -1,0 +1,80 @@
+--- 
+title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">Become a Bayesian with R</span>
+author: "Michael Clark"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+    bookdown::tufte_html_book:
+      toc: yes
+      css: [toc.css, ../notebooks.css]
+    bookdown::gitbook(number_sections = FALSE):
+      css: [../notebooks.css]
+      highlight: pygments
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: m-clark/Workshops
+description: "An introduction to using R for Bayesian data analysis."
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment=NA, cache=F, message = F, warning=F, 
+                      R.options=list(width=120), fig.align='center')
+
+# automatically create a bib database for R packages
+knitr::write_bib(c(.packages(), 'bookdown', 'knitr', 'rmarkdown'), 'packages.bib')
+```
+
+# Introduction {.unnumbered} 
+
+```{r echo=FALSE}
+library(tufte); library(tidyverse)
+```
+
+`r newthought('Statistical modeling is a thoughtful exercise.')` Bayesian approaches allow for us to put even more thought into standard models, allow us to explore them more deeply, and may enable a better understanding of the uncertainty therein.  This document (and related talk[^talk]) has a primary purpose of providing an introduction to tools within R that can be used for Bayesian data analysis, and an introduction to the Stan programming language they depend on.  It is not an introduction to Bayesian inference ([see my intro](http://m-clark.github.io/docs/IntroBayes.html)), nor an introduction to statistical modeling in R.
+
+A few points that serve to illustrate the perspective taken here:
+
+- In 2016, there is no more need to justify the use of a Bayesian approach than there is a traditional one.  In fact, if one is using the standard null hypothesis testing approach they would need to justify that much more so.
+
+- Proselytizing, is not a goal, the only zealotry is perhaps for R (and Stan).  Bayesian approaches are still too cumbersome in some settings (e.g. with very large data), and I have no problem using more pragmatic tools.  
+
+- Details will be glossed over. If one has prior exposure to Bayesian data analysis, this can simply be used to learn a couple tools quickly. For those new to the Bayesian approach, you will only get a glimpse of what is to come.
+
+
+## Outline {.unnumbered} 
+
+
+This document will provide a basic introduction to the probabilistic programming language Stan, specifically focusing on its usage via R.  A very brief overview of the Bayesian modeling approach will be provided as a starting point, followed by a description of the Stan language and the constituent parts of a Stan model.  Three package implementations available in R will then be demonstrated- rstan, rstanarm, and brms. 
+
+
+- Become a Bayesian in 10 minutes
+- Key concepts
+- The Stan Modeling Language
+- R package demonstrations
+- Model Extension demonstrations
+
+
+
+## Prerequisites {.unnumbered} 
+
+As far as statistical modeling goes, no more than a standard exposure to regression is assumed.  You would do a lot better knowing the basics of maximum likelihood estimation as well.  As for R, you should be able to run basic lm/glm models in that environment.
+
+
+Color coding:
+
+- <span class="emph">emphasis</span>
+- <span class="pack">package</span>
+- <span class="func">function</span>
+- <span class="objclass">object/class</span>
+- [link]()
+
+
+
+
+
+
+
+
+[^talk]: The associated talk was not a hands-on workshop as it was given in a room where no machines could have it pre-installed (there were no machines), and rights issues would not have made it straightforward (due to the way C++ is used).

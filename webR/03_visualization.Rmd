@@ -8,29 +8,29 @@ For standard approaches, R already is one of the more powerful data visualizatio
 
 ## Systems
 
-This section notes a couple packages which I will call visualization systems. For example, for static plots <span class="pack">ggplot2</span> and <span class="pack">lattice</span> are systems within which to produce visualizations. They have their own consistent style within which to specify the details of a plot and are very flexible in what they can produce.
+This section notes a couple packages which I will call visualization *systems*. For example, for static plots <span class="pack">ggplot2</span> and <span class="pack">lattice</span> are systems within which to produce visualizations. They have their own consistent style with which one may specify the details of a plot and are very flexible in what they can produce.
 
 In that sense I'll note two interactive visualization systems, <span class="pack">plotly</span> and <span class="pack">bokeh.</span>
 
 ### plotly
 
-<span class="pack">Plotly</span> is a general visualization system with APIs for javascript, Python, Matlab, and of interest to us, R. It used to require an account but now is used as any other package within R, and in this case the package is just called plotly.  Like <span class="pack">ggplot2</span>, you start with a base and add layers via pipes.
+<span class="pack">Plotly</span> is a general visualization system with APIs for javascript, Python, Matlab, and of interest to us, R. It used to require an account, but now is used as any other package within R, and in this case the package is just called plotly.  Like <span class="pack">ggplot2</span>, you start with a base and add layers via pipes.
 
-```{r plotlyExample}
+```{r plotlyExample, echo=-(2:5)}
 library(plotly)
 x = sort(rnorm(1000))
 g = rep(0:1, 500)
 y = g + sin(x) + .25*g*sin(x) + rnorm(1000, sd=.1)
 
 plot_ly(x=~x, y=~y, color=factor(g)) %>%
-  add_trace(x=x, y=y, color=factor(g), mode='lines+markers') %>% 
+  add_trace(mode='lines+markers') %>% 
   lazerhawk::theme_plotly()
 
 iris %>%
   plot_ly(x=~Petal.Length, y=~Petal.Width, color=~Species)
 ```
 
-By default the plot is interactive, but you can add a lot more too it (my own theme cleans up gridlines, zero reference line etc.).
+By default the plot is interactive with hoverover information, but you can add a lot more too it (my own theme cleans up gridlines, zero reference line etc.).
 
 One of the best things about plotly is it's ability to make a ggplot graphic interactive. The resulting visual may need further tweaking as there is not a one-to-one mapping from ggplot to plotly, but it's otherwise a very useful tool.
 
@@ -47,7 +47,7 @@ Unfortunately the [documentation](https://plot.ly/r/) for <span class="pack">plo
 
 ### rbokeh
 
-[Bokeh](http://bokeh.pydata.org/en/latest/) is a Python interactive visualization library, and <span class="pack">rbokeh</span> is an attempt to port it to the R world.  It works very similarly to <span class="pack">plotly</span>, and for easy comparison I iterate the iris example from above.  The figure function serves to produce the base of the plot, with other elements added as layers via pipes.  It doesn't appear to mesh well with bookdown yet so I simply show the image you'd see in your Rstudio viewer.
+[Bokeh](http://bokeh.pydata.org/en/latest/) is a Python interactive visualization library, and <span class="pack">rbokeh</span> is an attempt to port it to the R world.  It works very similarly to <span class="pack">plotly</span>, and for easy comparison I iterate the iris example from above.  The <span class="func">figure</span> function serves to produce the base of the plot, with other elements added as layers via pipes.  It doesn't appear to mesh well with bookdown yet, so I simply show the image you'd see in your Rstudio viewer.
 
 ```{r rbokeh, eval=FALSE}
 library(rbokeh)
