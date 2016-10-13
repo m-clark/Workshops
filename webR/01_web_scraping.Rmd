@@ -1,12 +1,3 @@
---- 
-title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">webR</span>
-author: "Michael Clark"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-output: 
-    bookdown::gitbook:
-      css: [../notebooks.css]
----
 
 # Web scraping
 
@@ -27,7 +18,7 @@ mydata = read.csv('http://somewebsite/data.csv')
 ```
 
 
-I wouldn't even call this web scraping, just as you wouldn't if you were getting a file off a network connection.  However, if you're just starting out with R, it's important to know this is possible.
+I wouldn't even call this web scraping, just as you wouldn't if you were getting a file off a network connection.  However, if you're just starting out with R, it's important to know this is possible.  In any case, do not make things more difficult than they need to be- if the file is available just grab it.
 
 
 ## Key concepts

@@ -94,7 +94,7 @@ str(r_wikipedia[[1]], 1) # inspect
 
 r_wikipedia$parse$text$`*` %>% 
   read_html %>% 
-  html_text() %>% 
+  html_text %>% 
   message
 ```
 
@@ -111,6 +111,11 @@ The <span class="pack">qualtricsR</span>[^qualtricsRLink] package makes it easy 
 mydata = importQualtricsData(username = "qualtricsUser@email.address#brand",  # example micl@umich.edu#umich
                              token = "tokenString", surveyID = "idString")    # your token from Qualtrics
 ```
+
+
+### Others
+
+Note that there are many R packages that work with various APIs, so if you're looking to work with data from a site that has an API, definitely see if something already exists.
 
 ## Issues
 
