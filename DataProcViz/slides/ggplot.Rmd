@@ -264,7 +264,7 @@ You will almost invariably need to tweak it.
 
 There is even a website to track the extensions.
 
-- [https://www.ggplot2-exts.org/](https://www.ggplot2-exts.org/)
+- https://www.ggplot2-exts.org/
 
 Examples include:
 
