@@ -1,0 +1,240 @@
+---
+title: "Become a Bayesian in 10 minutes"
+output: 
+  revealjs::revealjs_presentation:
+    theme: solarized
+    transition: slide
+    incremental: true
+    center: true
+css: slides_light.css
+    
+---
+
+## Probabilities
+
+Which interpretation do you prefer?
+
+> <p class="fragment"> If I asssume a value of zero for the parameter, what is the probability of my observed parameter or more extreme?</p>
+
+Or
+
+> <p class="fragment">What's the probability my result is greater than zero?</p>
+
+
+## Intervals
+
+Which interpretation do you prefer?
+
+> <p class="fragment"> If I repeat this study precisely an infinte number of times, and I calculate a 95% interval each time, then 95% of those  intervals will contain the true parameter.</p>
+
+Or
+
+> <p class="fragment">What's the probability the parameter falls in this interval?</p>
+
+## Distributions
+
+The goal is a *distribution* (stable) rather than a parameter
+
+<p class='fragment'>Posterior distribution</p>
+
+
+## Prior 
+
+Represents our perspective regarding the intial state of affairs
+
+Based on 
+
+<p class="fragment">Prior belief</p>
+
+<p class="fragment">Prior research</p>
+
+<p class="fragment">Known approaches that work well in the modeling context</p>
+
+
+
+
+## The prior is subjective?!?
+
+## Subjective != Arbitrary {data-transition="slide-in none-out"}
+
+## For example... {data-transition="none"}
+
+## Subjective {data-transition="zoom"}
+
+<div style="text-align:center"><span class="" style="font-size:110%; font-variant:small-caps">Choosing a normal distribution for the likelihood</span></div>
+
+
+## Subjective {data-transition="zoom"}
+
+<div style="text-align:center"><span class="" style="font-size:110%; font-variant:small-caps">Setting a prior variance to some value</span></div>
+
+
+## Arbitrary {data-transition="zoom"}
+
+<div style="text-align:center"><span class="" style="font-size:110%; font-variant:small-caps">Setting your null hypothesis parameter value to 0</span></div>
+
+
+## Arbitrary  {data-transition="zoom"}
+
+<div style="text-align:center"><span class="" style="font-size:110%; font-variant:small-caps">Choosing .05 as a cutoff for 'significance'</span></div>
+
+
+
+## Which of the following is R code for the Bayesian model? {data-transition="none"}
+
+```{r eval=FALSE}
+(mpg ~ wt, data=mtcars)
+(mpg ~ wt, data=mtcars)
+(mpg ~ wt, data=mtcars)
+```
+
+## Which of the following is R code for the Bayesian model? {data-transition="none"}
+
+```{r eval=FALSE}
+lm(mpg ~ wt, data=mtcars)
+(mpg ~ wt, data=mtcars)
+(mpg ~ wt, data=mtcars)
+```
+
+## Which of the following is R code for the Bayesian model? {data-transition="none"}
+
+```{r eval=FALSE}
+lm(mpg ~ wt, data=mtcars)
+stan_lm(mpg ~ wt, data=mtcars)   # rstanarm
+(mpg ~ wt, data=mtcars)
+```
+
+## Which of the following is R code for the Bayesian model? {data-transition="none"}
+
+```{r eval=FALSE}
+lm(mpg ~ wt, data=mtcars)
+stan_lm(mpg ~ wt, data=mtcars)   # rstanarm
+brm(mpg ~ wt, data=mtcars)       # brms
+```
+
+## Logistic Regression {data-transition="none"}
+
+```{r eval=FALSE}
+glm(treat ~ educ + black + hisp + married, data=lalonde, family='binomial')
+stan_glm(treat ~ educ + black + hisp + married, data=lalonde, family='binomial')   # rstanarm
+brm(treat ~ educ + black + hisp + married, data=lalonde, family='binomial')        # brms
+```
+
+
+## Ordinal Regression {data-transition="none"}
+
+```{r eval=FALSE}
+clm(rating ~ temp*contact, data = wine)                       # ordinal
+stan_polr(rating ~ temp*contact, data = wine)                 # rstanarm
+brm(rating ~ temp*contact, data = wine, family='ordinal')     # brms
+```
+
+
+## Mixed Model {data-transition="none"}
+
+```{r eval=FALSE}
+lmer(Reaction ~ Days + (1 + Days|Subject))        # lme4
+stan_lmer(Reaction ~ Days + (1 + Days|Subject))   # rstanarm
+brm(Reaction ~ Days + (1 + Days|Subject))         # brms
+```
+
+## The Point 
+
+## {data-transition="zoom"  data-autoslide="3000"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="3000" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+
+## {data-transition="zoom" data-autoslide="15000"}
+
+<style type="text/css">
+
+#marqueecontainer{
+position: relative;
+width: 1000px; /*marquee width */
+height: 1000px; /*marquee height */
+background-color: inherit;
+overflow: hidden;
+border: 0px solid orange;
+/*padding: 2px;
+padding-left: 4px;*/
+}
+
+</style>
+
+<script type="text/javascript">
+
+var delayb4scroll=00 //Specify initial delay before marquee starts to scroll ***TAKES SOME PLAYING WITH***
+var marqueespeed=3 //Specify marquee scroll speed (larger is faster 1-10)
+var pauseit=1 //Pause marquee onMousever (0=no. 1=yes)?
+
+////NO NEED TO EDIT BELOW THIS LINE////////////
+
+var copyspeed=marqueespeed
+var pausespeed=(pauseit==0)? copyspeed: 0
+var actualheight=''
+
+function scrollmarquee(){
+if (parseInt(cross_marquee.style.top)>(actualheight*(-1)+8)) //if scroller hasn't reached the end of its height
+cross_marquee.style.top=parseInt(cross_marquee.style.top)-copyspeed+"px" //move scroller upwards
+else //else, reset to original position
+cross_marquee.style.top=parseInt(marqueeheight)+8+"px"
+}
+
+function initializemarquee(){
+cross_marquee=document.getElementById("vmarquee")
+cross_marquee.style.top=0
+marqueeheight=document.getElementById("marqueecontainer").offsetHeight
+actualheight=cross_marquee.offsetHeight //height of marquee content (much of which is hidden from view)
+if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1){ //if Opera or Netscape 7x, add scrollbars to scroll and exit
+cross_marquee.style.height=marqueeheight+"px"
+cross_marquee.style.overflow="scroll"
+return
+}
+setTimeout('lefttime=setInterval("scrollmarquee()",30)', delayb4scroll)
+}
+
+if (window.addEventListener)
+window.addEventListener("load", initializemarquee, false)
+else if (window.attachEvent)
+window.attachEvent("onload", initializemarquee)
+else if (document.getElementById)
+window.onload=initializemarquee
+
+
+</script>
+<div id="marqueecontainer" onMouseover="copyspeed=pausespeed" onMouseout="copyspeed=marqueespeed">
+<div id="vmarquee" style="position: absolute; width: 98%;">
+
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+<img src="../img/rstan.png" style="display:block; margin: 0 auto;">
+
+</div>
+</div>
+
+
+## 
+For common models and extensions, it is as easy to run a Bayesian version
+
+<img src="../img/r_stan.png" style="display:block; margin: 0 auto;">

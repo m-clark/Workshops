@@ -1,13 +1,26 @@
 
-ui <- pageWithSidebar(
+ui <- fluidPage(theme='sandstone.css',
+  tags$head(
+    tags$style(HTML("
+                    @import url('//fonts.googleapis.com/css?family=Open+Sans:400,700|Cabin:400,700|Inconsolata:400,700');
+
+                    p {
+                    font-family:  'Open Sans', san-serif;
+                    font-weight: 500;
+                    line-height: 1.1;
+                    color: gray;
+                    }
+
+                    "))),
   # Application title
   # titlePanel("Bayesian Data Analysis"),
   headerPanel(
+
     # tags$style("h5 {color:aliceblue;}
     #               label {color:dodgerblue;"),
     HTML("<span style=\"color:#ff6eb4; font-family:'Magneto'; \">Bayesian Demo</span>
 
-    <br> <div><h5 style='color:gray'>The following demo regards estimating a mean (ignoring estimating the variance) and how the prior distribution and likelihood combine to produce the posterior distribution. You can set the following parameters: <br><br><br>
+    <br> <div><h5 style=\"color:gray; font-family:'Open Sans'\">The following demo regards estimating a mean (ignoring estimating the variance) and how the prior distribution and likelihood combine to produce the posterior distribution. <br><br>You can set the following parameters: <br><br>
 
     <ul>
     <li> Sample size: 0-250
@@ -16,12 +29,12 @@ ui <- pageWithSidebar(
     </ul>
 
 
-    The tested &theta; parameters are a sequence of 500 values from 1 to 10.
-    </h5></div>")
-    ),
+    The tested \\(\\theta\\) parameters are a sequence of 500 values from 1 to 10.
+    </h5></div>"),
+    windowTitle= 'Bayesian Demo'),
 
   # Sidebar with a slider input for number of bins
-  sidebarPanel(
+  sidebarLayout(sidebarPanel(
       tags$style(".well {background-color:aliceblue;}
                   label {color:cornflowerblue; font-family:'Gill Sans MT'}"),
       numericInput("n",
@@ -34,23 +47,23 @@ ui <- pageWithSidebar(
                    "Data Variance:",
                    min = 1, max = 5, value = 3),
       numericInput("priorMean",
-                   HTML("Prior Mean for &theta;:"),
+                   HTML("Prior Mean for \\(\\theta\\):"),
                    min = 1, max = 10, value = 2, step=1),
       numericInput("priorVar",
-                   HTML("Prior Variance for &theta;:"),
+                   HTML("Prior Variance for \\(\\theta\\):"),
                    min = 1, max = 5, value = 1)
-    ),
+    , width=2),
 
 
     mainPanel(
-      plotly::plotlyOutput("bayesPlot", width = '75%'),
-      htmlOutput('results', span="style=color:red"), br(),
-      htmlOutput("caption"),
-      tags$style("#results {color:cornflowerblue; font-variant:small-caps; font-family:'Consolas';}
+      plotly::plotlyOutput("bayesPlot", width = '100%'),
+      htmlOutput('results'), br(),
+      withMathJax(htmlOutput("caption")),
+      tags$style("#results {color:cornflowerblue; font-variant:small-caps; font-family:'Inconsolata';}
                   #caption {color:gray;}")
-    , width=6)
+    , width=5)
 )
-
+)
 
 
 
@@ -77,7 +90,7 @@ server <- function(input, output) {
 
 
   output$results = renderText({
-    HTML(paste0("<span style='color:cornflowerblue'>Observed Mean = ", format(mean(obs()), digits=3, nmsall=2), '<br>',
+    HTML(paste0("Observed Mean = ", format(mean(obs()), digits=3, nmsall=2), '<br>',
                 "Observed Var = ",  format(var(obs()), digits=3, nmsall=2), '<br>',
                 "Posterior Mean = ",  format(thetamean(), digits=3, nmsall=2))
          )
@@ -92,7 +105,7 @@ server <- function(input, output) {
                                                         value=c(input$priorMean, mean(obs()), thetamean())),
                  color=alpha('#ff5503', .25)) +
       facet_wrap(~Distribution, scales = 'free_y', ncol = 1) +
-      xlab(HTML('&theta;')) +
+      xlab('') +# xlab(HTML('\\(\\theta\\)')) + # between shiny plotly and the web, it just don't work
       lims(x=c(1, 10)) +
       lazerhawk::theme_trueMinimal() +
       theme(axis.title.x=element_text(color=alpha('black',.6), vjust=.1, hjust=.5),
@@ -102,11 +115,19 @@ server <- function(input, output) {
             strip.text=element_text(color=alpha('black',.5), vjust=.01),
             legend.position='none')
 
-    ggplotly(g, tooltip='none')
+    ggplotly(g, tooltip='none') %>% layout(paper_bgcolor=rgb(0,0,0,0), plot_bgcolor=rgb(0,0,0,0))
 
   })
   output$caption <- renderText({
-    HTML('All three distributions regard the <i>parameter</i> to be estimated, i.e. &theta;, the mean.  The prior regards the initial distribution given for &theta;. This may be based on prior beliefs and/or research, or simply one known to work well within the modeling context.  The likelihood regards the data given a particular estimate for &theta;, and is the same that one is familiar with from standard maximum likelihood methods. Finally, the posterior is the final likelihood for the &theta; values.')
+    HTML(
+    "$$ p(\\theta|Data) \\propto p(Data|\\theta) \\cdot p(\\theta) $$ </br>
+    <p>All three distributions regard the <em>parameter</em> to be estimated, i.e. \\(\\theta\\), the mean (we're assuming the variance is known for this demo).</p>
+
+    <p>The prior regards the initial distribution given for \\(\\theta\\). This may be based on prior beliefs and/or research, or simply one known to work well within the modeling context. Here it is a normal distribution with the mean and variance you provide.</p>
+
+    <p>The likelihood regards the data given a particular estimate for \\(\\theta\\), and is the same that one is familiar with from standard maximum likelihood methods. The observed mean is the estimate we'd get using a maximum likelihood approach.  In this case we're assuming a normal distribution as the data generating process.</p>
+
+    <p>Finally, the posterior is the final likelihood for the \\(\\theta\\) values, and can be seen as a weighted combination of the prior and the likelihood.</p>")
   })
 }
 
