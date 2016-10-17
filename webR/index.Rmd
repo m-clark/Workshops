@@ -4,9 +4,19 @@ author: "Michael Clark"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
-    bookdown::gitbook(number_sections = FALSE):
+    bookdown::gitbook:
       css: [webR.css]
       highlight: pygments
+      number_sections: false
+      config:
+        sharing:
+          facebook: false
+          twitter: false
+        search: yes
+        edit: no
+        fontsettings:
+          family: sans
+          size: 2
     # bookdown::tufte_html_book:
     #   toc: yes
     #   css: [toc.css, ../notebooks.css]

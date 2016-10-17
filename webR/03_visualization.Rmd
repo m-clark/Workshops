@@ -1,5 +1,3 @@
-
-
 # Visualization
 
 For standard approaches, R already is one of the more powerful data visualization tools out there, to the point where the look of its graphics is being replicated across other platforms.  However, R has come a long way very quickly with regard to interactive and web-based visualization, such that it is as easy to do an interactive, web-ready graph as it is the standard plot.  The following provides an overview of tools to be aware of for web-based visualization in R.
@@ -30,7 +28,7 @@ iris %>%
   plot_ly(x=~Petal.Length, y=~Petal.Width, color=~Species)
 ```
 
-By default the plot is interactive with hoverover information, but you can add a lot more too it (my own theme cleans up gridlines, zero reference line etc.).
+By default the plot is interactive with hover-over information, but you can add a lot more too it (my own theme cleans up gridlines, zero reference line etc.).
 
 One of the best things about plotly is it's ability to make a ggplot graphic interactive. The resulting visual may need further tweaking as there is not a one-to-one mapping from ggplot to plotly, but it's otherwise a very useful tool.
 
@@ -71,7 +69,7 @@ I'll note that <span class="pack">ggvis</span> was once considered to be the suc
 ## htmlwidgets 
 <img src="../img/htmlwidgets.png" style="display:block; margin: 0 auto; width:50%" >
 
-Many newer visualization packages take advantage of <span class="emph">javascript</span> for graphical web-based display, as well as the piping approach to add layers of visual information to a plot. <span class='pack'>htmlwidgets</span> is a package that makes it easy to create javascript visualizations, similar to what you see everywhere on the web.  The packages using it typically are pipe-oriented (`%>%`) and specifically produce interactive plots.
+Many newer visualization packages take advantage of <span class="emph">javascript</span> for graphical web-based display, as well as the piping approach to add layers of visual information to a plot. <span class='pack'>htmlwidgets</span> is a package that makes it easy to create javascript visualizations, similar to what you see everywhere on the web.  The packages using it typically are pipe-oriented (`%>%`) and specifically produce interactive plots, and include <span class="pack">plotly</span> and <span class="pack">rbokeh</span>.  
 
 
 ### Leaflet example
@@ -95,6 +93,29 @@ leaflet() %>%                                                           # base p
 ```
 
 See the [htmlwidgets website](http://www.htmlwidgets.org/) for more examples and other packages.
+
+
+```{r echo=FALSE}
+library(rgl)
+library(rglwidget)
+library(htmltools)
+
+theta <- seq(0, 6*pi, len=100)
+xyz <- cbind(sin(theta), cos(theta), theta)
+lineid <- plot3d(xyz, type="l", alpha = 1:0, 
+                 lwd = 5, col = "blue")["data"]
+
+browsable(tagList(
+  rglwidget(elementId = "example", width = 500, height = 400,
+            controllers = "player"),
+  playwidget("example", 
+             ageControl(births = theta, ages = c(0, 0, 1),
+                        objids = lineid, alpha = c(0, 1, 0)),
+                        start = 1, stop = 6*pi, step = 0.1, 
+                        rate = 6,elementId = "player")
+))
+```
+
 
 
 
@@ -172,7 +193,7 @@ shiny::runExample('01_hello')
 
 <img src="img/shinyHist.png" style="display:block; margin: 0 auto;">
 
-The shiny framework is very powerful in terms of what it can do, but realize you are basically creating a web app using a language that wasn't designed for general programming in that fashion and will require outside resources if you want to use it.  It is very likely that other approaches would be more efficient and notably lighter weight[^slowshiny], resulting in a better user experience, which is what your number one priority should be if you are constructing an interactive app.  That said, shiny can be a lot of fun, and useful for presentations too if running it from your own device.
+The shiny framework is very powerful in terms of what it can do, but realize you are basically creating a web app using a language that wasn't designed for general programming in that fashion and will require outside resources if you want to use it.  It is very likely that other approaches would be more efficient and notably lighter weight[^slowshiny], resulting in a better user experience, which is what your number one priority should be if you are constructing an interactive app.  That said, shiny can be a lot of fun, and useful for presentations too if running it from your own device.  See the [gallery](http://shiny.rstudio.com/gallery/) for demos and more.
 
 
 

@@ -55,13 +55,16 @@ One can also use various latex packages as well if needed.  However, with R Mark
 
 ### YAML
 
+<img src="../img/yaml.gif" style="display:block; margin: 0 auto;">
+
 <span class="emph">YAML</span> (or YAML Aint Markup Language) serves as the means to configure your R Markdown files[^yaml].  The syntax is very simple, and in the context of an R Markdown document, it allows you to specify things like the output type, title, other css files to use, and so forth. This will start any R Markdown file you use unless you have one main file that calls other Rmd files.
 
 
 ### Pandoc
 
-<span class="emph">Pandoc</span> is a universal converter, allowing documents to flop from one format to another.  It reads the markdown, HTML, $\LaTeX$, and everything else and converts it to an HTML, pdf etc. document.  
+<span class="emph">Pandoc</span> is a universal converter[^pandoc], allowing markup languages to flop from one format to another. Essentially a [babel fish](https://en.wikipedia.org/wiki/List_of_races_and_species_in_The_Hitchhiker's_Guide_to_the_Galaxy#Babel_fish) for web, it reads the markdown, HTML, $\LaTeX$, and everything else and converts it to an HTML, pdf etc. document.  From the pandoc website:
 
+> Markdown, CommonMark, PHP Markdown Extra, GitHub-Flavored Markdown, MultiMarkdown, and (subsets of) Textile, reStructuredText, HTML, LaTeX, MediaWiki markup, TWiki markup, Haddock markup, OPML, Emacs Org mode, DocBook, txt2tags, EPUB, ODT and Word docx; and it can write plain text, Markdown, CommonMark, PHP Markdown Extra, GitHub-Flavored Markdown, MultiMarkdown, reStructuredText, XHTML, HTML5, LaTeX (including beamer slide shows), ConTeXt, RTF, OPML, DocBook, OpenDocument, ODT, Word docx, GNU Texinfo, MediaWiki markup, DokuWiki markup, ZimWiki markup, Haddock markup, EPUB (v2 or v3), FictionBook2, Textile, groff man pages, Emacs Org mode, AsciiDoc, InDesign ICML, TEI Simple, and Slidy, Slideous, DZSlides, reveal.js or S5 HTML slide shows. It can also produce PDF output on systems where LaTeX, ConTeXt, or wkhtmltopdf is installed.
 
 ### Summary
 
@@ -81,9 +84,9 @@ HTML is the default output for R Markdown documents, and really should be your d
 
 <img src="img/notebook_example.png" style="display:block; margin: 0 auto; width:50%">
 
-I've been using <span class="emph">notebooks</span> since they were first advertised as part of an RStudio preview release.  However, it is still not clear to me what their role is, other than to allow your output to reside in your R markdown document rather than the console, something typically not desirable (at least with how I use R).  I guess it's useful if you want to share the script/document and let someone else play with the code, but technically they could do that with an R Markdown document anyway, or a basic R script for that matter.  Having the output below or to the side of the document rather than a few inches from that point is not something I can get overly excited about.  And sometimes there is a lot of output from a chunk that I definitely do not want clogging up the code or document, but still may want to regularly inspect.  Code should have a *flow* just like text should, at least that's my opinion.
+I've been using <span class="emph">notebooks</span> since they were first advertised as part of an RStudio preview release.  However, it is still not clear to me what their role is[^phablet], other than to allow your output to reside in your R markdown document rather than the console, something typically not desirable (at least with how I use R).  I guess it's useful if you want to share the script/document and let someone else play with the code, but technically they could do that with an R Markdown document anyway, or a basic R script for that matter.  Having the output below or to the side of the document rather than a few inches from that point is not something I can get overly excited about.  And sometimes there is a lot of output from a chunk that I definitely do not want clogging up the code or document, but still may want to regularly inspect.  Code should have a *flow* just like text should, at least that's my opinion.  
 
-That said, notebooks do appear be highly useful for educational purposes, and more so if they make it such that the notebooks run in Jupyter similar to Python's \*.nb files.  Stay tuned to see how this document format pans out. 
+That said, notebooks do appear be highly useful for educational purposes, and more so if they make it such that the notebooks run in Jupyter similar to Python's \*.nb files. I also like Julia's approach to it's standard script, where you can simply hover/click for the output rather than have it automatically spat out, and maybe the R notebooks will go that direction. Stay tuned to see how this document format pans out. 
 
 
 ### Print
@@ -149,6 +152,10 @@ I'll add more stuff here as I come across it.
 [^ripbeamer]: R.I.P. Beamer.
 
 [^yaml]: There are other things that YAML is that I do not understand (e.g. How 'Yet Another Markup Language' now doesn't want to be considered a markup language).
+
+[^pandoc]: Actually a Haskell library.
+
+[^phablet]: Maybe I'm short-sighted but notebooks strike me as the phablet of R markdown output formats.
 
 [^jupyterR]: You can already use R with Jupyter, but it's very limited compared with what you can do with R in RStudio with R Markdown.
 

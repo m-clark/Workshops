@@ -1,4 +1,3 @@
-
 # APIs
 
 
@@ -10,9 +9,9 @@ As an example consider the following generic url:
 
 The key ingredients are:
 
-- the base url
-- some authorization component (e.g. key)
-- the parameters of interest that specify what you want to grab from that website.
+- `http://somewebsite.com/` the base url
+- `key` some authorization component
+- `?par1;par2` the parameters of interest that specify what you want to grab from that website.
 
 With R, once we have authorization we can then simply feed the parameters that tell the server what data to provide.
 We can do this in a raw fashion, where we make the url, or web address[^url], that has the necessary specification, and then simply take what it provides.  Alternatively, there are many R packages to make the process easier for things like Twitter, Qualtrics, and many other websites.
@@ -40,7 +39,7 @@ At this point, <span class="objclass">most_viewed_base</span> is a <span class="
 str(most_viewed_base[-1], 1)
 ```
 
-However the content's in binary, and to get it into a useful state we'll use the <span class="func">content</span> function. The rest of the code just takes the title and arranges it by date.
+However the content's in <span class="emph">binary</span>, and to get it into a useful state we'll use the <span class="func">content</span> function. The rest of the code just takes the title and arranges it by date.
 
 ```{r most_viewed_articles_view}
 most_viewed = content(most_viewed_base)
@@ -57,21 +56,22 @@ comments = content(comments_base)
 sapply(comments$results$comments, function(x) x$commentBody)[1:5]
 ```
 
-The API documentation doesn't make obvious what the date format should be, how the commments are chosen (aside from being taken from some section of the paper), or what the limits are.  As mentioned previously, this is typical API documentation in my experience.
+The API documentation doesn't make obvious what the date format should be, how the comments are chosen (aside from being taken from some section of the paper), or what the limits are.  As mentioned previously, this is typical API documentation in my experience.
 
 
 
 ## R packages
 
-Many R packages allow extremely easy access to various websites through their API.  Usually all it takes is acquiring the authorization and the package will do the rest.  It might only be marginally less effort than the raw approach we did before, but can make things more efficient in the long run.
+Many R packages allow extremely easy access to various websites through their API.  Usually all it takes is acquiring the authorization and the package will do the rest.  It might only be marginally less effort than the raw approach we did before, but can make things more efficient in the long run (assuming the package is kept up to date).
 
 
 ### New York Times Article Search
 
-The following is an example of accessing the New York Times artical search API[^nytapi].  Using the <span class="pack">rtimes</span> package, we can use a function similar to any other in R. In this case we need a query, beginning date and an end date to collect articles that contain the text of the query. Note that it still requires an key, but that's not shown here.
+The following is an example of accessing the New York Times article search API[^nytapi].  Using the <span class="pack">rtimes</span> package, we can use a function similar to any other in R. In this case we need a query, beginning date and an end date to collect articles that contain the text of the query. Note that it still requires an key, but that's not shown here.
 
-```{r nytAPI, echo=-1, eval=FALSE}
+```{r nytAPI, echo=-(1:2), eval=T, cache=T}
 # for some reason this will fail sometimes due to nytimes having a poor api
+source('nytimeskey.R')
 library(rtimes)
 article_search = as_search(q="bomb", begin_date = '20160918', end_date = '20160919')[-(1:2)]
 
@@ -108,6 +108,7 @@ Qualtrics is a survey software which one can use to create and disseminate surve
 The <span class="pack">qualtricsR</span>[^qualtricsRLink] package makes it easy to import data from and export surveys to Qualtrics, as well as functionality to create a standard survey within R.  As before you'll need proper authorization, but then it can be straightforward to grab your data from Qualtrics without having to go to the website.
 
 ```{r, eval=F}
+library(qualtricsR)
 mydata = importQualtricsData(username = "qualtricsUser@email.address#brand",  # example micl@umich.edu#umich
                              token = "tokenString", surveyID = "idString")    # your token from Qualtrics
 ```
@@ -115,13 +116,15 @@ mydata = importQualtricsData(username = "qualtricsUser@email.address#brand",  # 
 
 ### Others
 
-Note that there are many R packages that work with various APIs, so if you're looking to work with data from a site that has an API, definitely see if something already exists.
+Note that there are many R packages that work with various APIs, so if you're looking to work with data from a site that has an API, definitely see if something already exists.  If it is a very popular website, you are probably not the first person using R that wants to access its data.
+
+
 
 ## Issues
 
 ### Documentation
 
-One issue I commonly find with APIs is that often they are generally poorly documented beyond a certain level of initial detail, e.g. often telling you what the parameters are but not the values they can take on.  As an example, if something says it wants a date, you may be left to figure out what date format is expected.  Just be aware that you may still have some guesswork left even if a lot of information is provided initially.
+One issue I commonly find with APIs is that often they are generally poorly documented beyond a certain level of initial detail, e.g. often telling you what the parameters are but not the values they can take on.  As an example, if something says it wants a date, you may be left to figure out what date format is expected.  Sometimes I feel that developers spend so little effort it seems they don't actually want people to use the API.  Just be aware that you may still have some guesswork left even when a lot of information is provided initially.
 
 ### API Changes
 
