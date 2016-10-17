@@ -2,11 +2,11 @@
 ui <- fluidPage(theme='sandstone.css',
   tags$head(
     tags$style(HTML("
-                    @import url('//fonts.googleapis.com/css?family=Open+Sans:400,700|Cabin:400,700|Inconsolata:400,700');
+                    @import url('//fonts.googleapis.com/css?family=Open+Sans:400,700|Cabin:400,700|Inconsolata:400,700|Roboto:400,700');
 
                     p {
-                    font-family:  'Open Sans', san-serif;
-                    font-weight: 500;
+                    font-family:  'Roboto', san-serif;
+                    font-weight: 400;
                     line-height: 1.1;
                     color: gray;
                     }
@@ -20,7 +20,7 @@ ui <- fluidPage(theme='sandstone.css',
     #               label {color:dodgerblue;"),
     HTML("<span style=\"color:#ff6eb4; font-family:'Magneto'; \">Bayesian Demo</span>
 
-    <br> <div><h5 style=\"color:gray; font-family:'Open Sans'\">The following demo regards estimating a mean (ignoring estimating the variance) and how the prior distribution and likelihood combine to produce the posterior distribution. <br><br>You can set the following parameters: <br><br>
+    <br> <div><h5 style=\"color:gray; font-family:'Roboto'\">The following demo regards estimating a mean (ignoring estimating the variance) and how the prior distribution and likelihood combine to produce the posterior distribution. <br><br>You can set the following parameters: <br><br>
 
     <ul>
     <li> Sample size: 0-250
@@ -29,7 +29,7 @@ ui <- fluidPage(theme='sandstone.css',
     </ul>
 
 
-    The tested \\(\\theta\\) parameters are a sequence of 500 values from 1 to 10.
+    The tested \\(\\theta\\) parameters are a sequence of 500 values from 0 to 10.
     </h5></div>"),
     windowTitle= 'Bayesian Demo'),
 
@@ -71,18 +71,21 @@ ui <- fluidPage(theme='sandstone.css',
 server <- function(input, output) {
   library(tidyverse); library(gridExtra); library(plotly)
   simN = 500
-  theta = seq(1, 10, length.out = simN)
+  theta = seq(0, 10, length.out = simN)
 
   obs  = reactive({ rnorm(input$n, input$dataMean, sqrt(input$dataVar))})
   prior = reactive({data.frame(Distribution='Prior', theta=theta,
-                     density = dnorm(theta, input$priorMean, sqrt(input$priorVar)))
+                     density = dnorm(theta, input$priorMean, sqrt(input$priorVar))) %>%
+      mutate(density=density/sum(density))
   })
   like = reactive({data.frame(Distribution='Likelihood', theta=theta,
-                    density = sapply(theta, function(parm) exp(sum(dnorm(obs(), mean=parm, sd=input$dataVar, log = T)))))
+                    density = sapply(theta, function(parm) exp(sum(dnorm(obs(), mean=parm, sd=sqrt(input$dataVar), log = T))))) %>%
+      mutate(density=density/sum(density))
   })
   denom = reactive({sum(like()$density*prior()$density)})
   post = reactive({data.frame(Distribution='Posterior', theta=theta,
-                    density = like()$density*prior()$density/denom())
+                    density = like()$density*prior()$density/denom()) %>%
+      mutate(density=density/sum(density))
   })
   thetamean = reactive({sum(post()$density*theta)})
   plotdata = reactive({rbind(prior(), like(), post())})
@@ -91,7 +94,7 @@ server <- function(input, output) {
 
   output$results = renderText({
     HTML(paste0("Observed Mean = ", format(mean(obs()), digits=3, nmsall=2), '<br>',
-                "Observed Var = ",  format(var(obs()), digits=3, nmsall=2), '<br>',
+                "Mean SE = ",  format(sd(obs())/sqrt(input$n), digits=3, nmsall=2), '<br>',
                 "Posterior Mean = ",  format(thetamean(), digits=3, nmsall=2))
          )
   })
@@ -104,9 +107,9 @@ server <- function(input, output) {
       geom_point(aes(x=value, y=0), data=data.frame(Distribution=c('Prior', 'Likelihood', 'Posterior'),
                                                         value=c(input$priorMean, mean(obs()), thetamean())),
                  color=alpha('#ff5503', .25)) +
-      facet_wrap(~Distribution, scales = 'free_y', ncol = 1) +
+      # facet_wrap(~Distribution, scales = 'free_y', ncol = 1) +
       xlab('') +# xlab(HTML('\\(\\theta\\)')) + # between shiny plotly and the web, it just don't work
-      lims(x=c(1, 10)) +
+      lims(x=c(0, 10)) +
       lazerhawk::theme_trueMinimal() +
       theme(axis.title.x=element_text(color=alpha('black',.6), vjust=.1, hjust=.5),
             axis.text.y=element_blank(),
@@ -123,11 +126,11 @@ server <- function(input, output) {
     "$$ p(\\theta|Data) \\propto p(Data|\\theta) \\cdot p(\\theta) $$ </br>
     <p>All three distributions regard the <em>parameter</em> to be estimated, i.e. \\(\\theta\\), the mean (we're assuming the variance is known for this demo).</p>
 
-    <p>The prior regards the initial distribution given for \\(\\theta\\). This may be based on prior beliefs and/or research, or simply one known to work well within the modeling context. Here it is a normal distribution with the mean and variance you provide.</p>
+    <p>The <span style=\"color:#F8766D\">prior</span> regards the initial distribution given for \\(\\theta\\). This may be based on prior beliefs and/or research, or simply one known to work well within the modeling context. Here it is a normal distribution with the mean and variance you provide. More variance would mean a less informative prior.</p>
 
-    <p>The likelihood regards the data given a particular estimate for \\(\\theta\\), and is the same that one is familiar with from standard maximum likelihood methods. The observed mean is the estimate we'd get using a maximum likelihood approach.  In this case we're assuming a normal distribution as the data generating process.</p>
+    <p>The <span style=\"color:#00BA38\">likelihood</span> regards the data given a particular estimate for \\(\\theta\\), and is the same that one is familiar with from standard maximum likelihood methods. The observed mean is the estimate we'd get using a maximum likelihood approach.  In this case we're assuming a normal distribution as the data generating process.</p>
 
-    <p>Finally, the posterior is the final likelihood for the \\(\\theta\\) values, and can be seen as a weighted combination of the prior and the likelihood.</p>")
+    <p>Finally, the <span style=\"color:#619CFF\">posterior</span> is the likelihood for the \\(\\theta\\) values from the Bayesian estimation process, and can be seen as a weighted combination of the prior and the likelihood.</p>")
   })
 }
 

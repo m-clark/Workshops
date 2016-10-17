@@ -1,8 +1,8 @@
 ---
-title: "Become a Bayesian in 10 minutes"
+title: "Become a Bayesian in <br> 10 minutes"
 output: 
   revealjs::revealjs_presentation:
-    theme: solarized
+    theme: dark
     transition: slide
     incremental: true
     center: true
@@ -30,6 +30,19 @@ Which interpretation do you prefer?
 Or
 
 > <p class="fragment">What's the probability the parameter falls in this interval?</p>
+
+
+## Perks
+
+<p class="fragment">Intuitive results</p>
+<p class="fragment">Auto-regularization</p>
+
+- <p class="fragment">Guards against overfitting</p>
+
+<p class="fragment">Intervals for anything you can calculate</p>
+
+
+
 
 ## Distributions
 
@@ -154,6 +167,7 @@ brm(Reaction ~ Days + (1 + Days|Subject))         # brms
 
 <style type="text/css">
 
+
 #marqueecontainer{
 position: relative;
 width: 1000px; /*marquee width */
@@ -234,7 +248,127 @@ window.onload=initializemarquee
 </div>
 
 
-## 
-For common models and extensions, it is as easy to run a Bayesian version
+## {data}
+
+<div style="text-align:center; font-size:95%">Rstan and associated packages make it easy to be a Bayesian</div>
 
 <img src="../img/r_stan.png" style="display:block; margin: 0 auto;">
+
+
+## Things you'll need to learn
+
+Settings
+
+Debugging
+
+Diagnostics
+
+Model comparison
+
+
+## Issues
+
+Big data
+
+Very complex models
+
+
+
+## {data-transition="zoom"  data-autoslide="3000"}
+
+
+<!-- <script type="text/javascript"> -->
+<!-- var audio = new Audio('http://www3.nd.edu/~sberry5/electricGroove.mp3'); -->
+<!-- audio.play(); -->
+<!-- </script> -->
+
+
+
+<!-- <section> -->
+<!--   <audio data-autoplay src="C:\Users\MC\Music\Amazon MP3\Com Truise\Galactic Melt\01-09- Ether Drift.mp3"></audio> -->
+<!-- </section> -->
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="3000" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="2000"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="2000" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="1000"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="1000" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="500"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="500" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+
+## {data-transition="zoom"  data-autoslide="250"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="250" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+
+## {data-transition="zoom"  data-autoslide="50"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="50" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="50"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="50" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="50"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="50" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="50"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="50" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"}
+
+<img src="../img/r_and_stan.png" style="display:block; margin: 0 auto;">

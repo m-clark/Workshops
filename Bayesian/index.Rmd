@@ -38,7 +38,7 @@ A few points that serve to illustrate the perspective taken here:
 
 - In 2016, there is no more need to justify the use of a Bayesian approach than there is a traditional one.  In fact, if one is using the standard null hypothesis testing approach they would need to justify that much more so.
 
-- Proselytizing, is not a goal, the only zealotry is perhaps for R (and Stan).  Bayesian approaches are still too cumbersome in some settings (e.g. with very large data), and I have no problem using more pragmatic tools.  
+- Proselytizing is not a goal, the only zealotry is perhaps for R (and Stan).  Bayesian approaches are still too cumbersome in some settings (e.g. with very large data), and I have no problem using more pragmatic tools.  
 
 - Details will be glossed over. If one has prior exposure to Bayesian data analysis, this can simply be used to learn a couple tools quickly. For those new to the Bayesian approach, you will only get a glimpse of what is to come.
 
