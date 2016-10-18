@@ -3,23 +3,23 @@
 
 An <span class="emph">application programming interface</span> allows one to interact with a website.  In the simplest situation, this is merely a url-based approach to grabbing what you need.
 
-As an example consider the following generic url:
+As an example consider the following generic URL:
 
 `http://somewebsite.com/key?par1;par2`
 
 The key ingredients are:
 
-- `http://somewebsite.com/` the base url
+- `http://somewebsite.com/` the base URL
 - `key` some authorization component
 - `?par1;par2` the parameters of interest that specify what you want to grab from that website.
 
 With R, once we have authorization we can then simply feed the parameters that tell the server what data to provide.
-We can do this in a raw fashion, where we make the url, or web address[^url], that has the necessary specification, and then simply take what it provides.  Alternatively, there are many R packages to make the process easier for things like Twitter, Qualtrics, and many other websites.
+We can do this in a raw fashion, where we make the URL, or web address[^url], that has the necessary specification, and then simply take what it provides.  Alternatively, there are many R packages to make the process easier for things like Twitter, Qualtrics, and many other websites.
 
 
 ## Raw Example
 
-Basic functions of the raw approach are requests to a server things like GET and POST, commands that tell the server to provide something or perhaps provide data to it.  In the following, <span class="objclass">api_key</span>[^apikey] is an R object with a character string of the key provided to me by the website.  I use the <span class="pack">httr</span> package for the web functionality to acquire the content.  In particular, the <span class="func">GET</span> function retrieves whatever information is noted by the request/url.  Additional arguments or modifications to the base url can also be provided, which is what the `query` part does.
+Basic functions of the raw approach are requests to a server things like GET and POST, commands that tell the server to provide something or perhaps provide data to it.  In the following, <span class="objclass">api_key</span>[^apikey] is an R object with a character string of the key provided to me by the website.  I use the <span class="pack">httr</span> package for the web functionality to acquire the content.  In particular, the <span class="func">GET</span> function retrieves whatever information is noted by the request/url.  Additional arguments or modifications to the base URL can also be provided, which is what the `query` part does.
 
 ```{r nytimesKey, echo=FALSE}
 source('nytimeskey.R')
@@ -84,7 +84,7 @@ lapply(article_search$data, function(x) data_frame(snippet=x$snippet, date= x$pu
 
 ### Wikipedia
 
-With the <span class="pack">WikipediR</span> package, getting the whole content of a page is just one possibility, and it feeds nicely into rvest functionality for more processing.  Here the package's <span class="func">page_content</span> function will extract information from the page. The 'text' element is the html content, which we can then feed to the previously used <span class="pack">rvest</span> functions.  I show only a snippet of the output.
+With the <span class="pack">WikipediR</span> package, getting the whole content of a page is just one possibility, and it feeds nicely into <span class="pack">rvest</span> functionality for more processing.  Here the package's <span class="func">page_content</span> function will extract information from the page. The 'text' element is the html content, which we can then feed to the previously used <span class="pack">rvest</span> functions.  I show only a snippet of the output.
 
 ```{r eval=FALSE}
 library(WikipediR)
@@ -132,7 +132,7 @@ Many websites cannot leave the API alone very long.  Sometimes this is due to ac
 
 ### Broken API
 
-Sometimes someone fiddles with things they shouldn't and you start getting errors.  As an example, while developing this document, NY times article search would start providing different errors depending on the combination of start and end date (forbidden, api rate exceeded, no content etc.).  It is not necessarily the case that you are doing something incorrectly.
+Sometimes someone fiddles with things they shouldn't and you start getting errors.  As an example, while developing this document, NY times article search would start providing different errors depending on the combination of start and end date (forbidden, API rate exceeded, no content etc.).  It is not necessarily the case that you are doing something incorrectly.
 
 
 ### Restrictions

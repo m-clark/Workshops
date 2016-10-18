@@ -58,8 +58,8 @@ a {
   font-size: 0.5em;
 }
 
-.reveal .slides section .fragment {
-  font-size: 75%;
+.reveal .slides section .fragment {                 /* Used in lieu of lists*/
+  font-size: 150%;
   font-weight: 600;
 }
 

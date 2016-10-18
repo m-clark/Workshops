@@ -3,7 +3,7 @@
 
 We begin with a discussion on <span class="emph">web scraping</span>. The term itself is ambiguous, and could potentially mean anything[^otherwsnames], but the gist is that there is something out on the web (or some connected machine) that we want, and we'd like to use R to get it. This section won't (at least for now) get into lower level utilities such as that provided by <span class="pack">httr</span> or <span class="pack">Rcurl</span>, though some packages will be using them under the hood.  Instead, focus will be on higher-level approaches with an eye toward common tasks.
 
-As a starting point, open a browser and go to a website of your preference. For most browsers, Ctrl+U will open up the underlying html file.  If you're on a typical webpage it will almost certainly look like a mess of <span class="emph">html</span>, <span class="emph">javascript</span>, <span class="emph">xml</span> and possibly other things. Simpler pages are more easily discernible, while more complex/secure pages are not.  The take home message is that what you want is represented by something in there, and you'll have to know something about that structure in order to get it.
+As a starting point, open a browser and go to a website of your preference. For most browsers, Ctrl+U will open up the underlying html file.  If you're on a typical webpage it will almost certainly look like a mess of <span class="emph">html</span>, <span class="emph">JavaScript</span>, <span class="emph">XML</span> and possibly other things. Simpler pages are more easily discernible, while more complex/secure pages are not.  The take home message is that what you want is represented by something in there, and you'll have to know something about that structure in order to get it.
 
 Unfortunately, a lot of web design is quite poor[^webdesign], which will make your job difficult.  Even when the sole purpose of a site is to provide data, you can almost be sure that the simplest/most flexible path will not be taken to do so. Thankfully you can use R and possibly other tools to make the process at least somewhat less painful.
 
@@ -48,7 +48,7 @@ Consider the following:
 
 As an example, if we wanted to scrape every paragraph that had the word paragraph in it, we'd need to first get all the `<p>` elements and work from there.
 
-Just like in R, these can have their own <span class="emph">class</span>, e.g. `<table class="wikitable sortable">`, and this allows even easier access to the objects of specific interest. Take a look at the source for the Wikipedia page for [towns in Michigan](https://en.wikipedia.org/wiki/List_of_cities,_villages,_and_townships_in_Michigan).
+Just like in other programming languages, these parts of a webpage have their own <span class="emph">class</span>, e.g. `<table class="wikitable sortable">`, and this allows even easier access to the objects of specific interest. Take a look at the source for the Wikipedia page for [towns in Michigan](https://en.wikipedia.org/wiki/List_of_cities,_villages,_and_townships_in_Michigan).
 
 <img src="img/mich_town_wiki.png" style="display:block; margin: 0 auto;">
 
@@ -68,22 +68,19 @@ To summarize the basic approach, we can outline a few steps:
 
 0. If a direct link or API is available use it[^apicaveat]
 1. Inspect the page to find the relevant tags within which the content is found
-2. Start with a base url
+2. Start with a base URL
 3. Use the relevant R packages to parse the base page
 4. Extract the desired content
 
 
 ## Examples
 
-One of the packages that can make scraping easy is <span class="pack">rvest</span>, which is modeled after/inspired by the <span class="pack">Beautiful Soup</span> module in Python[^bs].  As the goal here is to get you quickly started, we won't inundate you with a lot of packages. I recommend getting comfy with <span class="pack">rvest</span> and moving to others when needed.
-
-We'll go through a couple examples using <span class="pack">rvest</span>.  Wikipedia has a lot of information, and an API, so that we can use it as an example later as well.
-
+One of the packages that can make scraping easy is <span class="pack">rvest</span>, which is modeled after/inspired by the <span class="pack">Beautiful Soup</span> module in Python[^bs].  As the goal here is to get you quickly started, we won't inundate you with a lot of packages yet. I recommend getting comfy with <span class="pack">rvest</span> and moving to others when needed.
 
 ### Tables
 #### Wikipedia
 
-A lot of Wikipedia has pages ripe for the scraping. Between the page layout and <span class="pack">rvest</span> it will be very easy to get the content. So let's do so.  Back to the page of towns in Michigan.  Let's see if we can get the table of towns with their type, county, and population.  First things first, we need to get the page.
+A lot of Wikipedia has pages ripe for the scraping, but it also has an API, so that we can use it as an example later as well. Between the page layout and <span class="pack">rvest</span> it will be very easy to get the content. So let's do so.  Back to the page of towns in Michigan.  Let's see if we can get the table of towns with their type, county, and population.  First things first, we need to get the page.
 
 ```{r read_towns}
 page = 'https://en.wikipedia.org/wiki/List_of_cities,_villages,_and_townships_in_Michigan'
@@ -144,19 +141,18 @@ towns %>%
         plot.background=element_rect(fill='transparent', color=NA))
 ```
 
-I won't go into details about the rest of the code regarding data processing, as that's for another [workshop](http://m-clark.github.io/workshops/dplyr/mainSlides.html).  For now it suffices to say that it didn't take much to go from url to visualization.
+I won't go into details about the rest of the code regarding data processing, as that's for another [workshop](http://m-clark.github.io/workshops/dplyr/mainSlides.html).  For now it suffices to say that it didn't take much to go from URL to visualization.
 
 
 #### Basketball Reference
 
-As an additional example let's get some data from [basketball-reference.com](http://www.basketball-reference.com/).  The following gets the totals table from the url[^bref]. Issues include header rows after every 20^th^ row of data, and converting all but a few columns from character to numeric.
+As an additional example let's get some data from [basketball-reference.com](http://www.basketball-reference.com/).  The following gets the totals table from the URL[^bref]. Issues include header rows after every 20^th^ row of data, and converting all but a few columns from character to numeric.
 
 ```{r scrapeBref}
 url = "http://www.basketball-reference.com/leagues/NBA_2016_totals.html"
 bball = read_html(url) %>% 
-  html_nodes("#totals_stats") %>% 
-  html_table() %>%                                     # list of 1 element, the data
-  data.frame() %>%                                     # convert to data frame
+  html_node("#totals_stats") %>%                       # grab element with id 'total_stats'
+  html_table() %>%                                     # the data
   filter(Rk != "Rk") %>%                               # remove header rows
   mutate_at(vars(-Player, -Pos, -Tm), as.numeric)      # convert to numeric
 
@@ -200,7 +196,7 @@ Note that an alternative approach that might work on some websites would be to e
 As mentioned, the ease with which you will be able to scrape a website will depend a lot on how well the page/site is put together. Many are cookie-cutter templates designed with no regard to data availability whatsoever, others are just the result of amateurs that do not do web design for a living, and still others are just poorly designed.  In addition, some websites may have security or other server back end things to consider that require much of the content to not be made easily available, perhaps intentionally.
 
 
-On the other hand, other sites will make it as easy as a url pointing to a csv file, or an API that is easily maneuverable.  The main thing is that you must plan ahead for it to either not be easy to get, and/or to be ready for heavy post-processing even when you get the bulk of what you want.  The goal should be to make the process automatic such that only a fundamental site or API change will cause you to have to change your code again.
+On the other hand, other sites will make it as easy as a URL pointing to a csv file, or an API that is easily maneuverable.  The main thing is that you must plan ahead for it to either not be easy to get, and/or to be ready for heavy post-processing even when you get the bulk of what you want.  The goal should be to make the process automatic such that only a fundamental site or API change will cause you to have to change your code again.
 
 
 
@@ -214,7 +210,7 @@ On the other hand, other sites will make it as easy as a url pointing to a csv f
 
 [^tagvelement]: There is subtle distinction between [tags versus elements](https://en.wikipedia.org/wiki/HTML_element#Elements_vs._tags), but which won't really matter to us.
 
-[^bs]: I highly recommend [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) also. Until <span class="pack">rvest</span> and related packages came along, I preferred using BeautifulSoup to what was available in R.
+[^bs]: I highly recommend [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) also. Until <span class="pack">rvest</span> and related packages came along, I preferred using Beautiful Soup to what was available in R.
 
 [^tree]: Think graphical models rather than spruce.
 

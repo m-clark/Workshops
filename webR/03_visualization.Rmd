@@ -8,29 +8,31 @@ For standard approaches, R already is one of the more powerful data visualizatio
 
 This section notes a couple packages which I will call visualization *systems*. For example, for static plots <span class="pack">ggplot2</span> and <span class="pack">lattice</span> are systems within which to produce visualizations. They have their own consistent style with which one may specify the details of a plot and are very flexible in what they can produce.
 
-In that sense I'll note two interactive visualization systems, <span class="pack">plotly</span> and <span class="pack">bokeh.</span>
+In that sense I'll note two interactive visualization systems, <span class="emph">Plotly</span> and <span class="emph">Bokeh</span>.
 
 ### plotly
 
-<span class="pack">Plotly</span> is a general visualization system with APIs for javascript, Python, Matlab, and of interest to us, R. It used to require an account, but now is used as any other package within R, and in this case the package is just called plotly.  Like <span class="pack">ggplot2</span>, you start with a base and add layers via pipes.
+Plotly is a general visualization system with APIs for JavaScript, Python, Matlab, and of interest to us, R. It used to require an account, but now is used as any other package within R, and in this case the package is just called <span class="pack">plotly</span>.  Like <span class="pack">ggplot2</span>, you start with a base and add layers via pipes.
 
 ```{r plotlyExample, echo=-(2:5)}
 library(plotly)
-x = sort(rnorm(1000))
-g = rep(0:1, 500)
-y = g + sin(x) + .25*g*sin(x) + rnorm(1000, sd=.1)
+n = 50
+x = seq(0,1, length.out = n)
+g = rep(0:1, n/2)
+y = g + sin(x) + .25*g*sin(x) + rnorm(n, sd=.5)
 
-plot_ly(x=~x, y=~y, color=factor(g)) %>%
-  add_trace(mode='lines+markers') %>% 
+plot_ly(x=~x, y=~y, color=factor(g), type='scatter', mode='markers') %>%
+  # add_trace() %>% 
+  add_lines(y=y, line=list(shape='spline')) %>% 
   lazerhawk::theme_plotly()
 
 iris %>%
   plot_ly(x=~Petal.Length, y=~Petal.Width, color=~Species)
 ```
 
-By default the plot is interactive with hover-over information, but you can add a lot more too it (my own theme cleans up gridlines, zero reference line etc.).
+By default the plot is interactive with hover-over information, but you can add a lot more too it (my own theme cleans up gridlines, zero reference line, etc.).
 
-One of the best things about plotly is it's ability to make a ggplot graphic interactive. The resulting visual may need further tweaking as there is not a one-to-one mapping from ggplot to plotly, but it's otherwise a very useful tool.
+One of the best things about <span class="pack">plotly</span> is it's ability to make a ggplot graphic interactive. The resulting visual may need further tweaking as there is not a one-to-one mapping from <span class="pack">ggplot2</span> to <span class="pack">plotly</span>, but it's otherwise a very useful tool.
 
 ```{r gg2plotly, eval=-1}
 ggplot(aes(x=Petal.Length, y=Petal.Width, color=Species), data=iris) +
@@ -40,12 +42,12 @@ g = ggplot(aes(x=Petal.Length, y=Petal.Width, color=Species), data=iris) +
 ggplotly(g)
 ```
 
-Unfortunately the [documentation](https://plot.ly/r/) for <span class="pack">plotly</span> is very poor in my opinion.  Every page on the website requires loading images that still take time even on very fast connections, there is so much unused whitespace that it can be difficult to tell which part of the functionality you're reading about, examples are not consistent from language to language even for things that should not require different demonstrations, lack of comments explaining the code, etc.  In short it can be frustrating to learn, and often you may have to go to the Python or javascript examples to get more detail than the R example provides.  And of course, there is always [SO](http://stackoverflow.com/questions/tagged/plotly).
+Unfortunately the [documentation](https://plot.ly/r/) for <span class="pack">plotly</span> is very poor in my opinion.  Every page on the website requires loading images that still take time even on very fast connections, there is so much unused whitespace that it can be difficult to tell which part of the functionality you're reading about, examples are not consistent from language to language even for things that should not require different demonstrations, there are almost no comments explaining the code, etc.  In short it can be frustrating to learn, and often you may have to go to the Python or JavaScript examples to get more detail than the R example provides.  And of course, there is always [SO](http://stackoverflow.com/questions/tagged/plotly).
 
 
 ### rbokeh
 
-[Bokeh](http://bokeh.pydata.org/en/latest/) is a Python interactive visualization library, and <span class="pack">rbokeh</span> is an attempt to port it to the R world.  It works very similarly to <span class="pack">plotly</span>, and for easy comparison I iterate the iris example from above.  The <span class="func">figure</span> function serves to produce the base of the plot, with other elements added as layers via pipes.  It doesn't appear to mesh well with bookdown yet, so I simply show the image you'd see in your Rstudio viewer.
+[Bokeh](http://bokeh.pydata.org/en/latest/) is a Python interactive visualization library, and <span class="pack">rbokeh</span> is an attempt to port it to the R world.  It works very similarly to <span class="pack">plotly</span> and other packages, and for easy comparison I iterate the iris example from above.  The <span class="func">figure</span> function serves to produce the base of the plot, with other elements added as layers (`ly_*`) via pipes.  It doesn't appear to mesh well with <span class="pack">bookdown</span> yet, so I simply show the image you'd see in your RStudio viewer.
 
 ```{r rbokeh, eval=FALSE}
 library(rbokeh)
@@ -62,14 +64,14 @@ More on <span class="pack">rbokeh</span> can be found [here](http://hafen.github
 
 ### Others
 
-I'll note that <span class="pack">ggvis</span> was once considered to be the successor to <span class="pack">ggplot2</span>, providing all the same stuff but specifically to add interactivity and web-based visualization.  Development has stalled, probably due to the fact that things like plotly and bokeh attempt the same thing, but are used in other programming languages as well.  I do not recommend spending any time learning <span class="pack">ggvis</span> until development picks back up, and even then, <span class="pack">plotly</span> and <span class="pack">rbokeh</span> will likely be more developed and still have the cross-language advantage.
+I'll note that <span class="pack">ggvis</span> was once considered to be the successor to <span class="pack">ggplot2</span>, providing all the same stuff but specifically to add interactivity and web-based visualization.  Development has stalled, probably due to the fact that things like Plotly and Bokeh attempt the same thing, but are used in other programming languages as well, and may have more development behind them.  I do not recommend spending any time learning <span class="pack">ggvis</span> until development picks back up, and even then, <span class="pack">plotly</span> and <span class="pack">rbokeh</span> will likely be more developed and still have the cross-language advantage for a time.
 
 
 
 ## htmlwidgets 
 <img src="../img/htmlwidgets.png" style="display:block; margin: 0 auto; width:50%" >
 
-Many newer visualization packages take advantage of <span class="emph">javascript</span> for graphical web-based display, as well as the piping approach to add layers of visual information to a plot. <span class='pack'>htmlwidgets</span> is a package that makes it easy to create javascript visualizations, similar to what you see everywhere on the web.  The packages using it typically are pipe-oriented (`%>%`) and specifically produce interactive plots, and include <span class="pack">plotly</span> and <span class="pack">rbokeh</span>.  
+Many newer visualization packages take advantage of <span class="emph">JavaScript</span> for graphical web-based display, as well as the piping approach to add layers of visual information to a plot. <span class='pack'>htmlwidgets</span> is a package that makes it easy to create JavaScript visualizations, similar to what you see everywhere on the web.  The packages using it typically are pipe-oriented (`%>%`) and specifically produce interactive plots, and include <span class="pack">plotly</span> and <span class="pack">rbokeh</span>.  
 
 
 ### Leaflet example
@@ -97,13 +99,14 @@ See the [htmlwidgets website](http://www.htmlwidgets.org/) for more examples and
 
 ```{r echo=FALSE}
 library(rgl)
-library(rglwidget)
+# library(rglwidget)
 library(htmltools)
 
-theta <- seq(0, 6*pi, len=100)
+theta <- seq(0, 6*pi, len=1000)
 xyz <- cbind(sin(theta), cos(theta), theta)
 lineid <- plot3d(xyz, type="l", alpha = 1:0, 
-                 lwd = 5, col = "blue")["data"]
+                 lwd = 10, col = "#ff5503", box=F, axes=T)["data"]
+# decorate3d(box = 5)
 
 browsable(tagList(
   rglwidget(elementId = "example", width = 500, height = 400,
@@ -112,7 +115,7 @@ browsable(tagList(
              ageControl(births = theta, ages = c(0, 0, 1),
                         objids = lineid, alpha = c(0, 1, 0)),
                         start = 1, stop = 6*pi, step = 0.1, 
-                        rate = 6,elementId = "player")
+                        rate = 6, elementId = "player")
 ))
 ```
 
@@ -127,7 +130,7 @@ browsable(tagList(
 
 You write two parts of code to use Shiny, and neither is in a fashion in which one typically uses R. The <span class="emph">server</span> determines how inputs will produce outputs for the application.  It actually may have some more or less standard R code, as one extracts parts of data, produces plots etc.  However, most of it will be wrapped as an <span class="emph">expression</span> within another R function, which itself is wrapped in a main function called <span class="func">shinyServer</span>.
 
-The following comes from one of the Shiny tutorials and demonstrates the server setup. Note that you can define the server and ui as separate R files that are then called by the <span class="func">runApp</span> function.  
+The following comes from one of the Shiny tutorials and demonstrates the server setup. Note that you can define the server and UI as separate R files that are then called by the <span class="func">runApp</span> function.  
 
 ```{r shinyServer, eval=FALSE}
 library(shiny)
@@ -212,6 +215,6 @@ As an example, I'd never used <span class="objclass">flex_dashboard</span> befor
 
 
 
-[^sitevsapp]:  A lot of folks these days seem to confuse what a software application is, and what a website is, to the point that many actually call what is akin to a url shortcut an 'app' (e.g. the Netflix app just takes you to netflix.com, i.e. while you may be able to find such a thing to download for your phone, this does not constitute a software application: <a href="https://www.netflix.com/"><img src="../img/nficon2016.png" style="width:3%"></a>).  In general, software applications do not require the web, and a web app is basically a website that functions similar to a software application that might run on your desktop or other device. Shiny has many functions that essentially create the html, javascript etc. you would otherwise have written.  Whether you want to call the result an app is up to you, but using Shiny won't qualify you to call yourself a software developer.  This point is also made because nowadays Shiny is actually unnecessary to create interactive webpages/sites (e.g. this document does not utilize Shiny).  If all you want is some basic interactivity, you may be able to do that with the other packages noted.
+[^sitevsapp]:  A lot of folks these days seem to confuse what a software application is, and what a website is, to the point that many actually call what is akin to a URL shortcut an 'app' (e.g. the Netflix app just takes you to netflix.com, i.e. while you may be able to find such a thing to download for your phone, this does not constitute a software application: <a href="https://www.netflix.com/"><img src="../img/nficon2016.png" style="width:3%"></a>).  In general, software applications do not require the web, and a web app is basically a website that functions similar to a software application that might run on your desktop or other device. Shiny has many functions that essentially create the html, JavaScript etc. you would otherwise have written.  Whether you want to call the result an app is up to you, but using Shiny won't qualify you to call yourself a software developer.  This point is also made because nowadays Shiny is actually unnecessary to create interactive webpages/sites (e.g. this document does not utilize Shiny).  If all you want is some basic interactivity, you may be able to do that with the other packages noted.
 
 [^slowshiny]: Shiny apps take a while to load and may be slowly implemented.

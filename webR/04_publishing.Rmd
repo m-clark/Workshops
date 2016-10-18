@@ -1,4 +1,3 @@
-
 # Publishing
 
 <a href="http://rmarkdown.rstudio.com/"><img src="../img/RMarkdownOutputFormats_green.png" style="display:block; margin: 0 auto;"></a>
@@ -44,13 +43,13 @@ You can always change the output format, so it doesn't really matter what you se
 <span class="emph">HTML</span> is what is behind most of the web that you actually see and interact with, allowing one to create a webpage in a mostly tabular format of some kind. <span class="emph">CSS</span> allows you have a consistent style across a collection of pages usually amalgamated to form an entire website.  <span class="emph">Javascript</span> allows one to build applications that run within the browser, and a host of other languages process data on the server side.  You don't need to know these languages to produce documents with R, but the more you know of them the more you can enhance and customize your product.
 
 
-### $\LaTeX$
+### LaTeX
 
 It used to be the case that <span class="emph">$\LaTeX$</span> served as the primary means for producing high-quality documents in academia, and with a lot of headache, it can make beautiful work.  However, despite some impressions, these days, pdf and similar print-first output is neither necessary nor really should be the chief means of scientific communication, and so the need of $\LaTeX$ has been greatly minimized.  It is still useful for formulas, but even that is translated via <span class="pack">Mathjax</span>, which is a JavaScript library that essentially reproduces the math functionality of $\LaTeX$.  For example, inserting the following bit in an R Markdown document `$$y = X\beta + \epsilon$$` will produce the following when the document is 'knit':
 
 $$y = X\beta + \epsilon$$
 
-One can also use various latex packages as well if needed.  However, with R Markdown, using raw $\LaTeX$ is rarely needed outside of formal mathematical exposition. There are several packages such as xtable that may be able to create a $\LaTeX$ table for you, or perhaps there are other means to display things that might be better.  Thinking beyond the restriction of page boundaries and printed work will take time to get used to, but is well worth it.
+One can also use various latex packages as well if needed.  However, with R Markdown, using raw $\LaTeX$ is rarely needed outside of formal mathematical exposition. There are several packages such as <span class="pack">xtable</span> that may be able to create a $\LaTeX$ table for you, or perhaps there are other means to display things that might be better.  Thinking beyond the restriction of page boundaries and printed work will take time to get used to, but is well worth it.
 
 
 ### YAML
@@ -77,14 +76,14 @@ As mentioned you don't have to know these languages to produce really interestin
 
 ### HTML 
 
-HTML is the default output for R Markdown documents, and really should be your default as well.  It provides much more freedom and easier specificity in the way content is presented, and can get quite extensive.
+The <span class="func">html_document</span> is the default output for R Markdown documents, and really should be your default as well.  It provides much more freedom and easier specificity in the way content is presented, and can get quite extensive.
 
 
 ### Notebooks
 
 <img src="img/notebook_example.png" style="display:block; margin: 0 auto; width:50%">
 
-I've been using <span class="emph">notebooks</span> since they were first advertised as part of an RStudio preview release.  However, it is still not clear to me what their role is[^phablet], other than to allow your output to reside in your R markdown document rather than the console, something typically not desirable (at least with how I use R).  I guess it's useful if you want to share the script/document and let someone else play with the code, but technically they could do that with an R Markdown document anyway, or a basic R script for that matter.  Having the output below or to the side of the document rather than a few inches from that point is not something I can get overly excited about.  And sometimes there is a lot of output from a chunk that I definitely do not want clogging up the code or document, but still may want to regularly inspect.  Code should have a *flow* just like text should, at least that's my opinion.  
+I've been using <span class="emph">notebooks</span> since they were first advertised as part of an RStudio preview release.  However, it is still not clear to me what their role is[^phablet], other than to allow your output to reside in your R markdown document rather than the console, something typically not desirable (at least with how I use R).  I guess it's useful if you want to share the script/document and let someone else play with the code, but technically they could do that with an R Markdown document anyway, or a basic R script for that matter.  Having the output below or to the side of the document rather than a few inches from that point is not something I can get overly excited about, and you can do that with the standard <span class="func">html_document</span> format.  And sometimes there is a lot of output from a chunk that I definitely do not want clogging up the code or document, but still may want to regularly inspect.  Code should have a *flow* just like text should, at least that's my opinion.  
 
 That said, notebooks do appear be highly useful for educational purposes, and more so if they make it such that the notebooks run in Jupyter similar to Python's \*.nb files. I also like Julia's approach to it's standard script, where you can simply hover/click for the output rather than have it automatically spat out, and maybe the R notebooks will go that direction. Stay tuned to see how this document format pans out. 
 
@@ -137,7 +136,7 @@ In addition, user created formats with custom looks or functionality are now com
 
 ### Rpubs
 
-with an [Rpubs](https://rpubs.com) account, you can publish your documents directly to the web for easy dissemination.  This allows you to share any of your R creations with ease. For those in academia this is perhaps of limited use, as typically everyone is given their own web space already.  Furthermore, if a browser is involved and you've created an \*.html file (which is the ultimate output of almost every format), then what you produce can be read anywhere.
+With an [Rpubs](https://rpubs.com) account, you can publish your documents directly to the web for easy dissemination.  This allows you to share any of your R creations with ease. For those in academia this is perhaps of limited use, as typically everyone is given their own web space already.  However, even then it could potentially serve as an additional outlet.
 
 
 ### More
@@ -155,7 +154,7 @@ I'll add more stuff here as I come across it.
 
 [^pandoc]: Actually a Haskell library.
 
-[^phablet]: Maybe I'm short-sighted but notebooks strike me as the phablet of R markdown output formats.
+[^phablet]: Maybe I'm short-sighted but notebooks strike me as the phablet of R markdown output formats. As quoted from J.J. Allaire in response from someone who wanted a simple description that states the difference between notebooks and the standard html doc: "They are the same thing, r notebooks are just a way of working interactively with R Markdown and embedding the source code directly within the R Markdown output."  
 
 [^jupyterR]: You can already use R with Jupyter, but it's very limited compared with what you can do with R in RStudio with R Markdown.
 
