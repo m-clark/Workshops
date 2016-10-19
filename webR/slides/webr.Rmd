@@ -1,5 +1,11 @@
 ---
-title: "Engaging the Web with R"
+title: <span style="font-size:100%; font-variant:small-caps; font-style:italic;">Engaging the Web with $\dots$</span>
+author:  |
+  <img src="../img/Rlogo.png" style="display:block; margin: 0 auto; width:20%"><br>
+  <div class="title"><span style="font-size:125%; font-variant:small-caps; ">Michael Clark</span><br>
+  <span style="font-size:75%; display:block; margin: 0 auto;">Statistician Lead</span> <br>
+  <img src="../img/signature-acronym-white.png" style="display:block; margin: 0 auto;width:33%; padding:10px 0;"> <br>
+  <img src="../img/ARC-acronym-signature-white.png" style="display:block; margin: 0 auto;width:22%; padding:10px 0;"> </div>
 output: 
   revealjs::revealjs_presentation:
     theme: dark
@@ -10,7 +16,14 @@ css: slides_light.css
 
 ---
 
-# Web Scraping  {data-transition="zoom"}
+## Document Page
+
+[m-clark.github.io/docs/web](http://m-clark.github.io/docs/web)
+
+or just go to m-clark.github.io/ and the documents section
+
+
+# Web Scraping  
 
 ## Key Concepts
 
