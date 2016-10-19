@@ -1,6 +1,6 @@
 # Publishing
 
-<a href="http://rmarkdown.rstudio.com/"><img src="../img/RMarkdownOutputFormats_green.png" style="display:block; margin: 0 auto;"></a>
+<a href="http://rmarkdown.rstudio.com/"><img src="img/RMarkdownOutputFormats_green.png" style="display:block; margin: 0 auto;"></a>
 
 
 The publishing capabilities in R are phenomenal, and keep expanding all the time.  From traditional document types (including pdf and MS Word) to building whole websites with loads of interactivity, R can generally take you where you want to go.  The ability to embed the data in the document is clearly important in academia for the facilitation of ideas and discovery, as well as conducting more reproducible research.  However, such capabilities can benefit anyone.
@@ -12,7 +12,7 @@ The publishing capabilities in R are phenomenal, and keep expanding all the time
 
 ### Markdown 
 
-<img src="../img/Markdown-mark.svg" style="display:block; margin: 0 auto; width:20%">
+<img src="img/Markdown-mark.svg" style="display:block; margin: 0 auto; width:20%">
 
 
 [Markdown](http://daringfireball.net/projects/markdown/) serves as the basis for much of the approach.  Markdown provides an easy way to create html products without coding any raw html.  It is extremely limited in this regard, but for most text it's all you need.  Despite it's utility, there is no standard for markdown and it hasn't been developed in years. Thus there are many flavors of markdown which do continue to be developed, of which <span class="emph">R Markdown</span> is one.
@@ -38,7 +38,7 @@ You can always change the output format, so it doesn't really matter what you se
 
 ### HTML, CSS etc.
 
-<img src="../img/HTML5.svg" style="display:block; margin: 0 auto; width: 25%">
+<img src="img/HTML5.svg" style="display:block; margin: 0 auto; width: 25%">
 
 <span class="emph">HTML</span> is what is behind most of the web that you actually see and interact with, allowing one to create a webpage in a mostly tabular format of some kind. <span class="emph">CSS</span> allows you have a consistent style across a collection of pages usually amalgamated to form an entire website.  <span class="emph">Javascript</span> allows one to build applications that run within the browser, and a host of other languages process data on the server side.  You don't need to know these languages to produce documents with R, but the more you know of them the more you can enhance and customize your product.
 
@@ -54,7 +54,7 @@ One can also use various latex packages as well if needed.  However, with R Mark
 
 ### YAML
 
-<img src="../img/yaml.gif" style="display:block; margin: 0 auto;">
+<img src="img/yaml.gif" style="display:block; margin: 0 auto;">
 
 <span class="emph">YAML</span> (or YAML Aint Markup Language) serves as the means to configure your R Markdown files[^yaml].  The syntax is very simple, and in the context of an R Markdown document, it allows you to specify things like the output type, title, other css files to use, and so forth. This will start any R Markdown file you use unless you have one main file that calls other Rmd files.
 
@@ -114,7 +114,7 @@ These days I cannot think of a reason to do a set of pdf slides as there is zero
 
 ## Other formats
 
-<img src="../img/octocat.png" style="display:block; margin: 0 auto; width:25%">
+<img src="img/octocat.png" style="display:block; margin: 0 auto; width:25%">
 
 - <span class="emph">bookdown</span>	HTML, PDF, ePub, and Kindle books
 - <span class="emph">Websites</span>	Multi-page websites. 

@@ -1,6 +1,11 @@
 --- 
-title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">Engaging the Web with R</span>
-author: "Michael Clark"
+title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">Engaging the Web with $\dots$</span>
+author:  |
+  <img src="img/Rlogo.png" style="display:block; margin: 0 auto; width:20%"><br>
+  <div class="title"><span style="font-size:125%; font-variant:small-caps; ">Michael Clark</span><br>
+  <span style="font-size:75%; margin: 0 auto;">Statistician Lead</span> <br>
+  <img src="img/signature-acronym.png" style="width:33%; padding:10px 0;"> <br>
+  <img src="img/ARC-acronym-signature.png" style="width:22%; padding:10px 0;"> </div>
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
