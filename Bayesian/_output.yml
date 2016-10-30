@@ -1,5 +1,7 @@
 bookdown::tufte_html_book:
-  css: [style.css,../notebooks.css]
+  css: [style.css, notebooks.css]
+  font-import: http://fonts.googleapis.com/css?family=Risque|Roboto|Open+Sans
+  font-family: 'Roboto'
   config:
     toc:
       before: |

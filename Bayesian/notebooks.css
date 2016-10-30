@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Risque';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Risque'), local('Risque-Regular'), url(http://fonts.gstatic.com/s/risque/v4/iFA7a9Hk8IxDgPVBx7IE_Q.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/zN7GBFwfMP4uA6AR0HCoLQ.ttf) format('truetype');
+}
+
 .emph {
   color: #ff5503;
   font-weight: 500;
@@ -19,12 +38,14 @@
   font-weight: 500;
 }
 
-a {
-  color: #1e90ff;  /*dodgerblue*/
-}
 
 body {
   color: #7f7f7f;
+}
+
+p, ul, ol {
+  font-family: Roboto;
+  font-size: 100%;
 }
 
 pre {
@@ -63,4 +84,47 @@ li.tocify-item.list-group-item.active {
 
 h1, h2, h3, h4, h5 {
   color:rgb(97,151,213);
+}
+
+
+
+a {
+   text-decoration: none;
+ }
+
+
+/* background is used for the link underline in order to 'clear descenders', which wouldn't be a problem if you don't underline links like it's 1997. Setting to none here removes*/
+a:link {
+  background: none;
+}
+
+.sidenote, .marginnote {
+  font-size: 75%;
+}
+/* fix of ridiculous default buttons */
+
+.btn-default {
+  background: #f0f8ff;
+  font-family: 'Open Sans';
+  color: rgb(97,151,213);
+  text-decoration: none;
+  width: 20%;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  border: 3px solid ;
+  border-color: rgba(97,151,213, .75);
+  /*border: 3px solid rgb(97,151,213);
+  /*background:rgba(227,227,227,0.5);*/
+  /* -webkit-box-shadow: #B3B3B3 5px 5px 5px;
+  -moz-box-shadow: #B3B3B3 5px 5px 5px;
+  box-shadow: #B3B3B3 5px 5px 5px; */
+}
+
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #ffffff;
+  background-color: #282828;
+  border-color: #232323;
 }

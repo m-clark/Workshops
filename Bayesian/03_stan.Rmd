@@ -1,0 +1,10 @@
+# Stan
+
+## Elements of a Stan Program
+
+### Data
+### Transformed Data
+### Parameters
+### Transformed Parameters
+### Model
+### Generated Quantities
