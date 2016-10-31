@@ -32,7 +32,7 @@ Setting aside the fact that such 'subjectivity' is an inherent part of the scien
 
 ## Likelihood
 
-I won't say too much about the likelihood here. I have a refresher in the appendix of the Bayesian Basics doc linked at the beginning. In any case here is a brief example.  We'll create a likelihood function for a standard regression setting, and compare results for two estimation situations.
+I won't say too much about the <span class="emph">likelihood function</span> here. I have a refresher in the appendix of the [Bayesian Basics doc](http://m-clark.github.io/docs/IntroBayes.html). In any case here is a brief example.  We'll create a likelihood function for a standard regression setting, and compare results for two estimation situations.
 
 ```{r like}
 # likelihood function
@@ -44,11 +44,11 @@ reg_ll = function(X, y, beta, sigma){
 true_beta = c(2,5)
 true_sigma = 1
 
-# comparison vlaues
+# comparison values
 other_beta = c(0,3)
 other_sigma = 2
 
-# smapel size
+# smaple size
 N = 1000
 
 # data generation
@@ -61,17 +61,41 @@ reg_ll(X, y, beta=other_beta, sigma=other_sigma)  # less likely
 logLik(lm(y~., data=data.frame(X[,-1])))          # actual log likelihood
 ```
 
-The above demonstrates a couple things.  The likelihood tells us the plausibility of the data given the parameter estimates. For a standard regression where the likelihood is based on a normal distribution, we require estimates for the coefficients and the variance/standard deviation. In the standard ML approach, we end up with estimates that maximize the data likelihood.  With more data, and a lot of other considerations going in our favor, we end up closer to the true values[^trueparm].
+The above demonstrates a couple things.  The likelihood tells us the probability of the data given the parameter estimates. For a standard linear model where the likelihood is based on a normal distribution, we require estimates for the coefficients and the variance/standard deviation. In the standard maximum likelihood (ML) approach commonly used in statistical analysis, we use an iterative process to end up with estimates of the parameters that maximize the data likelihood.  With more data, and a lot of other considerations going in our favor, we end up closer to the true values[^trueparm].  A key difference from standard ML methods and the Bayesian approach is that the former assumes a fixed parameter, while the Bayesian approach assumes the parameter is *random*.
 
 ## Posterior
 
-The posterior distribution is a weighted combination of the prior and the likelihood.
+The <span class="emph">posterior</span> distribution is a weighted combination of the prior and the likelihood, and is proportional to their product. Assuming some $\theta$ is the parameter of interest:
 
+$$ p(\theta|Data) \propto p(Data|\theta) \cdot p(\theta) $$
+$$ \;\;\mathrm{posterior} \;\propto \mathrm{likelihood} \;\!\cdot \mathrm{prior} $$
+With more data, i.e. evidence, the weight shifts ever more to the likelihood, ultimately rendering the prior inconsequential. Let's now [see this in action](http://micl.shinyapps.io/prior2post).
 
 
 ## P-values
 
-yay
+One of the many nice things about the Bayesian approach regards the probabilities and intervals we obtain, specifically their interpretation.  For some of you still new to statistical analysis in general, this may be the interpretation you were already using, though incorrectly.
+
+As an example, the p-value from standard <span class="emph">null hypothesis testing</span> goes something like the following:
+
+> *If the null hypothesis is true*, the probability of seeing a result like this or more extreme is P.
+
+Contrast this with the following:
+
+> The probability of this result being different from zero is P.
+
+Which is more straightforward? Now consider the interval estimates:
+
+> <p class="fragment"> If I repeat this study precisely an infinite number of
+times, and I calculate a P% interval each time, then P% of those  intervals will
+contain the true parameter.</p>
+
+Or:
+
+> <p class="fragment">P is the probability the parameter falls in this interval.</p>
+
+One of these reflects the notions and language we use in everyday speech, the other hasn't been understood very well by most people practicing science.
+
 
 [^sens]: Such testing is referred to as sensitivity analysis.
 [^trueparm]: Assuming such a thing exists.

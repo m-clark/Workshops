@@ -1,8 +1,8 @@
 --- 
-title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">Become a Bayesian with R</span>
+title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; ">Become a Bayesian with R</span>
 author:  |
-  <div class="title"><span style="font-size:125%; font-variant:small-caps; ">Michael Clark</span><br>
-  <span style="font-size:75%; margin: 0 auto;">Statistician Lead</span> <br>
+  <div class="title"><span style="font-size:125%; font-variant:small-caps; font-style:normal">Michael Clark</span><br>
+  <span style="font-size:75%; margin: 0 auto; font-style:normal">Statistician Lead</span> <br>
   <img src="../img/CSCAR_logos/signature-acronym.png" style="width:24%; padding:10px 0;"> <br>
   <img src="../img/ARC_logos/ARC-acronym-signature.png" style="width:17%; padding:10px 0;"> </div>
 date: "`r Sys.Date()`"
@@ -11,7 +11,8 @@ output:
     bookdown::tufte_html_book: 
       toc: yes
       number_sections: false
-      css: [toc.css, notebooks.css]
+      css: [toc_test.css, notebooks.css]
+      split_by: rmd
     tint::tintHtml:
       default: TRUE
       self_contained: TRUE

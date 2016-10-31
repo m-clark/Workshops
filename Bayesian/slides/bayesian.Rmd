@@ -10,6 +10,25 @@ css: slides_light.css
     
 ---
 
+
+## {data-transition="fade" data-transitionSpeed="slow"}
+
+"We may regard the present state of the universe as the effect of its past and
+the cause of its future. An intellect which at a certain moment would know all
+forces that set nature in motion, and all positions of all items of which nature
+is composed, if this intellect were also vast enough to submit these data to
+analysis, it would embrace in a single formula the movements of the greatest
+bodies of the universe and those of the tiniest atom; for such an intellect
+nothing would be uncertain and the future just like the past would be present
+before its eyes..."
+
+~ Laplace, 1814
+
+
+## {data-transition="fade" data-transitionSpeed="fast"}
+
+$$ p(B|A) = \frac{p(A|B)p(B)}{p(B)} $$
+
 ## Probabilities
 
 Which interpretation do you prefer?
@@ -25,11 +44,11 @@ Or
 
 Which interpretation do you prefer?
 
-> <p class="fragment"> If I repeat this study precisely an infinte number of times, and I calculate a 95% interval each time, then 95% of those  intervals will contain the true parameter.</p>
+> <p class="fragment"> If I repeat this study precisely an infinite number of times, and I calculate a 95% interval each time, then 95% of those  intervals will contain the true parameter.</p>
 
 Or
 
-> <p class="fragment">What's the probability the parameter falls in this interval?</p>
+> <p class="fragment"P is the probability the parameter falls in this interval.</p>
 
 
 ## Perks
@@ -274,6 +293,10 @@ Very complex models
 
 
 
+## Indoctrination commencing... {data-transition="zoom"  data-autoslide="3000"}
+
+## Hold please... {data-transition="zoom"  data-autoslide="3000"}
+
 ## {data-transition="zoom"  data-autoslide="3000"}
 
 
@@ -293,7 +316,7 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="3000" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 ## {data-transition="zoom"  data-autoslide="2000"}
 
@@ -302,7 +325,7 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="2000" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 ## {data-transition="zoom"  data-autoslide="1000"}
 
@@ -311,7 +334,7 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="1000" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 ## {data-transition="zoom"  data-autoslide="500"}
 
@@ -320,7 +343,7 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="500" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 
 ## {data-transition="zoom"  data-autoslide="250"}
@@ -330,7 +353,7 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="250" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 
 ## {data-transition="zoom"  data-autoslide="50"}
@@ -340,7 +363,7 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="50" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 ## {data-transition="zoom"  data-autoslide="50"}
 
@@ -349,7 +372,7 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="50" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 ## {data-transition="zoom"  data-autoslide="50"}
 
@@ -358,7 +381,7 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="50" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 ## {data-transition="zoom"  data-autoslide="50"}
 
@@ -367,8 +390,16 @@ Very complex models
 
 ##  {data-transition="zoom" data-autoslide="50" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 ## {data-transition="zoom"}
 
 <img src="../img/r_and_stan.png" style="display:block; margin: 0 auto;">
+
+
+## Join or Die!
+
+<p class='fragment' style="text-align:center; font-size:200%"> Can you do any less?!</p>
+
+
+## Go and do likewise!

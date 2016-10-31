@@ -1,9 +1,45 @@
 # R
 
+R has many tools for Bayesian analysis, and possessed these before Stan came around.  Among the more prominent were those that allowed the use of BUGS (e.g. <span class="pack">r2OpenBugs</span>), one of its dialects JAGS (<span class="pack">rjags</span>), and packages like <span class="pack">coda</span> and <span class="pack">MCMCpack</span> that allowed for further extensions or easier implementation.  Others might regard a specific type of model, but otherwise be mostly R-like in specifying the model (e.g. <span class="pack">MCMCglmm</span> for mixed models).  
+
+Now it is as easy to do standard and complex models using Stan while staying within the usual framework of R-style modeling.  You don't even have to write Stan code!  I'll note a couple relevant packages that enable this.
+
 ## rstan
+
+The <span class="pack">rstan</span> package is the workhorse.  It's what you use when you write Stan code directly. The following code demonstrates how.
+
+```{r rstan, eval=FALSE}
+library(rstan)
+
+modResults = stan(mystancode, data=dataList, iter=2000, warmup=1000)
+```
+
+The Stan code is specified as noted previously, and can be a string in the R environment, or a separate text file.  For more complex models this is the way to do things.
 
 
 ## rstanarm
 
+The <span class="pack">rstanarm</span> is a package that allows you to specify models in the standard R format.  While this is very limiting, it definitely covers a lot of the usual statistical ground.  As such, it enables you to be a Bayesian for any of the very common glm settings, including mixed and additive models.
+
+```{r rstanarm, eval=FALSE}
+library(rstanarm)
+
+modResults = stan_glm(y ~ x, family=binomial, data=mydataframe, iter=2000, warmup=1000)
+```
+
+I should note that <span class="pack">rstanarm</span> also has some 'big data' options via biglm, but the fact that it uses <span class="pack">biglm</span> makes me skeptical as to whether it is all that useful.
 
 ## brms
+
+I have watched with much enjoyment the development of the <span class="pack">brms</span> package from nearly its inception.  Due to the continued development of rstanarm, it's role is becoming more niche, but I still believe it to be both useful and powerful.  It allows for many types of models, and any distributions (including truncated versions, ordinal variables, zero-inflation, etc.).  The main developer is ridiculously responsive to requests, so extensions are regularly implemented.  In short, for standard models you can use <span class="pack">rstanarm</span>, while for variations of those, more flexible manipulation of their priors, or more complex models, you can use <span class="pack">brms.</span> 
+
+
+The following shows an example of a 'robust' regression based on a student $t$ likelihood rather than a normal, but also implementing truncation so that values can only fall between 0 and 100.  The ease of implementing truncation comes from Stan[^trunc], but otherwise, brms makes it potentially easy to use for many models we might want to pursue.
+
+```{r brms, eval=FALSE}
+library(brms)
+
+modResults = brm(y | trunc(lb = 0, ub = 100) ~ x, family=student, data=dataList, iter=2000, warmup=1000)
+```
+
+[^trunc]: Or Bayesian modeling generally.
