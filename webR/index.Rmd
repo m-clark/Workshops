@@ -1,5 +1,5 @@
 --- 
-title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">Engaging the Web with $\dots$</span>
+title: <span style="font-size:150%; font-variant:small-caps; font-style:italic; color:#1e90ff">Engaging the Web with\.\.\. </span>
 author:  |
   <img src="img/Rlogo.png" style="display:block; margin: 0 auto; width:20%"><br>
   <div class="title"><span style="font-size:125%; font-variant:small-caps; ">Michael Clark</span><br>
