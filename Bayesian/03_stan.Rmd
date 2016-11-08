@@ -8,6 +8,22 @@ To use Stan, one just needs to know their model intimately, which should be the 
 
 ## Installing Stan
 
+To get started with Stan, one needs to install the rstan package. While this will proceed as with any other package, additional steps are required.  First, you will need a C++ compiler, and this process will be different depending on your operating system.  It won't take much, and steps are clearly defined on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).  After going through that process, you may then install the rstan package and dependencies.
+
+## The Way of Stan/RStan
+
+The basic workflow you'll engage in to run a Stan program within R is as follows:
+
+- Write the Stan program
+- Create a data list
+- Run a debug model to check compilation etc.
+- Run the full model
+- Summarize the model
+- Check diagnostics, including posterior predictive inspection
+
+In this part we'll consider the elements fo the Stan program.
+
+
 ## Elements of a Stan Program
 
 The following shows the primary parts of a Stan program for a standard linear model.  We'll go through each component in turn.
@@ -135,15 +151,15 @@ The <span class="emph">model</span> block is where your priors and likelihood ar
 ### Generated Quantities
 ```{stan stanGenQuan, output.var="shouldntbenecessary", eval=F}
 generated quantities {
-  vector[N] mu;                // linear predictor
-  real rss;                    // residual sum of squares
-  real totalss;                // total SS              
-  real<lower=0, upper=1> R2;   // Rsq
+  vector[N] yhat;                // linear predictor
+  real<lower=0> rss;             // residual sum of squares
+  real<lower=0> totalss;         // total SS              
+  real Rsq;                      // Rsq
   
-  mu <- X * beta;
-  rss <- dot_self(y-mu);
-  totalss <- dot_self(y-mean(y));
-  R2 <- 1 - rss/totalss;
+  yhat = X * beta;
+  rss = dot_self(y-mu);
+  totalss = dot_self(y);
+  Rsq = 1 - rss/totalss;
 }
 "
 ```
@@ -153,6 +169,17 @@ The <span class="emph">generated quantities</span> block is a fantastical place 
 
 ## Using Stan
 
+Now that you have a Stan program in place, you're ready to proceed.  
+
+### Data list
+
+
+
+### Debug model
+
+### Full model
+
+### Diagnostics and beyond
 
 [^HMC]: Originally called *Hybrid* Monte Carlo, such a name is a bit too vague for most.
 

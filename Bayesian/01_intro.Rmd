@@ -1,6 +1,6 @@
 # Introduction {.unnumbered} 
-
-`r newthought('Statistical modeling is a thoughtful exercise.')` Bayesian approaches allow for us to put even more thought into standard models, allow us to explore them more deeply, and may enable a better understanding of the uncertainty therein.  This document (and related talk[^talk]) has a primary purpose of providing an introduction to tools within R that can be used for Bayesian data analysis, and an introduction to the Stan programming language they depend on.  It is not an introduction to Bayesian inference ([see my intro](http://m-clark.github.io/docs/IntroBayes.html)), nor an introduction to statistical modeling in R.
+<!-- `r newthought('Statistical modeling is a thoughtful exercise.')` will not work on work machine -->
+Statistical modeling is a thoughtful exercise. Bayesian approaches allow for us to put even more thought into standard models, allow us to explore them more deeply, and may enable a better understanding of the uncertainty therein.  This document (and related talk[^talk]) has a primary purpose of providing an introduction to tools within R that can be used for Bayesian data analysis, and an introduction to the Stan programming language they depend on.  It is not an introduction to Bayesian inference ([see my intro](http://m-clark.github.io/docs/IntroBayes.html)), nor an introduction to statistical modeling in R.
 
 A few points that serve to illustrate the perspective taken here:
 

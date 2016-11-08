@@ -13,12 +13,12 @@ output:
       number_sections: false
       css: [toc_test.css, notebooks.css]
       split_by: rmd
-    tint::tintHtml:
-      default: TRUE
-      self_contained: TRUE
-    bookdown::gitbook:
-      css: [notebooks.css]
-      highlight: pygments
+    # tint::tintHtml:
+    #   default: TRUE
+    #   self_contained: TRUE
+    # bookdown::gitbook:
+    #   css: [notebooks.css]
+    #   highlight: pygments
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
