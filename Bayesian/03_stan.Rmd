@@ -8,7 +8,7 @@ To use Stan, one just needs to know their model intimately, which should be the 
 
 ## Installing Stan
 
-To get started with Stan, one needs to install the rstan package. While this will proceed as with any other package, additional steps are required.  First, you will need a C++ compiler, and this process will be different depending on your operating system.  It won't take much, and steps are clearly defined on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).  After going through that process, you may then install the rstan package and dependencies.
+To get started with Stan, one needs to install the rstan package. While this will proceed as with any other package, additional steps are required.  First, you will need a C++ compiler, and this process will be different depending on your operating system.  It won't take much, and steps are clearly defined on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).  After going through that process, you may then install the <span class="pack">rstan</span> package and dependencies.  You'll be ready to go at that point.
 
 ## The Way of Stan/RStan
 

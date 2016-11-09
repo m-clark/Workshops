@@ -1,10 +1,10 @@
 # Introduction {.unnumbered} 
-<!-- `r newthought('Statistical modeling is a thoughtful exercise.')` will not work on work machine -->
-Statistical modeling is a thoughtful exercise. Bayesian approaches allow for us to put even more thought into standard models, allow us to explore them more deeply, and may enable a better understanding of the uncertainty therein.  This document (and related talk[^talk]) has a primary purpose of providing an introduction to tools within R that can be used for Bayesian data analysis, and an introduction to the Stan programming language they depend on.  It is not an introduction to Bayesian inference ([see my intro](http://m-clark.github.io/docs/IntroBayes.html)), nor an introduction to statistical modeling in R.
+<!-- `r newthought('Statistical modeling is a thoughtful exercise.')` will not create pdf on work machine but html ok despite errors-->
+`r newthought('Statistical modeling is a thoughtful exercise.')` Bayesian approaches allow for us to put even more thought into the standard modeling approach, to explore our models more deeply, and may enable a better understanding of the uncertainty therein.  This document (and related talk[^talk]) has a primary purpose of providing an introduction to tools within R that can be used for Bayesian data analysis, and an introduction to the Stan programming language they depend on.  It is not an introduction to Bayesian inference ([see my intro](http://m-clark.github.io/docs/IntroBayes.html)), nor an introduction to statistical modeling in R.
 
 A few points that serve to illustrate the perspective taken here:
 
-- In this day and age, there is no more need to justify the use of a Bayesian approach than there is a traditional one.  In fact, if one is using the standard null hypothesis testing approach, they may need to justify that much more so.  The Bayesian approach may be new to you, but it's concepts are very old, and the techniques are widely used across many disciplines.
+- In this day and age, there is no more need to justify the use of a Bayesian approach than there is a traditional one.  In fact, if one is using the standard null hypothesis testing approach, they may need to justify that much more so.  The Bayesian approach may be new to you, but its concepts are very old, and the techniques are widely used across many disciplines.
 
 - Proselytizing is not a goal here, the only zealotry is perhaps for R and Stan as useful tools.  Bayesian approaches are still too cumbersome in some settings (e.g. with very large data), and I have no problem using more pragmatic tools.  
 

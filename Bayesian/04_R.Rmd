@@ -7,7 +7,7 @@ Now it is as easy to conduct standard and complex models using Stan while stayin
 
 ## rstan
 
-The <span class="pack">rstan</span> package is the workhorse, and the other packages mentioned here rely on it.  In general though it's what you will use when you write Stan code directly. The following code demonstrates how.
+The <span class="pack">rstan</span> package is the workhorse, and the other packages mentioned in following rely on it.  In general though, <span class="pack">rstan</span> is what you will use when you write Stan code directly. The following code demonstrates how.
 
 ### Data list
 
@@ -48,6 +48,16 @@ The typical model summary provides parameter estimates, standard errors, interva
 
 ```{r runStan, eval=FALSE, echo=FALSE}
 stanmod = '
+functions {
+  vector stdized(int N, vector x, int scale) {
+     vector[N] x_sc;
+
+     x_sc = scale ? x-mean(x) : (x-mean(x))/sd(x);
+     
+     return x_sc;
+  }
+}
+
 data {                      // Data block
   int<lower=1> N;           // Sample size
   int<lower=1> K;           // Dimension of model matrix
@@ -79,23 +89,26 @@ model {                     // Model block
 }
 
 generated quantities {         // Generated quantities block. 
-  vector[N] yhat;                // linear predictor
+  vector[N] yhat;              // predicted y
   real Rsq;                    // R-squared
   real Intercept;
   real beta_1;
+  vector[N] test;
   
   yhat = X * beta;
   Rsq = 1 - dot_self(y-yhat)/dot_self(y);
   
   Intercept = beta[1];
   beta_1 = beta[2];
+  test  = stdized(N, y, 1);
 }'
-n = 1000
+n = 500
 X = cbind(1, runif(n))
-dataList = list(X=X, y= c(X%*%c(1,.25)) + rnorm(n), N=nrow(X), K=ncol(X))
+y = c(X%*%c(1,.5))
+dataList = list(X=X, y= y + rnorm(n), N=nrow(X), K=ncol(X))
 library(rstan)
 mystanmodel = stan(model_code = stanmod, data=dataList, cores=4)
-save(mystanmodel, file='data/stanmod.RData')
+save(mystanmodel, dataList, file='data/stanmod.RData')
 ```
 
 ```{r, eval=FALSE, echo=3}
@@ -108,36 +121,64 @@ print(mystanmodel, pars=c('Intercept', 'beta_1', 'sigma', 'Rsq'), probs = c(.05,
 ```
 
 
+
 ### Diagnostics and beyond
 
-Typical Bayesian diagnostic tools like trace plots, density plots etc. are available.  Part of the printed output contains the two just mentioned. In addition <span class="pack">rstan</span> comes with model comparsion functions like <span class="func">WAIC</span> and <span class="func">loo</span>.  The best part is the launch_shiny function, which actually makes this part of the 
+Typical Bayesian diagnostic tools like trace plots, density plots etc. are available.  Part of the printed output contains the two just mentioned. In addition <span class="pack">rstan</span> comes with model comparsion functions like <span class="func">WAIC</span> and <span class="func">loo</span>.  The best part is the <span class="func">launch_shiny</span> function, which actually makes this part of the analysis a lot more fun.  Below is a graphical depiction of what would open in your browser when you use the function.
+
+```{r eval=FALSE}
+library(shinystan)
+launch_shiny(mystanmodel)
+```
+
+<img src="img/shinystan.png" style="display:block; margin: 0 auto;">
 
 ## rstanarm
 
 The <span class="pack">rstanarm</span> is a package that allows you to specify models in the standard R format.  While this is very limiting, it definitely covers a lot of the usual statistical ground.  As such, it enables you to be a Bayesian for any of the very common glm settings, including mixed and additive models.
 
-```{r rstanarm, eval=FALSE}
+```{r rstanarm, eval=FALSE, echo=3:6}
+load('data/stanmod.RData')
+mydataframe = data.frame(y = dataList$y, x = dataList$X[,2])
 library(rstanarm)
 
-modResults = stan_glm(y ~ x, family=binomial, data=mydataframe, iter=2000, warmup=1000)
+rstanarm_results = stan_glm(y ~ x, data=mydataframe, iter=2000, warmup=1000)
+summary(rstanarm_results)
+# save(mystanmodel, dataList, rstanarm_results, file='data/stanmod.RData')
 ```
 
-I should note that <span class="pack">rstanarm</span> also has some 'big data' options via biglm, but the fact that it uses <span class="pack">biglm</span> makes me skeptical as to whether it is all that useful.
+The resulting model object can essentially be used just like the <span class="func">lm</span>/<span class="func">glm</span> functions in base R.  There are <span class="func">summary</span>, <span class="func">predict</span>, <span class="func">fitted</span>, <span class="func">coef</span> etc. functions available to use just like with standard model objects.
 
 ## brms
 
-I have watched with much enjoyment the development of the <span class="pack">brms</span> package from nearly its inception.  Due to the continued development of rstanarm, it's role is becoming more niche, but I still believe it to be both useful and powerful.  It allows for many types of models, and any distributions (including truncated versions, ordinal variables, zero-inflation, etc.).  The main developer is ridiculously responsive to requests, so extensions are regularly implemented.  In short, for standard models you can use <span class="pack">rstanarm</span>, while for variations of those, more flexible manipulation of their priors, or more complex models, you can use <span class="pack">brms.</span> 
+I have watched with much enjoyment the development of the <span class="pack">brms</span> package from nearly its inception.  Due to the continued development of rstanarm, it's role is becoming more niche perhaps, but I still believe it to be both useful and powerful.  It allows for many types of models, and many distributions (including truncated versions, ordinal variables, zero-inflation, etc.).  The main developer is ridiculously responsive to requests, so extensions are regularly implemented.  In short, for standard models you can use <span class="pack">rstanarm</span>, while for variations of those, more flexible manipulation of priors, or more complex models, you can use <span class="pack">brms</span>.
 
 
-The following shows an example of a 'robust' regression based on a student $t$ likelihood rather than a normal, but also implementing truncation so that values can only fall between 0 and 100.  The ease of implementing truncation comes from Stan[^trunc], but otherwise, brms makes it potentially easy to use for many models we might want to pursue.
+The following shows an example of the additional capabilities provided by the brm function.  The following demonstrates use of a truncated distribution, an additive model with random effect, use of a different family function, specification of prior distribution for the fixed effect coefficients, specification of correlated residual structure, optional estimation algorithm, and use of custom Stan functions.
 
 ```{r brms, eval=FALSE}
 library(brms)
 
-modResults = brm(y | trunc(lb = 0, ub = 100) ~ x, family=student, data=dataList, iter=2000, warmup=1000)
+modResults = brm(y | trunc(lb = 0, ub = 100) ~ s(x) + (1|id), family=student, data=dataList, 
+                 prior = set_prior('horseshoe(3)', class='b'),
+                 autocor = cor_ar(~patient, p = 1),
+                 algorithm = 'meanfield',
+                 stan_funs = stdized,
+                 iter=2000, warmup=1000)
 ```
+
+## Summary
+
+To recap, we can summarize the roles of these packages as follows (ordered from easiest to more flexible):
+
+- <span class="pack">rstanarm</span>: All you need to start on your path to using Bayesian techniques. Keeps you in more familiar modeling territory so you can focus on learning the new stuff. Supports up through mixed models, GAMs, and ordinal models. 
+
+- <span class="pack">brms</span>: Take your model notably further and still not have to write raw stan code.  Supports a very wide range of models and still without raw Stan code.
+
+- <span class="pack">rstan</span>: Here you write your Stan code regarding whatever model your heart desires, then let rstan do the rest.
+
+- raw R or other: Some still insist on writing their own sampler.  While great for learning purposes, this is mostly a good way to produce buggier code, have less model exploration capability, all while being a lot less efficient (and very slow if in raw R).  Maybe you'll end up here, but you should exhaust your other possibilities first.
 
 [^stringvsfile]: I would maybe suggest using strings with simple models as you initially learn Stan/RStan, but a separate file is preferred. RStudio has syntax highlighting and other benefits for `*.stan` files.
 
 [^trunc]: Or Bayesian modeling generally.
-
