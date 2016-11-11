@@ -27,7 +27,7 @@ before its eyes..."
 
 ## {data-transition="fade" data-transitionSpeed="fast"}
 
-$$ p(B|A) = \frac{p(A|B)p(B)}{p(B)} $$
+$$ p(A|B) = \frac{p(B|A)p(A)}{p(B)} $$
 
 ## Probabilities
 
@@ -44,11 +44,11 @@ Or
 
 Which interpretation do you prefer?
 
-> <p class="fragment"> If I repeat this study precisely an infinite number of times, and I calculate a 95% interval each time, then 95% of those  intervals will contain the true parameter.</p>
+> <p class="fragment"> If I repeat this study precisely an infinite number of times, and I calculate a P% interval each time, then P% of those  intervals will contain the true parameter. Here is one of those intervals.</p>
 
 Or
 
-> <p class="fragment"P is the probability the parameter falls in this interval.</p>
+> <p class="fragment"> The probability the parameter falls in *this* interval is P.</p>
 
 
 ## Perks
@@ -56,7 +56,7 @@ Or
 <p class="fragment">Intuitive results</p>
 <p class="fragment">Auto-regularization</p>
 
-- <p class="fragment">Guards against overfitting</p>
+- Guards against overfitting
 
 <p class="fragment">Intervals for anything you can calculate</p>
 
@@ -67,12 +67,12 @@ Or
 
 The goal is a *distribution* (stable) rather than a parameter
 
-<p class='fragment'>Posterior distribution</p>
+<p class='fragment emph'>Posterior distribution</p>
 
 
 ## Prior 
 
-Represents our perspective regarding the intial state of affairs
+Represents our intution regarding the intial state of affairs
 
 Based on 
 

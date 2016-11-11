@@ -1,5 +1,15 @@
 
-ui <- fluidPage(theme='sandstone.css',
+ui <- fluidPage(
+  theme='sandstone.css',
+  withMathJax(),
+  tags$script("
+                    MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [['$','$']],
+                    processEscapes: true
+                    }
+                    });"
+  ),
   tags$head(
     tags$style(HTML("
                     @import url('//fonts.googleapis.com/css?family=Open+Sans:400,700|Cabin:400,700|Inconsolata:400,700|Roboto:400,700');
@@ -29,12 +39,13 @@ ui <- fluidPage(theme='sandstone.css',
     </ul>
 
 
-    The tested \\(\\theta\\) parameters are a sequence of 500 values from 0 to 10.
+    The tested $\\theta$ parameters are a sequence of 500 values from 0 to 10.
     </h5></div>"),
     windowTitle= 'Bayesian Demo'),
 
   # Sidebar with a slider input for number of bins
-  sidebarLayout(sidebarPanel(
+  sidebarLayout(
+                sidebarPanel(
       tags$style(".well {background-color:aliceblue;}
                   label {color:cornflowerblue; font-family:'Gill Sans MT'}"),
       numericInput("n",
@@ -46,11 +57,11 @@ ui <- fluidPage(theme='sandstone.css',
       numericInput("dataVar",
                    "Data Variance:",
                    min = 1, max = 5, value = 3),
-      numericInput("priorMean",
-                   HTML("Prior Mean for \\(\\theta\\):"),
-                   min = 1, max = 10, value = 2, step=1),
+      withMathJax(numericInput("priorMean",
+                   HTML("Prior Mean for $\\theta$:"),
+                   min = 1, max = 10, value = 2, step=1)),
       numericInput("priorVar",
-                   HTML("Prior Variance for \\(\\theta\\):"),
+                   HTML("Prior Variance for $\\theta$:"),
                    min = 1, max = 5, value = 1)
     , width=2),
 
@@ -123,15 +134,21 @@ server <- function(input, output) {
   })
   output$caption <- renderText({
     HTML(
-    "$$ p(\\theta|Data) \\propto p(Data|\\theta) \\cdot p(\\theta) $$
-     $$ \\;\\;\\mathrm{posterior} \\;\\propto \\mathrm{likelihood} \\;\\!\\cdot \\mathrm{prior} $$ </br>
-    <p>All three distributions regard the <em>parameter</em> to be estimated, i.e. \\(\\theta\\), the mean (we're assuming the variance is known for this demo).</p>
+    "
+\\[
+p(\\theta|Data) \\propto p(Data|\\theta) \\cdot p(\\theta)
+\\]
+\\[
+\\;\\;\\mathrm{posterior} \\;\\propto \\mathrm{likelihood} \\;\\!\\cdot \\mathrm{prior}
+\\]
+</br>
+    <p>All three distributions regard the <em>parameter</em> to be estimated, i.e. $\\theta$, the mean (we're assuming the variance is known for this demo).</p>
 
-    <p>The <span style=\"color:#F8766D;font-weight:600\">prior</span> regards the initial distribution given for \\(\\theta\\). This may be based on prior beliefs and/or research, or simply one known to work well within the modeling context. Here it is a normal distribution with the mean and variance you provide. More variance would mean a less informative prior.</p>
+    <p>The <span style=\"color:#F8766D;font-weight:600\">prior</span> regards the initial distribution given for $\\theta$. This may be based on prior beliefs and/or research, or simply one known to work well within the modeling context. Here it is a normal distribution with the mean and variance you provide. More variance would mean a less informative prior.</p>
 
-    <p>The <span style=\"color:#00BA38;font-weight:600\">likelihood</span> regards the data given a particular estimate for \\(\\theta\\), and is the same that one is familiar with from standard maximum likelihood methods. The observed mean is the estimate we'd get using a maximum likelihood approach.  In this case we're assuming a normal distribution as the data generating process.</p>
+    <p>The <span style=\"color:#00BA38;font-weight:600\">likelihood</span> regards the data given a particular estimate for $\\theta$, and is the same that one is familiar with from standard maximum likelihood methods. The observed mean is the estimate we'd get using a maximum likelihood approach.  In this case we're assuming a normal distribution as the data generating process.</p>
 
-    <p>Finally, the <span style=\"color:#619CFF;font-weight:600\">posterior</span> is the likelihood for the \\(\\theta\\) values from the Bayesian estimation process, and can be seen as a weighted combination of the prior and the likelihood.</p>")
+    <p>Finally, the <span style=\"color:#619CFF;font-weight:600\">posterior</span> is the likelihood for the $\\theta$ values from the Bayesian estimation process, and can be seen as a weighted combination of the prior and the likelihood.</p>")
   })
 }
 

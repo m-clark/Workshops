@@ -45,4 +45,4 @@ Color coding:
 
 
 
-[^talk]: The associated talk was not a hands-on workshop as it was given in a room where no machines could have it pre-installed (there were no machines), and rights issues would not have made it straightforward (due to the way C++ is used).
+[^talk]: The associated talk was not a hands-on workshop.

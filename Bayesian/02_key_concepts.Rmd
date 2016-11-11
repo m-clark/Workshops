@@ -5,7 +5,7 @@ This section focuses on some key ideas to help you quickly get into the Bayesian
 
 ## Distributions
 
-One of the first things to get used to coming from a traditional framework is that the focus is on distributions of parameters rather than the parameters.  In the Bayesian context, parameters are <span class="emph">*random*</span>, not fixed. Your analysis will start with one distribution and end with another.  The summaries of that distribution, e.g. the mean, standard deviation, etc. will be available, and used in similar fashion as the traditional approach.
+One of the first things to get used to coming from a traditional framework is that the focus is on distributions of parameters rather than the parameters.  In the Bayesian context, parameters are <span class="emph">*random*</span>, not fixed. Your analysis will start with one distribution and end with another.  The summaries of that distribution, e.g. the mean, standard deviation, etc. will be available, and used to understand parameters in similar fashion as the traditional approach.
 
 As an example, if you want to estimate a regression coefficient, the Bayesian analysis will result in hundreds to thousands of values from the distribution for that coefficient.  You can then use those values to obtain their mean, or use the quantiles to provide an interval estimate, and thus end up with the same type of information.
 
@@ -48,7 +48,7 @@ true_sigma = 1
 other_beta = c(0,3)
 other_sigma = 2
 
-# smaple size
+# sample size
 N = 1000
 
 # data generation
