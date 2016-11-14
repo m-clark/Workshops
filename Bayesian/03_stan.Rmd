@@ -2,13 +2,13 @@
 
 <img src="../img/stan_logo.png" style="display:block; margin: 0 auto; width:25%">
 
-Stan is a modeling language for Bayesian data analysis.  The actual work is done in C++, but the Stan language specifies the necessary aspects of the model. It uses a variety of inference procedures, including standard optimization techniques commonly found elsewhere, but the primary Bayesian-specific approach regards Hamiltonian Monte Carlo[^HMC].  There are actually a number of ways in which Bayesian estimation/sampling can take place and this is one that has, like the others, advantages in some areas, and disadvantages in others. It is however applicable in a wide variety of problems and will often do better than other approaches.
+Stan is a modeling language for Bayesian data analysis[^stan1].  The actual work is done in C++, but the Stan language specifies the necessary aspects of the model. It uses a variety of inference procedures, including standard optimization techniques commonly found elsewhere, but the primary Bayesian-specific approach regards Hamiltonian Monte Carlo[^HMC].  There are actually a number of ways in which Bayesian estimation/sampling can take place and this is one that has, like the others, advantages in some areas, and disadvantages in others. It is however applicable in a wide variety of problems and will often do better than other approaches.
 
 To use Stan, one just needs to know their model intimately, which should be the case if you're going to spend so much time in collecting, processing and analyzing data in the first place.  I personally find the *style* of the Stan language clear, and it might be seen as a combination of C++ and R programming styles.  The following will take you through the components of the Stan language. 
 
 ## Installing Stan
 
-To get started with Stan, one needs to install the rstan package. While this will proceed as with any other package, additional steps are required.  First, you will need a C++ compiler, and this process will be different depending on your operating system.  It won't take much, and steps are clearly defined on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).  After going through that process, you may then install the <span class="pack">rstan</span> package and dependencies.  You'll be ready to go at that point.
+To get started with Stan, one needs to install the <span class="pack">rstan</span> package. While this will proceed as with any other package, additional steps are required.  First, you will need a C++ compiler, and this process will be different depending on your operating system.  It won't take much, and steps are clearly defined on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).  After going through that process, you may then install the <span class="pack">rstan</span> package and dependencies.  You'll be ready to go at that point.
 
 ## The Way of Stan/RStan
 
@@ -171,15 +171,8 @@ The <span class="emph">generated quantities</span> block is a fantastical place 
 
 Now that you have a Stan program in place, you're ready to proceed.  
 
-### Data list
 
 
-
-### Debug model
-
-### Full model
-
-### Diagnostics and beyond
+[^stan1]: Stan 1.0 was released in 2012.
 
 [^HMC]: Originally called *Hybrid* Monte Carlo, such a name is a bit too vague for most.
-

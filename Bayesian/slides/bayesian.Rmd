@@ -10,6 +10,9 @@ css: slides_light.css
     
 ---
 
+## Follow along
+
+[m-clark.github.io/workshops/baysian]()
 
 ## {data-transition="fade" data-transitionSpeed="slow"}
 
@@ -356,48 +359,152 @@ Very complex models
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 
-## {data-transition="zoom"  data-autoslide="50"}
+
+
+## {data-transition="zoom"  data-autoslide="100"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="50" }
+##  {data-transition="zoom" data-autoslide="100" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="50"}
+## {data-transition="zoom"  data-autoslide="100"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="50" }
+##  {data-transition="zoom" data-autoslide="100" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="50"}
+## {data-transition="zoom"  data-autoslide="100"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="50" }
+##  {data-transition="zoom" data-autoslide="100" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="50"}
+## {data-transition="zoom"  data-autoslide="100"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="50" }
+
+
+
+
+
+
+
+
+<!-- subliminal here -->
+
+
+
+##  {data-transition="zoom" data-autoslide="100" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"}
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/cat.jpg" style="display:block; margin: 0 auto;">
+
+
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/puppy.jpg" style="display:block; margin: 0 auto;">
+
+
+
+##  {data-transition="zoom" data-autoslide="100" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/money.jpg" style="display:block; margin: 0 auto;">
+
+
+
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/homer.jpg" style="display:block; margin: 0 auto;">
+
+
+##  {data-transition="zoom" data-autoslide="100" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
+
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/spock.jpg" style="display:block; margin: 0 auto;">
+
+
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/flower.jpg" style="display:block; margin: 0 auto;">
+
+
+
+##  {data-transition="zoom" data-autoslide="100" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
+
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/flexible.png" style="display:block; margin: 0 auto;">
+
+
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/smile.png" style="display:block; margin: 0 auto;">
+
+
+
+##  {data-transition="zoom" data-autoslide="100" }
+
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/hearts.png" style="display:block; margin: 0 auto;">
+
+
+
+## {data-transition="zoom" data-background="../img/sunshine.jpg"  data-autoslide="3000"}
 
 <img src="../img/r_and_stan.png" style="display:block; margin: 0 auto;">
 
 
-## Join or Die!
+
+
+## Join Now! {data-transition="zoom" data-autoslide="3000" }
 
 <p class='fragment' style="text-align:center; font-size:200%"> Can you do any less?!</p>
 
