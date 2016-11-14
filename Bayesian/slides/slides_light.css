@@ -63,6 +63,19 @@ a {
   font-weight: 600;
 }
 
+
+.reveal .progress span {
+    display: none;
+}
+
+.reveal .playback {
+    display: none;
+}
+
+.reveal .controls {
+    display: none !important;
+}
+
 .reveal pre code {
   box-sizing: border-box;
   left: 0; /* This changes where the code chunk box actually starts */

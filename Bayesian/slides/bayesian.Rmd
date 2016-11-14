@@ -12,7 +12,7 @@ css: slides_light.css
 
 ## Follow along
 
-[m-clark.github.io/workshops/baysian]()
+[m-clark.github.io/workshops/bayesian]()
 
 ## {data-transition="fade" data-transitionSpeed="slow"}
 
@@ -30,48 +30,21 @@ before its eyes..."
 
 ## {data-transition="fade" data-transitionSpeed="fast"}
 
-$$ p(A|B) = \frac{p(B|A)p(A)}{p(B)} $$
+$$ p(\mathrm{hypothesis}|\mathrm{data}) = \frac{p(\mathrm{data}|\mathrm{hypothesis})p(\mathrm{hypothesis})}{p(\mathrm{data})} $$
 
-## Probabilities
+## {data-transition="fade" data-transitionSpeed="fast"}
 
-Which interpretation do you prefer?
-
-> <p class="fragment"> If I asssume a value of zero for the parameter, what is the probability of my observed parameter or more extreme?</p>
-
-Or
-
-> <p class="fragment">What's the probability my result is greater than zero?</p>
-
-
-## Intervals
-
-Which interpretation do you prefer?
-
-> <p class="fragment"> If I repeat this study precisely an infinite number of times, and I calculate a P% interval each time, then P% of those  intervals will contain the true parameter. Here is one of those intervals.</p>
-
-Or
-
-> <p class="fragment"> The probability the parameter falls in *this* interval is P.</p>
-
-
-## Perks
-
-<p class="fragment">Intuitive results</p>
-<p class="fragment">Auto-regularization</p>
-
-- Guards against overfitting
-
-<p class="fragment">Intervals for anything you can calculate</p>
-
-
-
+$$ \mathrm{posterior} \propto \mathrm{data} * \mathrm{prior}$$
 
 ## Distributions
 
-The goal is a *distribution* (stable) rather than a parameter
+The goal is a *distribution* (stable) rather than a single parameter estimate
+
+## Posterior
 
 <p class='fragment emph'>Posterior distribution</p>
 
+A weighted combination of 
 
 ## Prior 
 
@@ -112,6 +85,41 @@ Based on
 ## Arbitrary  {data-transition="zoom"}
 
 <div style="text-align:center"><span class="" style="font-size:110%; font-variant:small-caps">Choosing .05 as a cutoff for 'significance'</span></div>
+
+
+
+## Perks: Probabilities
+
+Which interpretation do you prefer?
+
+> <p class="fragment"> If I asssume a value of zero for the parameter, what is the probability of my observed parameter or more extreme?</p>
+
+Or
+
+> <p class="fragment">What's the probability my result is greater than zero?</p>
+
+
+## Perks: Intervals
+
+Which interpretation do you prefer?
+
+> <p class="fragment"> If I repeat this study precisely an infinite number of times, and I calculate a P% interval each time, then P% of those  intervals will contain the true parameter. Here is one of those intervals.</p>
+
+Or
+
+> <p class="fragment"> The probability the parameter falls in *this* interval is P.</p>
+
+
+## Perks
+
+<p class="fragment">Intuitive results</p>
+<p class="fragment">Auto-regularization</p>
+
+- Guards against overfitting
+
+<p class="fragment">Intervals for anything you can calculate</p>
+
+
 
 
 
@@ -182,7 +190,15 @@ brm(Reaction ~ Days + (1 + Days|Subject))         # brms
 
 ##  {data-transition="zoom" data-autoslide="3000" }
 
-<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto;">
+<img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
+
+
+## 
+
+<div class="fragment fade-up" data-autoslide="3000" ><img src="../img/rstan.png" style="display:block; margin: 0 auto;"></div>
+
+
+
 
 
 ## {data-transition="zoom" data-autoslide="15000"}
@@ -359,8 +375,6 @@ Very complex models
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 
-
-
 ## {data-transition="zoom"  data-autoslide="100"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
@@ -388,9 +402,6 @@ Very complex models
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="100"}
-
-<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
 
@@ -403,6 +414,13 @@ Very complex models
 
 <!-- subliminal here -->
 
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
+
+## {data-transition="zoom"  data-autoslide="100"}
+
+<img src="../img/cat.jpg" style="display:block; margin: 0 auto;">
 
 
 ##  {data-transition="zoom" data-autoslide="100" }
@@ -411,8 +429,7 @@ Very complex models
 
 ## {data-transition="zoom"  data-autoslide="100"}
 
-<img src="../img/cat.jpg" style="display:block; margin: 0 auto;">
-
+<img src="../img/lamborghini.jpg" style="display:block; margin: 0 auto;">
 
 
 ## {data-transition="zoom"  data-autoslide="100"}
@@ -433,7 +450,9 @@ Very complex models
 
 <img src="../img/money.jpg" style="display:block; margin: 0 auto;">
 
+## {data-transition="zoom"  data-autoslide="100"}
 
+<img src="../img/bob.jpg" style="display:block; margin: 0 auto;">
 
 
 ## {data-transition="zoom"  data-autoslide="100"}
@@ -445,10 +464,12 @@ Very complex models
 <img src="../img/homer.jpg" style="display:block; margin: 0 auto;">
 
 
+
+
+
 ##  {data-transition="zoom" data-autoslide="100" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
-
 
 ## {data-transition="zoom"  data-autoslide="100"}
 
@@ -501,6 +522,7 @@ Very complex models
 
 <img src="../img/r_and_stan.png" style="display:block; margin: 0 auto;">
 
+<div style="text-align:center; font-size:200%">Bayesian Bliss</div>
 
 
 

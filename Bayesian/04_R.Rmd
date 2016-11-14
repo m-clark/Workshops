@@ -111,7 +111,7 @@ mystanmodel = stan(model_code = stanmod, data=dataList, cores=4)
 save(mystanmodel, dataList, file='data/stanmod.RData')
 ```
 
-```{r, eval=FALSE, echo=3}
+```{r, eval=T, echo=3}
 load('data/stanmod.RData')
 library(rstan)
 print(mystanmodel, pars=c('Intercept', 'beta_1', 'sigma', 'Rsq'), probs = c(.05,.95), digits=3)
