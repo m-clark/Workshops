@@ -17,8 +17,14 @@ sapply(installed.packages()[,'Suggests'], strsplit, ',') %>%
 
 
 - <span class="pack">shiny_stan</span>: for interactive diagnostics
+
+`r tufte::margin_note('Screen shot of shiny_stan')`
+<img src="img/shinystan.png" style="display:block; margin: 0 auto; width:75%">
+
 - <span class="pack">loo</span>: Provides approximate leave-one-out cross-validation statistics for model comparison.
-- <span class="pack">bayesplot</span>: diagnostic plots and other useful tools (very much beta)
+
+- <span class="pack">bayesplot</span>: diagnostic plots and other useful tools
+
 
 `r tufte::margin_note('Example plots from bayesplot')`
 ```{r bayesplotEx, eval=T, echo=FALSE, dev='svg', fig.align='center', fig.width=4, fig.height=3, cache=TRUE}

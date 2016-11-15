@@ -2,12 +2,12 @@
 
 R has many tools for Bayesian analysis, and possessed these before Stan came around.  Among the more prominent were those that allowed the use of BUGS (e.g. <span class="pack">r2OpenBugs</span>), one of its dialects JAGS (<span class="pack">rjags</span>), and packages like <span class="pack">coda</span> and <span class="pack">MCMCpack</span> that allowed for customized approaches, further extensions or easier implementation.  Other packages might regard a specific type or family of models (e.g. <span class="pack">bayesm</span>), but otherwise be mostly R-like in specifying the model (e.g. <span class="pack">MCMCglmm</span> for mixed models).  
 
-Now it is as easy to conduct standard and complex models using Stan while staying within the usual framework of R-style modeling.  You don't even have to write Stan code!  I'll note a couple relevant packages that enable this.
+Now it is as easy to conduct standard and more complex models using Stan while staying within the usual framework of R-style modeling.  You don't even have to write Stan code!  I'll later note a couple relevant packages that enable this.
 
 
 ## rstan
 
-The <span class="pack">rstan</span> package is the workhorse, and the other packages mentioned in following rely on it.  In general though, <span class="pack">rstan</span> is what you will use when you write Stan code directly. The following code demonstrates how.
+The <span class="pack">rstan</span> package is the workhorse, and the other packages mentioned in following rely on it or assume similarities to it.  In general though, <span class="pack">rstan</span> is what you will use when you write Stan code directly. The following demonstrates how.
 
 ### Data list
 
@@ -104,7 +104,7 @@ generated quantities {         // Generated quantities block.
 }'
 n = 500
 X = cbind(1, runif(n))
-y = c(X%*%c(1,.5))
+y = c(X%*%c(1,.5)) + rnorm(n)
 dataList = list(X=X, y= y + rnorm(n), N=nrow(X), K=ncol(X))
 library(rstan)
 mystanmodel = stan(model_code = stanmod, data=dataList, cores=4)
@@ -135,7 +135,7 @@ launch_shiny(mystanmodel)
 
 ## rstanarm
 
-The <span class="pack">rstanarm</span> is a package that allows you to specify models in the standard R format`r margin_note("The 'arm' in rstanarm is for 'applied regression modeling', which is *NOT* the title of Gelman's book no matter what he says.")`.  While this is very limiting, it definitely covers a lot of the usual statistical ground.  As such, it enables you to be a Bayesian for any of the very common glm settings, including mixed and additive models.
+The <span class="pack">rstanarm</span> is a package that allows you to specify models in the standard R format`r margin_note("The 'arm' in rstanarm is for 'applied regression and multilevel modeling', which is *NOT* the title of Gelman's book no matter what he says.")`.  While this is very limiting, it definitely covers a lot of the usual statistical ground.  As such, it enables you to be a Bayesian for any of the very common glm settings, including mixed and additive models.
 
 Key modeling functions include:
 
@@ -184,13 +184,21 @@ modResults = brm(y | trunc(lb = 0, ub = 100) ~ s(x) + (1|id), family=student, da
                  iter=2000, warmup=1000)
 ```
 
-The brms package also has a lot of the same functionality for post model inspection.
+The <span class="pack">brms</span> package also has a lot of the same functionality for post model inspection.
+
+## rethinking
+
+The <span class="pack">rethinking</span> package accompanies the text, Statistical Rethinking by Richard McElreath.  This is a great resource for learning Bayesian Analysis while using Stan under the hood. You can do more from the other packages mentioned, but if you can also run your model here, you might get even more to play with.  Like <span class="pack">rstanarm</span> and <span class="pack">brms</span>, you might be able to use it to produce starter Stan code as well, that you can then manipulate and use via <span class="pack">rstan</span>.
+
+
 
 ## Summary
 
 To recap, we can summarize the roles of these packages as follows (ordered from easiest to more flexible):
 
-- <span class="pack">rstanarm</span>: All you need to start on your path to using Bayesian techniques. Keeps you in more familiar modeling territory so you can focus on learning the new stuff. Supports up through mixed models, GAMs, and ordinal models. 
+- <span class="pack">rethinking</span>: Good resource to introduce yourself to Bayesian analysis.
+
+- <span class="pack">rstanarm</span>: All you need to start on your path to using Bayesian techniques. Keeps you in more familiar modeling territory so you can focus on learning the new stuff. Supports up through mixed models, GAMs, and ordinal models.
 
 - <span class="pack">brms</span>: Take your model notably further and still not have to write raw stan code.  Supports a very wide range of models and still without raw Stan code.
 
