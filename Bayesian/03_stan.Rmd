@@ -2,9 +2,9 @@
 
 <img src="../img/stan_logo.png" style="display:block; margin: 0 auto; width:25%">
 
-Stan is a modeling language for Bayesian data analysis[^stan1].  The actual work is done in C++, but the Stan language specifies the necessary aspects of the model. It uses a variety of inference procedures, including standard optimization techniques commonly found elsewhere, but the primary Bayesian-specific approach regards Hamiltonian Monte Carlo[^HMC].  There are actually a number of ways in which Bayesian estimation/sampling can take place and this is one that has, like the others, advantages in some areas, and disadvantages in others. It is however applicable in a wide variety of problems and will often do better than other approaches.
+Stan is a modeling language for Bayesian data analysis[^stan1].  The actual work is done in C++, but the Stan language specifies the necessary aspects of the model. It uses a variety of inference procedures, including standard optimization techniques commonly found elsewhere, but the primary Bayesian-specific approach regards Hamiltonian Monte Carlo[^HMC].  There are actually a number of ways in which Bayesian estimation/sampling can take place and this is one that has, like the others, advantages in some areas, and disadvantages in others[^HMC2]. It is however applicable in a wide variety of problems and will often do better than other approaches.
 
-To use Stan, one just needs to know their model intimately, which should be the case if you're going to spend so much time in collecting, processing and analyzing data in the first place.  I personally find the *style* of the Stan language clear, and it might be seen as a combination of C++ and R programming styles.  The following will take you through the components of the Stan language. 
+To use Stan directly, one just needs to know their model intimately, which should be the case if you're going to spend so much time in collecting, processing and analyzing data in the first place.  I personally find the *style* of the Stan language clear, and it might be seen as a combination of C++ and R programming styles, though mostly the latter.  The following will take you through the components of the Stan language. 
 
 ## Installing Stan
 
@@ -21,7 +21,7 @@ The basic workflow you'll engage in to run a Stan program within R is as follows
 - Summarize the model
 - Check diagnostics, including posterior predictive inspection
 
-In this part we'll consider the elements fo the Stan program.
+In this part we'll consider the elements of the Stan program.
 
 
 ## Elements of a Stan Program
@@ -125,7 +125,7 @@ transformed parameters {    // Transformed parameters block
 
 
 
-The <span class="emph">transformed parameters</span> block is where optional parameters of interest might be included.  What might go here is fairly open, but for efficiency's sake you will typically want to put things only of specific interest that are dependent on the parameters block.  These are evaluated along with the parameters, so if not of special interest you can generate them in the model or generated quantities block to save time.
+The <span class="emph">transformed parameters</span> block is where optional parameters of interest might be included.  What might go here is fairly open, but for efficiency's sake you will typically want to put things only of specific interest that are dependent on the parameters block.  These are evaluated along with the parameters, so if they are not of special interest you can generate them in the model or generated quantities block to save time and space.
 
 
 ### Model
@@ -145,7 +145,7 @@ model {                     // Model block
 ```
 
 
-The <span class="emph">model</span> block is where your priors and likelihood are specified, along with the declaration of any variables necessary.  As an example, the linear predictor is included here, as it will go towards the likelihood<label for="sn-demo" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-demo" class="margin-toggle"/><span class="sidenote">The position within the model block isn't crucial. I tend to like to do all the variable declarations at the start, but others might prefer to have them under the likelihood heading at the point they are actually used.</span>.  Note that we could have instead put the linear predictor in the transformed parameters section, but this would slow down the process, and again, we're not so interested in those specific values. 
+The <span class="emph">model</span> block is where your priors and likelihood are specified, along with the declaration of any variables necessary.  As an example, the linear predictor is included here, as it will go towards the likelihood`r margin_note("The position within the model block isn't crucial. I tend to like to do all the variable declarations at the start, but others might prefer to have them under the likelihood heading at the point they are actually used.")`.  Note that we could have instead put the linear predictor in the transformed parameters section, but this would slow down the process, and again, we're not so interested in those specific values. 
 
 
 ### Generated Quantities
@@ -176,3 +176,5 @@ Now that you have a Stan program in place, you're ready to proceed.
 [^stan1]: Stan 1.0 was released in 2012.
 
 [^HMC]: Originally called *Hybrid* Monte Carlo, such a name is a bit too vague for most.
+
+[^HMC2]: For many types of problems, relative to Gibbs and some other samplers, HMC will be more efficient in the sense it will take fewer iterations to describe the posterior distribution.
