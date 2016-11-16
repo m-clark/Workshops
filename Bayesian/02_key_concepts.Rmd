@@ -2,6 +2,7 @@
 
 This section focuses on some key ideas to help you quickly get into the Bayesian mindset.  Again, very little statistical knowledge is assumed.  If you have prior experience with the Bayesian approach it may be skipped.
 
+<img src="img/priorLikePosterior_test1.png" style="display:block; margin: 0 auto;">
 
 ## Distributions
 
@@ -69,7 +70,7 @@ The <span class="emph">posterior</span> distribution is a weighted combination o
 
 $$ p(\theta|Data) \propto p(Data|\theta) \cdot p(\theta) $$
 $$ \;\;\mathrm{posterior} \;\propto \mathrm{likelihood} \;\!\cdot \mathrm{prior} $$
-With more data, i.e. evidence, the weight shifts ever more to the likelihood, ultimately rendering the prior inconsequential. Let's now [see this in action](http://micl.shinyapps.io/prior2post).
+With more data, i.e. evidence, the weight shifts ever more to the likelihood, ultimately rendering the prior inconsequential. Let's now [see this in action](http://micl.shinyapps.io/prior2post/).
 
 
 ## P-values

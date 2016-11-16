@@ -23,7 +23,7 @@ sapply(installed.packages()[,'Suggests'], strsplit, ',') %>%
 
 - <span class="pack">loo</span>: Provides approximate leave-one-out cross-validation statistics for model comparison.
 
-- <span class="pack">bayesplot</span>: diagnostic plots and other useful tools
+- <span class="pack">bayesplot</span>: diagnostic plots and other useful tools, though notable overlap with shiny_stan
 
 
 `r tufte::margin_note('Example plots from bayesplot')`
@@ -39,7 +39,7 @@ ppc_dens_overlay(y = rstanarm_results$y,
 
 ```{r nuts, eval=T, echo=FALSE, dev='svg', fig.align='center', fig.width=4, fig.height=3, cache=TRUE}
 np <- nuts_params(rstanarm_results)
-mcmc_nuts_energy(np, merge_chains = FALSE) + ggtitle("NUTS Energy Diagnostic")
+mcmc_nuts_energy(np, merge_chains = T) + ggtitle("NUTS Energy Diagnostic")
 ```
 
 

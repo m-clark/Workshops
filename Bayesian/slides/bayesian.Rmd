@@ -12,9 +12,7 @@ css: slides_light.css
 
 ## Follow along
 
-[m-clark.github.io/workshops/bayesian]()
-
-## {data-transition="fade" data-transitionSpeed="slow"}
+[m-clark.github.io/workshops/bayesian](https://m-clark.github.io/workshops/bayesian)
 
 
 
@@ -28,25 +26,27 @@ $$ \mathrm{posterior} \propto \mathrm{data} * \mathrm{prior}$$
 
 ## Distributions
 
-The goal is a *distribution* (stable) rather than a single parameter estimate
+The goal is a *distribution* for a parameter (stable)... 
+
+rather than a single parameter estimate
 
 ## Posterior
 
-<p class='fragment emph'>Posterior distribution</p>
+<span class='emph'>Posterior distribution</span>
 
-A weighted combination of 
+A weighted combination of the prior and likelihood
 
 ## Prior 
 
 Represents our intution regarding the intial state of affairs
 
-Based on 
+Based on:
 
-<p class="fragment">Prior belief</p>
+<p class="fragment emph" style="font-size:125%">Prior belief</p>
 
-<p class="fragment">Prior research</p>
+<p class="fragment emph" style="font-size:125%">Prior research</p>
 
-<p class="fragment">Known approaches that work well in the modeling context</p>
+<p class="fragment emph" style="font-size:125%">Known approaches that work well in the modeling context</p>
 
 
 
@@ -113,7 +113,7 @@ Or
 
 
 
-## Which of the following is R code for the Bayesian model? {data-transition="none"}
+## Which of the following is R code for <br> the Bayesian model? {data-transition="none"}
 
 ```{r eval=FALSE}
 (mpg ~ wt, data=mtcars)
@@ -121,7 +121,7 @@ Or
 (mpg ~ wt, data=mtcars)
 ```
 
-## Which of the following is R code for the Bayesian model? {data-transition="none"}
+## Which of the following is R code for <br> the Bayesian model? {data-transition="none"}
 
 ```{r eval=FALSE}
 lm(mpg ~ wt, data=mtcars)
@@ -129,7 +129,7 @@ lm(mpg ~ wt, data=mtcars)
 (mpg ~ wt, data=mtcars)
 ```
 
-## Which of the following is R code for the Bayesian model? {data-transition="none"}
+## Which of the following is R code for <br> the Bayesian model? {data-transition="none"}
 
 ```{r eval=FALSE}
 lm(mpg ~ wt, data=mtcars)
@@ -137,7 +137,7 @@ stan_lm(mpg ~ wt, data=mtcars)   # rstanarm
 (mpg ~ wt, data=mtcars)
 ```
 
-## Which of the following is R code for the Bayesian model? {data-transition="none"}
+## Which of the following is R code for <br> the Bayesian model? {data-transition="none"}
 
 ```{r eval=FALSE}
 lm(mpg ~ wt, data=mtcars)
@@ -173,25 +173,27 @@ brm(Reaction ~ Days + (1 + Days|Subject))         # brms
 
 ## The Point 
 
-## {data-transition="zoom"  data-autoslide="3000"}
+## {data-transition="zoom"  data-autoslide="2000"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="3000" }
+##  {data-transition="zoom" data-autoslide="2000" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 
-## 
-
-<div class="fragment fade-up" data-autoslide="3000" ><img src="../img/rstan.png" style="display:block; margin: 0 auto;"></div>
-
+<!-- ##  -->
+<!-- <div class="fragment fade-up" data-autoslide="3000" ><img src="../img/rstan.png" style="display:block; margin: 0 auto;"></div> -->
 
 
 
+<!-- ##  {data-transition="zoom" data-autoslide="2000" } -->
 
-## {data-transition="zoom" data-autoslide="15000"}
+<!-- <p class='fragment fade-up' style="text-align:center;"><img src="../img/rstan.png" style="display:block; margin: 0 auto;"></p> -->
+
+
+## {data-transition="zoom" data-autoslide="10000"}
 
 <style type="text/css">
 
@@ -212,7 +214,7 @@ padding-left: 4px;*/
 <script type="text/javascript">
 
 var delayb4scroll=00 //Specify initial delay before marquee starts to scroll ***TAKES SOME PLAYING WITH***
-var marqueespeed=3 //Specify marquee scroll speed (larger is faster 1-10)
+var marqueespeed=5 //Specify marquee scroll speed (larger is faster 1-10)
 var pauseit=1 //Pause marquee onMousever (0=no. 1=yes)?
 
 ////NO NEED TO EDIT BELOW THIS LINE////////////
@@ -278,12 +280,12 @@ window.onload=initializemarquee
 
 ## {data}
 
-<div style="text-align:center; font-size:95%">Rstan and associated packages make it easy to be a Bayesian</div>
+<div style="text-align:center; font-size:95%">RStan and associated packages make it easy to be a Bayesian</div>
 
 <img src="../img/r_stan.png" style="display:block; margin: 0 auto;">
 
 
-## Things you'll need to learn
+## Things you'll need <br> to learn
 
 Settings
 
@@ -365,30 +367,30 @@ Very complex models
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="100" }
+##  {data-transition="zoom" data-autoslide="125" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="100" }
+##  {data-transition="zoom" data-autoslide="125" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="100" }
+##  {data-transition="zoom" data-autoslide="125" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
@@ -404,52 +406,52 @@ Very complex models
 
 <!-- subliminal here -->
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/cat.jpg" style="display:block; margin: 0 auto;">
 
 
-##  {data-transition="zoom" data-autoslide="100" }
+##  {data-transition="zoom" data-autoslide="125" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/lamborghini.jpg" style="display:block; margin: 0 auto;">
 
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/puppy.jpg" style="display:block; margin: 0 auto;">
 
 
 
-##  {data-transition="zoom" data-autoslide="100" }
+##  {data-transition="zoom" data-autoslide="125" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/money.jpg" style="display:block; margin: 0 auto;">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/bob.jpg" style="display:block; margin: 0 auto;">
 
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/homer.jpg" style="display:block; margin: 0 auto;">
 
@@ -457,52 +459,52 @@ Very complex models
 
 
 
-##  {data-transition="zoom" data-autoslide="100" }
+##  {data-transition="zoom" data-autoslide="125" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/spock.jpg" style="display:block; margin: 0 auto;">
 
 
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/flower.jpg" style="display:block; margin: 0 auto;">
 
 
 
-##  {data-transition="zoom" data-autoslide="100" }
+##  {data-transition="zoom" data-autoslide="125" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/flexible.png" style="display:block; margin: 0 auto;">
 
 
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../../img/Rlogo.png" style="display:block; margin: 0 auto;">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/smile.png" style="display:block; margin: 0 auto;">
 
 
 
-##  {data-transition="zoom" data-autoslide="100" }
+##  {data-transition="zoom" data-autoslide="125" }
 
 <img src="../../img/stan_logo.png" style="display:block; margin: 0 auto; width:70%">
 
-## {data-transition="zoom"  data-autoslide="100"}
+## {data-transition="zoom"  data-autoslide="125"}
 
 <img src="../img/hearts.png" style="display:block; margin: 0 auto;">
 
@@ -518,7 +520,7 @@ Very complex models
 
 ## Join Now! {data-transition="zoom" data-autoslide="3000" }
 
-<p class='fragment' style="text-align:center; font-size:200%"> Can you do any less?!</p>
+<p class='fragment fade-up' style="text-align:center; font-size:200%"> Can you do any less?!</p>
 
 
 ## Go and do likewise!

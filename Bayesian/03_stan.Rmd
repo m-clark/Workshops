@@ -8,7 +8,7 @@ To use Stan directly, one just needs to know their model intimately, which shoul
 
 ## Installing Stan
 
-To get started with Stan, one needs to install the <span class="pack">rstan</span> package. While this will proceed as with any other package, additional steps are required.  First, you will need a C++ compiler, and this process will be different depending on your operating system.  It won't take much, and steps are clearly defined on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).  After going through that process, you may then install the <span class="pack">rstan</span> package and dependencies.  You'll be ready to go at that point.
+To get started with Stan (in R), one needs to install the <span class="pack">rstan</span> package. While this will proceed as with any other package, additional steps are required.  First, you will need a C++ compiler, and this process will be different depending on your operating system.  It won't take much, there's a chance you already have one even, but steps are clearly defined on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).  After going through that process, you may then install the <span class="pack">rstan</span> package and dependencies.  You'll be ready to go at that point.
 
 ## The Way of Stan/RStan
 
@@ -119,7 +119,7 @@ The primary parameters of interest that are to be estimated go in the <span clas
 transformed parameters {    // Transformed parameters block
   real newpar;
   
-  newpar = oldpar + 1;
+  newpar = exp(oldpar);
 } 
 ```
 
@@ -161,10 +161,11 @@ generated quantities {
   totalss = dot_self(y);
   Rsq = 1 - rss/totalss;
 }
-"
 ```
 
-The <span class="emph">generated quantities</span> block is a fantastical place where anything in your noggin can spring forth to life. *Anything* that you can think of that can be calculated based on the model results can be assessed here.  What's more, it will have a distribution just like everything else.  The above calculates the typical R^2^ as an example.  Because of the priors, it is already 'adjusted', but we also have an interval estimate for it.
+The <span class="emph">generated quantities</span> block is a fantastical place where anything in your noggin can spring forth to life. *Anything* that you can think of that can be calculated based on the model results can be assessed here.  What's more, it will have a distribution just like everything else.  The above calculates the typical R^2^ as an example.  Because of the priors, it is already 'adjusted', but we also have an interval estimate for it.  
+
+As another example, to get a sense of how well you're capturing the tails of the distribution for `y`, you could start by calculating your minimum mean prediction, and see how often it falls below the true minimum.  From the Bayesian approach we could not only get an interval of the minimum prediction, we'd get the probability for how often it is above or below the true minimum, which is simply the proportion of samples for which this takes place.  Ideally we'd like a symmetric distribution for the estimated minimum around the true minimum with no general tendency to be above or below.  If it was a very high probability of being lower than the true minimum, perhaps the model over compensates for the lower tail of the distribution.  If it was very low, it would perhaps signal we are not capturing lower extremes very well.  We could do this for the maximum or any other value of interest.
 
 
 ## Using Stan

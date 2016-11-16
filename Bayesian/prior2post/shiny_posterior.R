@@ -1,6 +1,6 @@
 
 ui <- fluidPage(
-  theme='sandstone.css',
+  theme='notebooks.css',
   withMathJax(),
   tags$script("
                     MathJax.Hub.Config({
@@ -57,9 +57,9 @@ ui <- fluidPage(
       numericInput("dataVar",
                    "Data Variance:",
                    min = 1, max = 5, value = 3),
-      withMathJax(numericInput("priorMean",
+      numericInput("priorMean",
                    HTML("Prior Mean for $\\theta$:"),
-                   min = 1, max = 10, value = 2, step=1)),
+                   min = 1, max = 10, value = 2, step=1),
       numericInput("priorVar",
                    HTML("Prior Variance for $\\theta$:"),
                    min = 1, max = 5, value = 1)
@@ -68,8 +68,21 @@ ui <- fluidPage(
 
     mainPanel(
       plotly::plotlyOutput("bayesPlot", width = '100%'),
-      htmlOutput('results'), br(),
-      withMathJax(htmlOutput("caption")),
+      withMathJax(),
+      htmlOutput('results'),
+      br(),
+      "$$p(\\theta|Data) \\propto p(Data|\\theta) \\cdot p(\\theta)$$
+                      $$\\;\\;\\mathrm{posterior} \\;\\propto \\mathrm{likelihood} \\;\\!\\cdot \\mathrm{prior}$$",
+      br(),
+      HTML(
+        "<p>All three distributions regard the <em>parameter</em> to be estimated, i.e. $\\theta$, the mean (we're assuming the variance is known for this demo).</p>
+
+        <p>The <span style=\"color:#F8766D;font-weight:600\">prior</span> regards the initial distribution given for $\\theta$. This may be based on prior beliefs and/or research, or simply one known to work well within the modeling context. Here it is a normal distribution with the mean and variance you provide. More variance would mean a less informative prior.</p>
+
+        <p>The <span style=\"color:#00BA38;font-weight:600\">likelihood</span> regards the data given a particular estimate for $\\theta$, and is the same that one is familiar with from standard maximum likelihood methods. The observed mean is the estimate we'd get using a maximum likelihood approach.  In this case we're assuming a normal distribution as the data generating process.</p>
+
+        <p>Finally, the <span style=\"color:#619CFF;font-weight:600\">posterior</span> is the likelihood for the $\\theta$ values from the Bayesian estimation process, and can be seen as a weighted combination of the prior and the likelihood.</p>"
+      ),
       tags$style("#results {color:cornflowerblue; font-variant:small-caps; font-family:'Inconsolata';}
                   #caption {color:gray;}")
     , width=5)
@@ -127,29 +140,13 @@ server <- function(input, output) {
             axis.title.y=element_blank(),
             axis.ticks.y=element_blank(),
             strip.text=element_text(color=alpha('black',.5), vjust=.01),
-            legend.position='none')
+            legend.position='none',
+            plot.background=element_rect(fill = "transparent",colour = NA))
 
     ggplotly(g, tooltip='none') %>% layout(paper_bgcolor=rgb(0,0,0,0), plot_bgcolor=rgb(0,0,0,0))
 
   })
-  output$caption <- renderText({
-    HTML(
-    "
-\\[
-p(\\theta|Data) \\propto p(Data|\\theta) \\cdot p(\\theta)
-\\]
-\\[
-\\;\\;\\mathrm{posterior} \\;\\propto \\mathrm{likelihood} \\;\\!\\cdot \\mathrm{prior}
-\\]
-</br>
-    <p>All three distributions regard the <em>parameter</em> to be estimated, i.e. $\\theta$, the mean (we're assuming the variance is known for this demo).</p>
 
-    <p>The <span style=\"color:#F8766D;font-weight:600\">prior</span> regards the initial distribution given for $\\theta$. This may be based on prior beliefs and/or research, or simply one known to work well within the modeling context. Here it is a normal distribution with the mean and variance you provide. More variance would mean a less informative prior.</p>
-
-    <p>The <span style=\"color:#00BA38;font-weight:600\">likelihood</span> regards the data given a particular estimate for $\\theta$, and is the same that one is familiar with from standard maximum likelihood methods. The observed mean is the estimate we'd get using a maximum likelihood approach.  In this case we're assuming a normal distribution as the data generating process.</p>
-
-    <p>Finally, the <span style=\"color:#619CFF;font-weight:600\">posterior</span> is the likelihood for the $\\theta$ values from the Bayesian estimation process, and can be seen as a weighted combination of the prior and the likelihood.</p>")
-  })
 }
 
 # Run the application
