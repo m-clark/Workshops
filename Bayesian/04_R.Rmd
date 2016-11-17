@@ -104,7 +104,7 @@ generated quantities {         // Generated quantities block.
   vector[N] test;
   
   yhat = X * beta;
-  Rsq = 1 - dot_self(y-yhat)/dot_self(y);
+  Rsq = 1 - dot_self(y-yhat)/dot_self(y-mean(y));
   
   Intercept = beta[1];
   beta_1 = beta[2];

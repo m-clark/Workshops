@@ -158,7 +158,7 @@ generated quantities {
   
   yhat = X * beta;
   rss = dot_self(y-yhat);
-  totalss = dot_self(y);
+  totalss = dot_self(y-mean(y));
   Rsq = 1 - rss/totalss;
 }
 ```
