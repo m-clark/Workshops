@@ -14,6 +14,7 @@ Me. [Bayesian Basics](http://m-clark.github.io/docs/IntroBayes.html). Concept-fo
 
 
 http://mc-stan.org/ Main website
+
 http://stan.fit/ The Stan Group
 
 More resources [here](http://mc-stan.org/documentation/)

@@ -20,9 +20,13 @@ css: slides_light.css
 
 $$ p(\mathrm{hypothesis}|\mathrm{data}) = \frac{p(\mathrm{data}|\mathrm{hypothesis})p(\mathrm{hypothesis})}{p(\mathrm{data})} $$
 
+
+
 ## {data-transition="fade" data-transitionSpeed="fast"}
 
 $$ \mathrm{posterior} \propto \mathrm{data} * \mathrm{prior}$$
+
+
 
 ## Distributions
 
@@ -30,13 +34,10 @@ The goal is a *distribution* for a parameter (stable)...
 
 rather than a single parameter estimate
 
-## Posterior
 
-<span class='emph'>Posterior distribution</span>
 
-A weighted combination of the prior and likelihood
 
-## Prior 
+## <span style="color:#F8766D">Prior</span>
 
 Represents our intution regarding the intial state of affairs
 
@@ -77,6 +78,64 @@ Based on:
 <div style="text-align:center"><span class="" style="font-size:110%; font-variant:small-caps">Choosing .05 as a cutoff for 'significance'</span></div>
 
 
+## <span style="color:#00BA38">Likelihood</span>
+
+
+<div style="text-align:center">Same as you've used in traditional approaches</div>
+
+
+## <span style="color:#619CFF">Posterior</span>
+
+
+<div style="text-align:center">A weighted combination of the prior and likelihood</div>
+
+<!-- <img src="../img/priorLikePosterior_test1.png" style="display:block; margin: 0 auto;"> -->
+
+```{r echo=F, message=FALSE, warning=FALSE}
+library(tidyverse); library(plotly)
+input = data.frame(n=10, dataMean=7, dataVar=3, priorMean=3, priorVar=1)
+simN = 500
+theta = seq(0, 10, length.out = simN)
+obs  = rnorm(input$n, input$dataMean, sqrt(input$dataVar))
+prior = data.frame(Distribution='Prior', theta=theta,
+                   density = dnorm(theta, input$priorMean, sqrt(input$priorVar))) %>%
+  mutate(density=density/sum(density))
+
+like = data.frame(Distribution='Likelihood', theta=theta,
+                  density = sapply(theta, function(parm) exp(sum(dnorm(obs, mean=parm, sd=sqrt(input$dataVar), log = T))))) %>%
+  mutate(density=density/sum(density))
+
+denom = sum(like$density*prior$density)
+post = data.frame(Distribution='Posterior', theta=theta,
+                  density = like$density*prior$density/denom) %>%
+  mutate(density=density/sum(density))
+
+thetamean = sum(post$density*theta)
+plotdata = rbind(prior, like, post)
+
+
+g = ggplot(aes(x=theta, y=density, group=Distribution, color=Distribution, fill=Distribution), data=plotdata) +
+  geom_ribbon(aes(ymin=0, ymax=density), alpha=.5 ) +
+  geom_point(aes(x=value, y=0), data=data.frame(Distribution=c('Prior', 'Likelihood', 'Posterior'),
+                                                value=c(input$priorMean, mean(obs), thetamean)),
+             color=alpha('#ff5503', .25)) +
+  # facet_wrap(~Distribution, scales = 'free_y', ncol = 1) +
+  xlab('') +# xlab(HTML('\\(\\theta\\)')) + # between shiny plotly and the web, it just don't work
+  lims(x=c(0, 10)) +
+  lazerhawk::theme_trueMinimal() +
+  theme(axis.title.x=element_text(color=alpha('black',.6), vjust=.1, hjust=.5),
+        axis.text.y=element_blank(),
+        axis.title.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        strip.text=element_text(color=alpha('black',.5), vjust=.01),
+        legend.position='none',
+        plot.background=element_rect(fill = "transparent",colour = NA))
+
+ggplotly(g, tooltip='none') %>%
+  config(displayModeBar=F, sendData = F, displaylogo=F, collaborate=F,     # few of these work as advertiseed
+         modeBarButtonsToRemove=list('lasso2d', 'hoverCompareCartesian', 'hoverClosestCartesian')) %>%
+  layout(paper_bgcolor=rgb(0,0,0,0), plot_bgcolor=rgb(0,0,0,0))
+```
 
 ## Perks: Probabilities
 
@@ -215,7 +274,7 @@ padding-left: 4px;*/
 
 var delayb4scroll=00 //Specify initial delay before marquee starts to scroll ***TAKES SOME PLAYING WITH***
 var marqueespeed=5 //Specify marquee scroll speed (larger is faster 1-10)
-var pauseit=1 //Pause marquee onMousever (0=no. 1=yes)?
+var pauseit=0 //Pause marquee onMousever (0=no. 1=yes)?
 
 ////NO NEED TO EDIT BELOW THIS LINE////////////
 

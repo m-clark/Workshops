@@ -143,7 +143,10 @@ server <- function(input, output) {
             legend.position='none',
             plot.background=element_rect(fill = "transparent",colour = NA))
 
-    ggplotly(g, tooltip='none') %>% layout(paper_bgcolor=rgb(0,0,0,0), plot_bgcolor=rgb(0,0,0,0))
+    ggplotly(g, tooltip='none') %>%
+      config(displayModeBar=F, sendData = F, displaylogo=F, collaborate=F,     # few of these work as advertiseed
+             modeBarButtonsToRemove=list('lasso2d', 'hoverCompareCartesian', 'hoverClosestCartesian')) %>%
+      layout(paper_bgcolor=rgb(0,0,0,0), plot_bgcolor=rgb(0,0,0,0))
 
   })
 
