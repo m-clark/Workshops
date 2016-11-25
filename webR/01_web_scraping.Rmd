@@ -58,7 +58,7 @@ The sad thing is that attributes are greatly underutilized in general.  For exam
 
 <img src="img/openfda.png" style="display:block; margin: 0 auto;">
 
-It has lots of attributes for practically every element, which would make getting stuff off the page fairly easy, if it didn't already have an [APIs].
+It has lots of attributes for practically every element, which would make getting stuff off the page fairly easy, if it didn't already have an [API][APIs].
 
 In any case, you'll at least need to know the tag within which the data or link to it may be found.  Classes and ids will help to further drill down the web page content, but often won't be available.  In such a case you might have to grab, for example, all the links, and then use some <span class="emph">regular expression</span> to grab only the one you want. See this [link](https://en.wikipedia.org/wiki/HTML_attribute) for more on relations between attributes and elements.
 

@@ -1,7 +1,7 @@
 # APIs
 
 
-An <span class="emph">application programming interface</span> allows one to interact with a website.  In the simplest situation, this is merely a url-based approach to grabbing what you need.
+An <span class="emph">application programming interface</span> allows one to interact with a website[^api].  In the simplest situation, this is merely a url-based approach to grabbing what you need.
 
 As an example consider the following generic URL:
 
@@ -140,7 +140,12 @@ Sometimes someone fiddles with things they shouldn't and you start getting error
 Note that there are almost always restrictions. For example, the New York Times API limits requests to 1000 calls per day, and five calls per second.  Unfortunately these are typically not based on actual testing of what modern servers could handle and are often overly restrictive (and overly optimistic in estimates of web traffic) in my opinion.   I mention it though because you'll need to plan ahead.  If you need a 1 million requests, but the API restricts you to 1000 a day, you'll obviously need some other way to get the data you want.  A simple request to the website developers for more flexibility might be all that is needed.
 
 
+[^api]: [APIs](https://en.wikipedia.org/wiki/Application_programming_interface) are much more general than just the Web version described here, in that they allow a means of interaction with anything- operating system, software, hardware etc.  For our purposes though, it usually boils down to the examples above.
+
 [^apikey]: The reason you don't see the key is that, like passwords, you should not provide your keys to others. They provide a means for *you* to interact with the website, not other people.
+
 [^nytapi]: There are several APIs for different types of content.
+
 [^qualtricsRLink]: [https://github.com/saberry/qualtricsR](https://github.com/saberry/qualtricsR)
+
 [^url]: Technically <span class="emph">uniform resource locator</span>.
