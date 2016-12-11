@@ -32,7 +32,7 @@ This repository is more or less a list of other repos and the associated slides 
 - [Current](http://m-clark.github.io/workshops/dplyr/mainSlides.html)
 - [Repo](https://github.com/m-clark/data-manipulation-in-r)
 
-[Data Science Skills Series](https://github.com/m-clark/Workshops/tree/master/dsSeries)  See [Kerby Shedden's notes](http://kshedden.github.io/ds_skills_series.html). These notebooks provide R versions of the Python examples therein. (under development)
+[Data Science Skills Series](https://github.com/m-clark/old-dsss)  See [Kerby Shedden's notes](http://kshedden.github.io/ds_skills_series.html). These notebooks provide R versions of the Python examples therein. (under development)
 
 **R bootcamp**: A day long R course given some time ago (2015-08), and perhaps to be given again in the future.
 
