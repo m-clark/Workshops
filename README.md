@@ -41,9 +41,14 @@ This repository is more or less a list of other repos and the associated slides 
 
 
 
-## Under development
+### Under development
 
 These are in very early stages or not even started yet.
 
-- My God, it's full of STARs! Using astrology to get more from your data (under development, to be given Winter 2017) [Repo](https://github.com/m-clark/stars)
-- Literate programming and reproducible research with Rmarkdown (under development)
+**My God, it's full of STARs! Using astrology to get more from your data.** (under development, to be given Winter 2017) - 
+
+- [Repo](https://github.com/m-clark/stars)
+
+Literate programming and reproducible research with Rmarkdown (under development, not yet begun)
+
+- [Link](http://m-clark.github.io/docs/RDA_intro.pdf) to an old set of slides for workshop given with Andres Martinez that may provide some idea of the content. See also the Rstudio above.
