@@ -49,6 +49,6 @@ These are in very early stages or not even started yet.
 
 - [Repo](https://github.com/m-clark/stars)
 
-Literate programming and reproducible research with Rmarkdown (under development, not yet begun)
+**Literate programming and reproducible research with Rmarkdown** (under development, not yet begun)
 
 - [Link](http://m-clark.github.io/docs/RDA_intro.pdf) to an old set of slides for workshop given with Andres Martinez that may provide some idea of the content. See also the Rstudio above.
