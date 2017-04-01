@@ -14,7 +14,7 @@ This repository is more or less a list of other repos and the associated slides 
 
 **Data Processing and Visualization**: This workshop focuses on using using various R packages for common tasks.
 
-- [Current](http://m-clark.github.io/workshops/DataProcViz/DataProcViz.html)
+- [Current](http://m-clark.github.io/workshops/DataProcViz/)
 - [Repo](https://github.com/m-clark/data-processing-and-visualization)
 
 **Going further with RStudio**: Using RStudio for more than scripting. 
