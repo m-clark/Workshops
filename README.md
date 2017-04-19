@@ -2,6 +2,21 @@
 
 This repository is more or less a list of other repos and the associated slides and docs that are specific to workshops or talks I've given. The repos house notes/slides/code/data etc. They are roughly in chronological order based on when they were given last, and I link to the presentation as given and repo.
 
+**My God, it's full of STARs! Using astrology to get more from your data.** 
+
+- [Current](http://m-clark.github.io/workshops/stars/)
+- [Repo](https://github.com/m-clark/stars)
+
+**Data Processing and Visualization**: This workshop focuses on using using various R packages for common tasks.
+
+- [Current](http://m-clark.github.io/workshops/DataProcViz/)
+- [Repo](https://github.com/m-clark/data-processing-and-visualization)
+
+**Graphical and Latent Variable Modeling**: This doc provides the source for the workshop on structural equation modeling.
+
+- [Current](http://m-clark.github.io/docs/sem/)
+- [Repo](https://github.com/m-clark/sem)
+
 **Become a Bayesian in 10 Minutes**: Talk aimed at giving an introduction Bayesian modeling in R via the Stan programming language.
 
 - [Current](http://m-clark.github.io/workshops/bayesian/)
@@ -12,20 +27,12 @@ This repository is more or less a list of other repos and the associated slides 
 - [Current](http://m-clark.github.io/docs/web)
 - [Repo](https://github.com/m-clark/webR)
 
-**Data Processing and Visualization**: This workshop focuses on using using various R packages for common tasks.
-
-- [Current](http://m-clark.github.io/workshops/DataProcViz/)
-- [Repo](https://github.com/m-clark/data-processing-and-visualization)
-
 **Going further with RStudio**: Using RStudio for more than scripting. 
 
 - [Current](http://m-clark.github.io/docs/introRstudio.html)
 - [Repo](https://github.com/m-clark/Introduction-to-RStudio)
 
-**Graphical and Latent Variable Modeling**: This doc provides the source for the workshop on structural equation modeling.
 
-- [Current](http://m-clark.github.io/docs/sem/)
-- [Repo](https://github.com/m-clark/sem)
 
 **Ceci n’est pas une %>%: Exploring Your Data with R**: This workshop focuses on using magrittr and dplyr.
 
@@ -45,9 +52,7 @@ This repository is more or less a list of other repos and the associated slides 
 
 These are in very early stages or not even started yet.
 
-**My God, it's full of STARs! Using astrology to get more from your data.** (under development, to be given Winter 2017) - 
 
-- [Repo](https://github.com/m-clark/stars)
 
 **Literate programming and reproducible research with Rmarkdown** (under development, not yet begun)
 
