@@ -2,7 +2,12 @@
 
 This repository is more or less a list of other repos and the associated slides and docs that are specific to workshops or talks I've given. The repos house notes/slides/code/data etc. They are roughly in chronological order based on when they were given last, and I link to the presentation as given and repo.
 
-**My God, it's full of STARs! Using astrology to get more from your data.** 
+**Mixed Models wtih R** 
+
+- [Current](http://m-clark.github.io/workshops/mixed_models_r/)  Workshop outlining basics of mixed models with R.
+- [Repo](https://github.com/m-clark/mixed-models-with-R)
+
+**My God, it's full of STARs! Using astrology to get more from your data.** A workshop introducing generalized additive models and related.
 
 - [Current](http://m-clark.github.io/workshops/stars/)
 - [Repo](https://github.com/m-clark/stars)
