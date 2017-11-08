@@ -2,15 +2,24 @@
 
 This repository is more or less a list of other repos and the associated slides and docs that are specific to workshops or talks I've given. The repos house notes/slides/code/data etc. They are roughly in chronological order based on when they were given/created/updated, and I link to the repo and associated doc.
 
+
+**Data Processing and Visualization**: This workshop focuses on using using various R packages for common tasks.
+
+- [Current](https://m-clark.github.io/data-processing-and-visualization)
+- [Repo](https://github.com/m-clark/data-processing-and-visualization)
+
+
+**Text Analysis with R**: A gentle introduction to dealing with text in R.
+
+- [Current](https://m-clark.github.io/text-analysis-with-R/)  
+- [Repo](https://github.com/m-clark/text-analysis-with-R)
+
+
 **Mixed Models with R**: Workshop outlining basics of mixed models with R.
 
 - [Current](https://m-clark.github.io/mixed-models-with-R/)  
 - [Repo](https://github.com/m-clark/mixed-models-with-R)
 
-**Text Analysis with R**: A gentle introduction to dealing with text in R.
-
-- [Current](http://m-clark.github.io/text-analysis-with-R/)  
-- [Repo](https://github.com/m-clark/text-analysis-with-R)
 
 **Graphical and Latent Variable Modeling**: This doc provides the source for the workshop on structural equation modeling.
 
@@ -22,12 +31,6 @@ This repository is more or less a list of other repos and the associated slides 
 
 - [Current](http://m-clark.github.io/workshops/stars/)
 - [Repo](https://github.com/m-clark/stars)
-
-**Data Processing and Visualization**: This workshop focuses on using using various R packages for common tasks.
-
-- [Current](http://m-clark.github.io/workshops/DataProcViz/)
-- [Repo](https://github.com/m-clark/data-processing-and-visualization)
-
 
 **Become a Bayesian in 10 Minutes**: Talk aimed at giving an introduction Bayesian modeling in R via the Stan programming language.
 
