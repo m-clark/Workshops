@@ -11,3 +11,6 @@ DataProcViz/slides/*_cache
 # and so are ignored to avoid submodule nonsense
 Introduction-to-RStudio
 data-manipulation-in-r
+
+
+.DS_Store
